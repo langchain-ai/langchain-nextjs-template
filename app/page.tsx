@@ -4,10 +4,15 @@ import { useChat } from "ai/react";
 import type { Message } from "ai/react";
 
 function ChatMessage(props: { message: Message }) {
-  const colorClassName = props.message.role === "user" ? "bg-sky-600" : "bg-slate-50 text-black";
-  const alignmentClassName = props.message.role === "user" ? "mr-auto" : "ml-auto";
+  const colorClassName =
+    props.message.role === "user" ? "bg-sky-600" : "bg-slate-50 text-black";
+  const alignmentClassName =
+    props.message.role === "user" ? "mr-auto" : "ml-auto";
   return (
-    <div key={props.message.id} className={`${alignmentClassName} ${colorClassName} rounded px-4 py-2 max-w-[80%] mb-8`}>
+    <div
+      key={props.message.id}
+      className={`${alignmentClassName} ${colorClassName} rounded px-4 py-2 max-w-[80%] mb-8`}
+    >
       {props.message.content}
     </div>
   );
@@ -30,7 +35,9 @@ export default function Home() {
           value={input}
           onChange={handleInputChange}
         />
-        <button type="submit" className="px-8 py-4 bg-sky-600 rounded">Send</button>
+        <button type="submit" className="px-8 py-4 bg-sky-600 rounded">
+          Send
+        </button>
       </form>
     </div>
   );
