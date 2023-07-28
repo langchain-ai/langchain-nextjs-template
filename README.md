@@ -1,4 +1,4 @@
-# LangChain + Next.js Starter Template
+# 🦜️🔗 LangChain + Next.js Starter Template
 
 This template scaffolds a simple LangChain.js + Next.js starter template. It has one endpoint, `POST /api/chat`, that streams back a model call to
 the frontend. It uses Vercel's [`ai` SDK](https://github.com/vercel-labs/ai) to pipe the stream back to the client as well as display the incoming messages.
