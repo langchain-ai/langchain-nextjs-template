@@ -10,7 +10,6 @@ function ChatMessage(props: { message: Message }) {
     props.message.role === "user" ? "mr-auto" : "ml-auto";
   return (
     <div
-      key={props.message.id}
       className={`${alignmentClassName} ${colorClassName} rounded px-4 py-2 max-w-[80%] mb-8`}
     >
       {props.message.content}
@@ -25,7 +24,7 @@ export default function Home() {
     <div className="flex flex-col items-center mt-48">
       <div className="flex flex-col w-[80%] grow mb-4">
         {messages.map((m) => (
-          <ChatMessage message={m}></ChatMessage>
+          <ChatMessage key={m.id} message={m}></ChatMessage>
         ))}
       </div>
 
