@@ -1,7 +1,7 @@
 # 🦜️🔗 LangChain + Next.js Starter Template
 
-This template scaffolds a simple LangChain.js + Next.js starter template. It has one endpoint, `POST /api/chat`, that streams back a model call to
-the frontend. It uses Vercel's [AI SDK](https://github.com/vercel-labs/ai) to pipe the stream back to the client as well as display the incoming messages.
+This template scaffolds a simple LangChain.js + Next.js starter template. It has one endpoint, `POST /api/chat`, that streams a LangChain model call,
+then uses Vercel's [AI SDK](https://github.com/vercel-labs/ai) to pipe that stream back to the client and display the incoming messages.
 
 ![Screenshot of the title card](/public/images/title-card.png)
 
@@ -26,6 +26,10 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 Backend logic lives in `app/api/chat/route.ts`. From here, you can change the prompt and model, or add other modules and logic.
 
 ## Learn More
+
+The example chain in the `route.ts` file uses [LangChain Expression Language](https://js.langchain.com/docs/guides/expression_language/interface) to
+compose different LangChain modules together. You can integrate other retrievers, agents, preconfigured chains, and more too, though keep in mind
+`BytesOutputParser` is meant to be used directly with model output.
 
 To learn more about what you can do with LangChain.js, check out the docs here:
 
