@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center mt-48">
       <div
-        className="flex flex-col-reverse w-[80%] grow mb-4 overflow-scroll"
+        className="flex flex-col-reverse w-[80%] grow mb-4 overflow-auto"
         ref={messageContainerRef}
       >
         {[...messages].reverse().map((m) => (
