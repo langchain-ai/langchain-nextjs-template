@@ -1,23 +1,11 @@
 "use client";
 
 import { useChat } from "ai/react";
-import { useEffect, useRef } from "react";
-import type { Message } from "ai/react";
+import { useRef } from "react";
 import type { FormEvent } from "react";
 
-function ChatMessage(props: { message: Message }) {
-  const colorClassName =
-    props.message.role === "user" ? "bg-sky-600" : "bg-slate-50 text-black";
-  const alignmentClassName =
-    props.message.role === "user" ? "mr-auto" : "ml-auto";
-  return (
-    <div
-      className={`${alignmentClassName} ${colorClassName} rounded px-4 py-2 max-w-[80%] mb-8`}
-    >
-      {props.message.content}
-    </div>
-  );
-}
+import { ChatMessageBubble } from "@/components/ChatMessageBubble";
+import { InfoCard } from "@/components/InfoCard";
 
 export default function Home() {
   const messageContainerRef = useRef<HTMLDivElement | null>(null);
@@ -42,15 +30,22 @@ export default function Home() {
         className="flex flex-col-reverse w-[80%] grow mb-4 overflow-auto"
         ref={messageContainerRef}
       >
-        {[...messages].reverse().map((m) => (
-          <ChatMessage key={m.id} message={m}></ChatMessage>
-        ))}
+        {messages.length > 0 ? (
+          [...messages]
+            .reverse()
+            .map((m) => (
+              <ChatMessageBubble key={m.id} message={m}></ChatMessageBubble>
+            ))
+        ) : (
+          <InfoCard></InfoCard>
+        )}
       </div>
 
       <form onSubmit={sendMessage} className="flex w-[80%]">
         <input
-          className="grow mr-12 p-4 rounded"
+          className="grow mr-8 p-4 rounded"
           value={input}
+          placeholder="What's it like to be a pirate?"
           onChange={handleInputChange}
         />
         <button type="submit" className="px-8 py-4 bg-sky-600 rounded">
