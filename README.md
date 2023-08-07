@@ -3,7 +3,7 @@
 This template scaffolds a simple LangChain.js + Next.js starter template. It has one endpoint, `POST /api/chat`, that streams back a model call to
 the frontend. It uses Vercel's [AI SDK](https://github.com/vercel-labs/ai) to pipe the stream back to the client as well as display the incoming messages.
 
-![Screenshot of the title card](/public/images/title.png?)
+![Screenshot of the title card](/public/images/title.png?1)
 
 ## Getting Started
 
@@ -19,7 +19,7 @@ pnpm dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result! Ask the bot something and you'll see a streamed response:
 
-![A streaming conversation between the user and the AI](/public/images/chat.png?)
+![A streaming conversation between the user and the AI](/public/images/chat.png?1)
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
