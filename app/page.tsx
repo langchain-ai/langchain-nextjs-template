@@ -1,7 +1,9 @@
 "use client";
 
 import { useChat } from "ai/react";
+import { useEffect, useRef } from "react";
 import type { Message } from "ai/react";
+import type { FormEvent } from "react";
 
 function ChatMessage(props: { message: Message }) {
   const colorClassName =
@@ -18,17 +20,34 @@ function ChatMessage(props: { message: Message }) {
 }
 
 export default function Home() {
-  const { messages, input, handleInputChange, handleSubmit } = useChat();
+  const messageContainerRef = useRef<HTMLDivElement | null>(null);
+
+  const { messages, input, handleInputChange, handleSubmit, isLoading } =
+    useChat({});
+
+  function sendMessage(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (messageContainerRef.current) {
+      messageContainerRef.current.classList.add("h-[50vh]");
+    }
+    if (isLoading) {
+      return;
+    }
+    handleSubmit(e);
+  }
 
   return (
     <div className="flex flex-col items-center mt-48">
-      <div className="flex flex-col w-[80%] grow mb-4">
-        {messages.map((m) => (
+      <div
+        className="flex flex-col-reverse w-[80%] grow mb-4 overflow-scroll"
+        ref={messageContainerRef}
+      >
+        {[...messages].reverse().map((m) => (
           <ChatMessage key={m.id} message={m}></ChatMessage>
         ))}
       </div>
 
-      <form onSubmit={handleSubmit} className="flex w-[80%]">
+      <form onSubmit={sendMessage} className="flex w-[80%]">
         <input
           className="grow mr-12 p-4 rounded"
           value={input}
