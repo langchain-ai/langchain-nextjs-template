@@ -1,7 +1,9 @@
 import "./globals.css";
 import { Public_Sans } from "next/font/google";
 
-const inter = Public_Sans({ subsets: ["latin"] });
+import { Navbar } from "@/components/Navbar";
+
+const publicSans = Public_Sans({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
@@ -14,7 +16,12 @@ export default function RootLayout({
         <title>LangChain + Next.js Template</title>
         <link rel="shortcut icon" href="/static/favicon.ico" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={publicSans.className}>
+        <div className="flex flex-col m-24 h-[calc(100vh-12rem)]">
+          <Navbar></Navbar>
+          {children}
+        </div>
+      </body>
     </html>
   );
 }

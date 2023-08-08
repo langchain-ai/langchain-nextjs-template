@@ -12,11 +12,11 @@ body input {
 }
 
 a {
-  color: #096bde;
+  color: #2d7bd4;
 }
 
 a:hover {
-  text-decoration: underline;
+  border-bottom: 1px solid;
 }
 
 p {

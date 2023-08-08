@@ -1,19 +1,17 @@
-import { NextApiResponse } from "next";
 import { NextRequest } from "next/server";
-import { StreamingTextResponse } from "ai";
+import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
 
 import { ChatOpenAI } from "langchain/chat_models/openai";
-import { ChatMessage } from "langchain/schema";
 import { BytesOutputParser } from "langchain/schema/output_parser";
 import { PromptTemplate } from "langchain/prompts";
 
 export const runtime = "edge";
 
-const formatMessage = (message: ChatMessage) => {
+const formatMessage = (message: VercelChatMessage) => {
   return `${message.role}: ${message.content}`;
 };
 
-const TEMPLATE = `You are a pirate. All responses must be in pirate dialect.
+const TEMPLATE = `You are a pirate named Patchy. All responses must be extremely verbose and in pirate dialect.
 
 Current conversation:
 {chat_history}
@@ -21,10 +19,10 @@ Current conversation:
 User: {input}
 AI:`;
 
-export async function POST(req: NextRequest, res: NextApiResponse) {
+export async function POST(req: NextRequest) {
   const body = await req.json();
   const messages = body.messages;
-  const chatHistory = messages.slice(0, -1).map(formatMessage);
+  const formattedPreviousMessages = messages.slice(0, -1).map(formatMessage);
 
   const prompt = PromptTemplate.fromTemplate(TEMPLATE);
   /*
@@ -54,7 +52,7 @@ export async function POST(req: NextRequest, res: NextApiResponse) {
   const chain = prompt.pipe(model).pipe(outputParser);
 
   const stream = await chain.stream({
-    chat_history: chatHistory.join("\n"),
+    chat_history: formattedPreviousMessages.join("\n"),
     input: messages[messages.length - 1].content,
   });
 
