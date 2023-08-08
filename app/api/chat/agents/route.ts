@@ -32,7 +32,9 @@ AI:`;
 export async function POST(req: NextRequest) {
   const body = await req.json();
   const messages = body.messages;
-  const previousMessages = messages.slice(0, -1).map(convertVercelMessageToLangChainMessage);
+  const previousMessages = messages
+    .slice(0, -1)
+    .map(convertVercelMessageToLangChainMessage);
 
   // Requires process.env.SERPAPI_API_KEY to be set: https://serpapi.com/
   const tools = [new Calculator(), new SerpAPI()];
@@ -47,11 +49,13 @@ export async function POST(req: NextRequest) {
       returnMessages: true,
     }),
     agentArgs: {
-      prefix: TEMPLATE
-    }
+      prefix: TEMPLATE,
+    },
   });
 
-  const result = await executor.call({input: messages[messages.length - 1].content});
+  const result = await executor.call({
+    input: messages[messages.length - 1].content,
+  });
 
   // Agents don't support streaming responses (yet!), so stream back the complete response one
   // character at a time to simluate it.
@@ -63,7 +67,7 @@ export async function POST(req: NextRequest) {
         await new Promise((resolve) => setTimeout(resolve, 20));
       }
       controller.close();
-    }
+    },
   });
 
   return new StreamingTextResponse(fakeStream);
