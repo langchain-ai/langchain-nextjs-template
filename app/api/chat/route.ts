@@ -36,7 +36,9 @@ export async function POST(req: NextRequest, res: NextApiResponse) {
    * See a full list of supported models at:
    * https://js.langchain.com/docs/modules/model_io/models/
    */
-  const model = new ChatOpenAI({});
+  const model = new ChatOpenAI({
+    temperature: 0.8,
+  });
   /*
    * Chat models stream message chunks rather than bytes, so this
    * output parser handles serialization and byte-encoding.

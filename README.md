@@ -7,14 +7,14 @@ then uses Vercel's [AI SDK](https://github.com/vercel-labs/ai) to pipe that stre
 
 ## Getting Started
 
-First, run the development server:
+First, you'll need to set up an `.env.local` file. Copy the `.env.local.example` to `.env.local`, and add your OpenAI API key.
+
+Next, install the required packages using your preferred package manager (e.g. `yarn install`).
+
+Now you're ready to run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
-# or
-pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result! Ask the bot something and you'll see a streamed response:
