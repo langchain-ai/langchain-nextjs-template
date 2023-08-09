@@ -14,7 +14,10 @@ Most of them use Vercel's [AI SDK](https://github.com/vercel-labs/ai) to stream 
 
 ## Getting Started
 
-First, you'll need to set up an `.env.local` file. Copy the `.env.local.example` to `.env.local`. To start, you'll just need to add your OpenAI API key.
+First, clone this repo and download it locally.
+
+Next, you'll need to set up environment variables in your repo's `.env.local` file. Copy the `.env.local.example` to `.env.local`.
+To start with the basic examples, you'll just need to add your OpenAI API key.
 
 Next, install the required packages using your preferred package manager (e.g. `yarn`).
 
@@ -34,7 +37,8 @@ Backend logic lives in `app/api/chat/route.ts`. From here, you can change the pr
 
 ## Structured Output
 
-You can also see how have a model return output according to a specific schema using OpenAI Functions. Switch to the `Structured Output` example to try it out:
+The second exapmle shows how to have a model return output according to a specific schema using OpenAI Functions.
+Click the `Structured Output` link in the navbar to try it out:
 
 ![A streaming conversation between the user and an AI agent](/public/images/structured-output-conversations.png)
 
@@ -45,10 +49,10 @@ For more details, [check out this documentation page](https://js.langchain.com/d
 
 ## Agents
 
-To try out the agent example, you'll need to give it access to the internet by populating the `SERPAPI_API_KEY` in `.env.local`.
+To try out the agent example, you'll need to give the agent access to the internet by populating the `SERPAPI_API_KEY` in `.env.local`.
 Head over to [the SERP API website](https://serpapi.com/) and get an API key if you don't already have one.
 
-You can then switch to the `Agent` example and try asking it more complex questions:
+You can then click the `Agent` example and try asking it more complex questions:
 
 ![A streaming conversation between the user and an AI agent](/public/images/agent-conversations.png)
 
