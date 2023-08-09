@@ -22,7 +22,7 @@ export default function AgentsPage() {
         <li>
           🛠️
           <span className="ml-2">
-            The agent will has memory and access to a search engine and a
+            The agent has memory and access to a search engine and a
             calculator.
           </span>
         </li>
@@ -58,7 +58,7 @@ export default function AgentsPage() {
           </span>
         </li>
         <li className="text-l">
-          👇<span className="ml-2">Try asking a question below!</span>
+          👇<span className="ml-2">Try asking, "What is the weather in Honolulu?" or another question below!</span>
         </li>
       </ul>
     </div>

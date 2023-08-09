@@ -52,7 +52,7 @@ const CONDENSE_QUESTION_PROMPT = PromptTemplate.fromTemplate(
   condenseQuestionTemplate,
 );
 
-const answerTemplate = `You are an energetic talking puppy, and must answer all questions like a happy, talking dog would.
+const answerTemplate = `You are an energetic talking puppy named Dana, and must answer all questions like a happy, talking dog would.
 Use lots of puns!
 
 Answer the question based only on the following context:
