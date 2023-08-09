@@ -22,7 +22,7 @@ export default function AgentsPage() {
         <li>
           🛠️
           <span className="ml-2">
-            The agent has access to a retriever as a tool as well as the current conversation and any previously fetched documents.
+            The agent has access to a vector store retriever as a tool as well as a memory. It's particularly well suited to meta-questions about the current conversation.
           </span>
         </li>
         <li className="text-l">
