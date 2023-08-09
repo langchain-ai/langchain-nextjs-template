@@ -14,7 +14,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <title>LangChain + Next.js Template</title>
-        <link rel="shortcut icon" href="/static/favicon.ico" />
+        <link rel="shortcut icon" href="/images/favicon.ico" />
       </head>
       <body className={publicSans.className}>
         <div className="flex flex-col m-12 h-[calc(100vh-6rem)]">
