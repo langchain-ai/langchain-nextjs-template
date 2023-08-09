@@ -15,7 +15,12 @@ export async function POST(req: NextRequest) {
 
   if (process.env.NEXT_PUBLIC_DEMO === "true") {
     return NextResponse.json(
-      { error: "Ingest is not supported in demo mode." },
+      {
+        error: [
+          "Ingest is not supported in demo mode.",
+          "Please set up your own version of the repo here: https://github.com/langchain-ai/langchain-nextjs-template"
+        ].join('\n')
+      },
       { status: 403 },
     );
   }
