@@ -74,10 +74,17 @@ export default function AgentsPage() {
           </span>
         </li>
         <li className="text-l">
+          🔱
+          <span className="ml-2">
+            Before running this example, you&apos;ll first need to set up a
+            Supabase (or other) vector store. See the README for more details.
+          </span>
+        </li>
+        <li className="text-l">
           👇
           <span className="ml-2">
-            Try asking, &quot;What are some ways of doing retrieval in
-            LangChain?&quot; or another question below!
+            Upload some text, then try asking, &quot;What are some ways of doing
+            retrieval in LangChain?&quot; or another question below!
           </span>
         </li>
       </ul>
