@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const text = body.text;
 
-  if (process.env.DEMO === "true") {
+  if (process.env.NEXT_PUBLIC_DEMO === "true") {
     return NextResponse.json(
       { error: "Ingest is not supported in demo mode." },
       { status: 403 },
