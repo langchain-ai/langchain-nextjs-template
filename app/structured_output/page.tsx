@@ -49,7 +49,9 @@ export default function AgentsPage() {
           💎
           <span className="ml-2">
             It uses a lightweight, convenient, and powerful{" "}
-            <a href="https://zod.dev/">schema validation library called Zod</a>{" "}
+            <a href="https://zod.dev/" target="_blank">
+              schema validation library called Zod
+            </a>{" "}
             to define schemas, but you can initialize the chain with JSON schema
             too.
           </span>

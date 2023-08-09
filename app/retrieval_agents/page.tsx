@@ -25,8 +25,8 @@ export default function AgentsPage() {
           🛠️
           <span className="ml-2">
             The agent has access to a vector store retriever as a tool as well
-            as a memory. It&apos;s particularly well suited to meta-questions about
-            the current conversation.
+            as a memory. It&apos;s particularly well suited to meta-questions
+            about the current conversation.
           </span>
         </li>
         <li className="text-l">
