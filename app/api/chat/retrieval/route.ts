@@ -64,7 +64,7 @@ const ANSWER_PROMPT = PromptTemplate.fromTemplate(answerTemplate);
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const messages = body.messages;
+  const messages = body.messages ?? [];
   const previousMessages = messages.slice(0, -1);
   const currentMessageContent = messages[messages.length - 1].content;
 

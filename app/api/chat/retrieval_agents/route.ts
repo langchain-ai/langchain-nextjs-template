@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
 
 import { createClient } from "@supabase/supabase-js";
@@ -32,7 +32,12 @@ If you don't know how to answer a question, use the available tools to look up r
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const messages = body.messages;
+  /*
+   * We represent intermediate steps as system messages for display purposes,
+   * but don't want them in the chat history.
+   */
+  const messages = (body.messages ?? []).filter((message: VercelChatMessage) => message.role === "user" ?? message.role === "assistant");
+  const returnIntermediateSteps = body.show_intermediate_steps;
   const previousMessages = messages.slice(0, -1);
   const currentMessageContent = messages[messages.length - 1].content;
 
@@ -82,18 +87,22 @@ export async function POST(req: NextRequest) {
     input: currentMessageContent,
   });
 
-  // Agents don't support streaming responses (yet!), so stream back the complete response one
-  // character at a time to simluate it.
-  const textEncoder = new TextEncoder();
-  const fakeStream = new ReadableStream({
-    async start(controller) {
-      for (const character of result.output) {
-        controller.enqueue(textEncoder.encode(character));
-        await new Promise((resolve) => setTimeout(resolve, 20));
-      }
-      controller.close();
-    },
-  });
+  if (returnIntermediateSteps) {
+    return NextResponse.json({output: result.output, intermediate_steps: result.intermediateSteps}, { status: 200 });
+  } else {
+    // Agents don't support streaming responses (yet!), so stream back the complete response one
+    // character at a time to simluate it.
+    const textEncoder = new TextEncoder();
+    const fakeStream = new ReadableStream({
+      async start(controller) {
+        for (const character of result.output) {
+          controller.enqueue(textEncoder.encode(character));
+          await new Promise((resolve) => setTimeout(resolve, 20));
+        }
+        controller.close();
+      },
+    });
 
-  return new StreamingTextResponse(fakeStream);
+    return new StreamingTextResponse(fakeStream);
+  }
 }

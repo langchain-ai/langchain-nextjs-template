@@ -21,7 +21,7 @@ AI:`;
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const messages = body.messages;
+  const messages = body.messages ?? [];
   const formattedPreviousMessages = messages.slice(0, -1).map(formatMessage);
   const currentMessageContent = messages[messages.length - 1].content;
 

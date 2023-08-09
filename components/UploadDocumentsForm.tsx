@@ -19,7 +19,6 @@ export function UploadDocumentsForm() {
       setDocument("Uploaded!");
     } else {
       const json = await response.json();
-      console.log(json);
       if (json.error) {
         setDocument(json.error);
       }

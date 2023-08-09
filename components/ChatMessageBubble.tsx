@@ -2,7 +2,7 @@ import type { Message } from "ai/react";
 
 export function ChatMessageBubble(props: { message: Message }) {
   const colorClassName =
-    props.message.role === "user" ? "bg-sky-600" : "bg-slate-50 text-black";
+    props.message.role === "user" ? "bg-sky-600" : (props.message.role === "assistant" ? "bg-slate-50 text-black" : "bg-green-600");
   const alignmentClassName =
     props.message.role === "user" ? "mr-auto" : "ml-auto";
   return (

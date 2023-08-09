@@ -72,7 +72,7 @@ export default function AgentsPage() {
       emptyStateComponent={InfoCard}
       showIngestForm={true}
       placeholder={
-        'I\'m a dog with a nose for finding the right documents! Ask, "What are some ways of doing retrieval in LangChain.js?"'
+        'I\'ve got a nose for finding the right documents! Ask, "What are some ways of doing retrieval in LangChain.js?"'
       }
       titleText="🐶 Dana the Document-Retrieving Dog"
     ></ChatWindow>

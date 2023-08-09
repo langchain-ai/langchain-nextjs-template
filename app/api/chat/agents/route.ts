@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
 
 import { initializeAgentExecutorWithOptions } from "langchain/agents";
@@ -31,7 +31,11 @@ AI:`;
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const messages = body.messages;
+  /* We represent intermediate steps as system messages for display purposes,
+   * but don't want them in the chat history.
+   */
+  const messages = (body.messages ?? []).filter((message: VercelChatMessage) => message.role === "user" ?? message.role === "assistant");
+  const returnIntermediateSteps = body.show_intermediate_steps;
   const previousMessages = messages
     .slice(0, -1)
     .map(convertVercelMessageToLangChainMessage);
@@ -44,10 +48,12 @@ export async function POST(req: NextRequest) {
   const executor = await initializeAgentExecutorWithOptions(tools, chat, {
     agentType: "openai-functions",
     verbose: true,
+    returnIntermediateSteps,
     memory: new BufferMemory({
       memoryKey: "chat_history",
       chatHistory: new ChatMessageHistory(previousMessages),
       returnMessages: true,
+      outputKey: "output",
     }),
     agentArgs: {
       prefix: TEMPLATE,
@@ -58,18 +64,22 @@ export async function POST(req: NextRequest) {
     input: currentMessageContent,
   });
 
-  // Agents don't support streaming responses (yet!), so stream back the complete response one
-  // character at a time to simluate it.
-  const textEncoder = new TextEncoder();
-  const fakeStream = new ReadableStream({
-    async start(controller) {
-      for (const character of result.output) {
-        controller.enqueue(textEncoder.encode(character));
-        await new Promise((resolve) => setTimeout(resolve, 20));
-      }
-      controller.close();
-    },
-  });
+  if (returnIntermediateSteps) {
+    return NextResponse.json({output: result.output, intermediate_steps: result.intermediateSteps}, { status: 200 });
+  } else {
+    // Agents don't support streaming responses (yet!), so stream back the complete response one
+    // character at a time to simluate it.
+    const textEncoder = new TextEncoder();
+    const fakeStream = new ReadableStream({
+      async start(controller) {
+        for (const character of result.output) {
+          controller.enqueue(textEncoder.encode(character));
+          await new Promise((resolve) => setTimeout(resolve, 20));
+        }
+        controller.close();
+      },
+    });
 
-  return new StreamingTextResponse(fakeStream);
+    return new StreamingTextResponse(fakeStream);
+  }
 }
