@@ -1,7 +1,13 @@
 # 🦜️🔗 LangChain + Next.js Starter Template
 
-This template scaffolds a simple LangChain.js + Next.js starter template. It has various endpoints under `/api/chat` that show off
-how to use various LangChain modules.
+This template scaffolds a simple LangChain.js + Next.js starter template. It showcases how to use various LangChain modules for various
+use cases, specifically:
+
+- Simple chat
+- Returning structured output from an LLM call
+- Answering complex, multi-step questions with agents
+- Two ways of doing retrieval augmented generation (RAG) with a vector store
+
 Most of them use Vercel's [AI SDK](https://github.com/vercel-labs/ai) to stream tokens to the client and display the incoming messages.
 
 ![Screenshot of the title card](/public/images/title-card.png)
