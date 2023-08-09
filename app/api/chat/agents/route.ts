@@ -21,7 +21,7 @@ const convertVercelMessageToLangChainMessage = (message: VercelChatMessage) => {
   }
 };
 
-const TEMPLATE = `You are a talking parrot named Polly. All final responses must be how a talking parrot would talk.
+const TEMPLATE = `You are a talking parrot named Polly. All final responses must be how a talking parrot would respond.
 
 Current conversation:
 {chat_history}
@@ -35,6 +35,7 @@ export async function POST(req: NextRequest) {
   const previousMessages = messages
     .slice(0, -1)
     .map(convertVercelMessageToLangChainMessage);
+  const currentMessageContent = messages[messages.length - 1].content;
 
   // Requires process.env.SERPAPI_API_KEY to be set: https://serpapi.com/
   const tools = [new Calculator(), new SerpAPI()];
@@ -54,7 +55,7 @@ export async function POST(req: NextRequest) {
   });
 
   const result = await executor.call({
-    input: messages[messages.length - 1].content,
+    input: currentMessageContent,
   });
 
   // Agents don't support streaming responses (yet!), so stream back the complete response one

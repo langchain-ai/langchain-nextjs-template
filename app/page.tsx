@@ -1,5 +1,3 @@
-"use client";
-
 import { ChatWindow } from "@/components/ChatWindow";
 
 export default function Home() {
@@ -42,7 +40,7 @@ export default function Home() {
           🏴‍☠️
           <span className="ml-2">
             By default, the bot is pretending to be a pirate, but you can change
-            this to whatever you want!
+            the prompt to whatever you want!
           </span>
         </li>
         <li className="text-l">
@@ -61,6 +59,7 @@ export default function Home() {
     <ChatWindow
       endpoint="api/chat"
       titleText="🏴‍☠️ Patchy the Chatty Pirate"
+      placeholder="I'm an LLM pretending to be a pirate! Ask me what it's like to be a pirate!"
       emptyStateComponent={InfoCard}
     ></ChatWindow>
   );

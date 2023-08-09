@@ -47,7 +47,7 @@ export default function AgentsPage() {
           🦜
           <span className="ml-2">
             By default, the agent is pretending to be a talking parrot, but you
-            can the prompt to whatever you want!
+            can change this to whatever you want!
           </span>
         </li>
         <li className="text-l">
@@ -65,10 +65,13 @@ export default function AgentsPage() {
   );
   return (
     <ChatWindow
-      endpoint="api/chat/agents"
+      endpoint="api/chat/retrieval_agents"
       emptyStateComponent={InfoCard}
-      placeholder="Squawk! I'm a conversational agent! Ask me about the current weather in Honolulu!"
-      titleText="🦜 Polly the Agentic Parrot"
+      showIngestForm={true}
+      placeholder={
+        'Beep boop! I\'m a robot retrieval-focused agent! Ask, "What are some ways of doing retrieval in LangChain.js?"'
+      }
+      titleText="🤖 Robbie the Retrieval Robot"
     ></ChatWindow>
   );
 }

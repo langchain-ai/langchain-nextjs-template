@@ -9,7 +9,7 @@ then uses Vercel's [AI SDK](https://github.com/vercel-labs/ai) to pipe that stre
 
 First, you'll need to set up an `.env.local` file. Copy the `.env.local.example` to `.env.local`, and add your OpenAI API key.
 
-Next, install the required packages using your preferred package manager (e.g. `yarn install`).
+Next, install the required packages using your preferred package manager (e.g. `yarn`).
 
 Now you're ready to run the development server:
 

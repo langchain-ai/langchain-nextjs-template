@@ -7,7 +7,7 @@ export function ChatMessageBubble(props: { message: Message }) {
     props.message.role === "user" ? "mr-auto" : "ml-auto";
   return (
     <div
-      className={`${alignmentClassName} ${colorClassName} rounded px-4 py-2 max-w-[80%] mb-8`}
+      className={`${alignmentClassName} ${colorClassName} rounded px-4 py-2 max-w-[80%] mb-8 whitespace-pre-wrap`}
     >
       {props.message.content}
     </div>

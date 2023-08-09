@@ -23,6 +23,7 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const messages = body.messages;
   const formattedPreviousMessages = messages.slice(0, -1).map(formatMessage);
+  const currentMessageContent = messages[messages.length - 1].content;
 
   const prompt = PromptTemplate.fromTemplate(TEMPLATE);
   /*
@@ -53,7 +54,7 @@ export async function POST(req: NextRequest) {
 
   const stream = await chain.stream({
     chat_history: formattedPreviousMessages.join("\n"),
-    input: messages[messages.length - 1].content,
+    input: currentMessageContent,
   });
 
   return new StreamingTextResponse(stream);
