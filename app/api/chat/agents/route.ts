@@ -31,10 +31,14 @@ AI:`;
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  /* We represent intermediate steps as system messages for display purposes,
+  /*
+   * We represent intermediate steps as system messages for display purposes,
    * but don't want them in the chat history.
    */
-  const messages = (body.messages ?? []).filter((message: VercelChatMessage) => message.role === "user" ?? message.role === "assistant");
+  const messages = (body.messages ?? []).filter(
+    (message: VercelChatMessage) =>
+      message.role === "user" ?? message.role === "assistant",
+  );
   const returnIntermediateSteps = body.show_intermediate_steps;
   const previousMessages = messages
     .slice(0, -1)
@@ -64,11 +68,17 @@ export async function POST(req: NextRequest) {
     input: currentMessageContent,
   });
 
+  // Intermediate steps are too complex to stream
   if (returnIntermediateSteps) {
-    return NextResponse.json({output: result.output, intermediate_steps: result.intermediateSteps}, { status: 200 });
+    return NextResponse.json(
+      { output: result.output, intermediate_steps: result.intermediateSteps },
+      { status: 200 },
+    );
   } else {
-    // Agents don't support streaming responses (yet!), so stream back the complete response one
-    // character at a time to simluate it.
+    /*
+     * Agent executors don't support streaming responses (yet!), so stream back the
+     * complete response one character at a time with a delay to simluate it.
+     */
     const textEncoder = new TextEncoder();
     const fakeStream = new ReadableStream({
       async start(controller) {

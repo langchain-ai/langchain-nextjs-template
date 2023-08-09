@@ -50,7 +50,11 @@ export default function Home() {
           </span>
         </li>
         <li className="text-l">
-          👇<span className="ml-2">Try asking, "What is it like to be a pirate?" or another question below!</span>
+          👇
+          <span className="ml-2">
+            Try asking, &quot;What is it like to be a pirate?&quot; or another
+            question below!
+          </span>
         </li>
       </ul>
     </div>

@@ -84,6 +84,12 @@ export async function POST(req: NextRequest) {
 
   const retriever = vectorstore.asRetriever();
 
+  /*
+   * We use LangChain Expression Language to compose two chains.
+   * To learn more, see the guide here:
+   *
+   * https://js.langchain.com/docs/guides/expression_language/cookbook
+   */
   const standaloneQuestionChain = RunnableSequence.from([
     {
       question: (input: ConversationalRetrievalQAChainInput) => input.question,

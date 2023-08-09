@@ -3,7 +3,9 @@ import { ChatWindow } from "@/components/ChatWindow";
 export default function AgentsPage() {
   const InfoCard = (
     <div className="p-8 rounded bg-[#25252d]">
-      <h1 className="text-4xl mb-4">▲ Next.js + LangChain.js Retrieval Chain 🦜🔗</h1>
+      <h1 className="text-4xl mb-4">
+        ▲ Next.js + LangChain.js Retrieval Chain 🦜🔗
+      </h1>
       <ul>
         <li className="text-l">
           🔗
@@ -21,12 +23,23 @@ export default function AgentsPage() {
         </li>
         <li>
           🪜
-          <span className="ml-2">
-            The chain works in two steps:
-          </span>
+          <span className="ml-2">The chain works in two steps:</span>
           <ul>
-            <li className="ml-4">1️⃣<span className="ml-2">First, it rephrases the input question into a "standalone" question, dereferencing pronouns based on the chat history.</span></li>
-            <li className="ml-4">2️⃣<span className="ml-2">Then, it queries the retriever for documents similar to the dereferenced question and composes an answer.</span></li>
+            <li className="ml-4">
+              1️⃣
+              <span className="ml-2">
+                First, it rephrases the input question into a
+                &quot;standalone&quot; question, dereferencing pronouns based on
+                the chat history.
+              </span>
+            </li>
+            <li className="ml-4">
+              2️⃣
+              <span className="ml-2">
+                Then, it queries the retriever for documents similar to the
+                dereferenced question and composes an answer.
+              </span>
+            </li>
           </ul>
         </li>
         <li className="text-l">
@@ -56,12 +69,16 @@ export default function AgentsPage() {
         <li className="text-l">
           🎨
           <span className="ml-2">
-            The main frontend logic is found in <code>app/retrieval/page.tsx</code>
-            .
+            The main frontend logic is found in{" "}
+            <code>app/retrieval/page.tsx</code>.
           </span>
         </li>
         <li className="text-l">
-          👇<span className="ml-2">Try asking, "What are some ways of doing retrieval in LangChain?" or another question below!</span>
+          👇
+          <span className="ml-2">
+            Try asking, &quot;What are some ways of doing retrieval in
+            LangChain?&quot; or another question below!
+          </span>
         </li>
       </ul>
     </div>

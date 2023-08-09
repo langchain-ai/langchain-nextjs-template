@@ -3,7 +3,9 @@ import { ChatWindow } from "@/components/ChatWindow";
 export default function AgentsPage() {
   const InfoCard = (
     <div className="p-8 rounded bg-[#25252d]">
-      <h1 className="text-4xl mb-4">▲ Next.js + LangChain.js Retrieval-Focused Agent 🦜🔗</h1>
+      <h1 className="text-4xl mb-4">
+        ▲ Next.js + LangChain.js Retrieval-Focused Agent 🦜🔗
+      </h1>
       <ul>
         <li className="text-l">
           🤝
@@ -22,7 +24,9 @@ export default function AgentsPage() {
         <li>
           🛠️
           <span className="ml-2">
-            The agent has access to a vector store retriever as a tool as well as a memory. It's particularly well suited to meta-questions about the current conversation.
+            The agent has access to a vector store retriever as a tool as well
+            as a memory. It&apos;s particularly well suited to meta-questions about
+            the current conversation.
           </span>
         </li>
         <li className="text-l">
@@ -45,19 +49,23 @@ export default function AgentsPage() {
         <li>
           🤖
           <span className="ml-2">
-            By default, the agent is pretending to be a robot, but you
-            can change the prompt to whatever you want!
+            By default, the agent is pretending to be a robot, but you can
+            change the prompt to whatever you want!
           </span>
         </li>
         <li className="text-l">
           🎨
           <span className="ml-2">
-            The main frontend logic is found in <code>app/retrieval_agents/page.tsx</code>
-            .
+            The main frontend logic is found in{" "}
+            <code>app/retrieval_agents/page.tsx</code>.
           </span>
         </li>
         <li className="text-l">
-          👇<span className="ml-2">Try asking, "What are some ways of doing retrieval in LangChain?" or another question below!</span>
+          👇
+          <span className="ml-2">
+            Try asking, &quot;What are some ways of doing retrieval in
+            LangChain?&quot; or another question below!
+          </span>
         </li>
       </ul>
     </div>

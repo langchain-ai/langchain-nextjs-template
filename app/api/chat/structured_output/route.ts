@@ -25,15 +25,24 @@ export async function POST(req: NextRequest) {
    */
   const model = new ChatOpenAI({
     temperature: 0.8,
-    modelName: "gpt-4"
+    modelName: "gpt-4",
   });
 
+  /*
+   * We use Zod (https://zod.dev) to define our schema for convenience,
+   * but you can pass JSON Schema directly using the alternative `createStructuredOutputChain()`
+   * method if desired.
+   */
   const schema = z.object({
-    tone: z.enum(["positive", "negative"]).describe("The overall tone of the input"),
+    tone: z
+      .enum(["positive", "negative"])
+      .describe("The overall tone of the input"),
     entity: z.string().describe("The entity mentioned in the input"),
     word_count: z.number().describe("The number of words in the input"),
     chat_response: z.string().describe("A response to the human's input"),
-    final_punctuation: z.optional(z.string()).describe("The final punctuation mark in the input, if any."),
+    final_punctuation: z
+      .optional(z.string())
+      .describe("The final punctuation mark in the input, if any."),
   });
 
   /*
@@ -43,7 +52,7 @@ export async function POST(req: NextRequest) {
     llm: model,
     prompt,
     outputKey: "output",
-  })
+  });
 
   const result = await chain.call({
     input: currentMessageContent,

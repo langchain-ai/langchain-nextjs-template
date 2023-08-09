@@ -36,7 +36,10 @@ export async function POST(req: NextRequest) {
    * We represent intermediate steps as system messages for display purposes,
    * but don't want them in the chat history.
    */
-  const messages = (body.messages ?? []).filter((message: VercelChatMessage) => message.role === "user" ?? message.role === "assistant");
+  const messages = (body.messages ?? []).filter(
+    (message: VercelChatMessage) =>
+      message.role === "user" ?? message.role === "assistant",
+  );
   const returnIntermediateSteps = body.show_intermediate_steps;
   const previousMessages = messages.slice(0, -1);
   const currentMessageContent = messages[messages.length - 1].content;
@@ -59,6 +62,12 @@ export async function POST(req: NextRequest) {
     previousMessages.map(convertVercelMessageToLangChainMessage),
   );
 
+  /*
+   * This is a special type of memory specifically for conversational
+   * retrieval agents.
+   * It tracks intermediate steps as well as chat history up to a
+   * certain number of tokens.
+   */
   const memory = new OpenAIAgentTokenBufferMemory({
     llm: model,
     memoryKey: "chat_history",
@@ -68,6 +77,10 @@ export async function POST(req: NextRequest) {
 
   const retriever = vectorstore.asRetriever();
 
+  /*
+   * Wrap the retriever in a tool to present it to the agent in a
+   * usable form.
+   */
   const tool = createRetrieverTool(retriever, {
     name: "search_latest_knowledge",
     description: "Searches and returns up-to-date general information.",
@@ -88,9 +101,12 @@ export async function POST(req: NextRequest) {
   });
 
   if (returnIntermediateSteps) {
-    return NextResponse.json({output: result.output, intermediate_steps: result.intermediateSteps}, { status: 200 });
+    return NextResponse.json(
+      { output: result.output, intermediate_steps: result.intermediateSteps },
+      { status: 200 },
+    );
   } else {
-    // Agents don't support streaming responses (yet!), so stream back the complete response one
+    // Agent executors don't support streaming responses (yet!), so stream back the complete response one
     // character at a time to simluate it.
     const textEncoder = new TextEncoder();
     const fakeStream = new ReadableStream({
