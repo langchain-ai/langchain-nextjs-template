@@ -3,10 +3,11 @@
 This template scaffolds a simple LangChain.js + Next.js starter template. It showcases how to use various LangChain modules for various
 use cases, specifically:
 
-- Simple chat
-- Returning structured output from an LLM call
-- Answering complex, multi-step questions with agents
-- Two ways of doing retrieval augmented generation (RAG) with a vector store
+- [Simple chat](/app/api/chat/route.ts)
+- [Returning structured output from an LLM call](/app/api/chat/structured_output/route.ts)
+- [Answering complex, multi-step questions with agents](/app/api/chat/agents/route.ts)
+- [Retrieval augmented generation (RAG) with a chain and a vector store](/app/api/chat/retrieval/route.ts)
+- [Retrieval augmented generation (RAG) with an agent and a vector store](/app/api/chat/retrieval_agents/route.ts)
 
 Most of them use Vercel's [AI SDK](https://github.com/vercel-labs/ai) to stream tokens to the client and display the incoming messages.
 
