@@ -11,7 +11,7 @@ use cases, specifically:
 
 Most of them use Vercel's [AI SDK](https://github.com/vercel-labs/ai) to stream tokens to the client and display the incoming messages.
 
-![Screenshot of the title card](/public/images/title-card.png)
+![Demo GIF](/public/images/agent-convo.gif)
 
 You can check out a hosted version of this repo here: https://langchain-nextjs-template.vercel.app/
 
