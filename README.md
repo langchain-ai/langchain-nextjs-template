@@ -32,7 +32,7 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result! Ask the bot something and you'll see a streamed response:
 
-![A streaming conversation between the user and the AI](/public/images/chat-conversations.png)
+![A streaming conversation between the user and the AI](/public/images/chat-conversation.png)
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
@@ -43,7 +43,7 @@ Backend logic lives in `app/api/chat/route.ts`. From here, you can change the pr
 The second example shows how to have a model return output according to a specific schema using OpenAI Functions.
 Click the `Structured Output` link in the navbar to try it out:
 
-![A streaming conversation between the user and an AI agent](/public/images/structured-output-conversations.png)
+![A streaming conversation between the user and an AI agent](/public/images/structured-output-conversation.png)
 
 The chain in this example uses a [popular library called Zod](https://zod.dev) to construct a schema, then formats it in the way OpenAI expects.
 It then passes that schema as a function into OpenAI and passes a `function_call` parameter to force OpenAI to return arguments in the specified format.
@@ -57,7 +57,7 @@ Head over to [the SERP API website](https://serpapi.com/) and get an API key if 
 
 You can then click the `Agent` example and try asking it more complex questions:
 
-![A streaming conversation between the user and an AI agent](/public/images/agent-conversations.png)
+![A streaming conversation between the user and an AI agent](/public/images/agent-conversation.png)
 
 This example uses the OpenAI Functions agent, but there are a few other options you can try as well.
 See [this documentation page for more details](https://js.langchain.com/docs/modules/agents/agent_types/).
@@ -79,9 +79,9 @@ You can clear your Supabase vector store by navigating to the console and runnin
 
 After splitting, embedding, and uploading some text, you're ready to ask questions!
 
-![A streaming conversation between the user and an AI retrieval chain](/public/images/retrieval-chain-conversations.png)
+![A streaming conversation between the user and an AI retrieval chain](/public/images/retrieval-chain-conversation.png)
 
-![A streaming conversation between the user and an AI retrieval agent](/public/images/retrieval-agent-conversations.png)
+![A streaming conversation between the user and an AI retrieval agent](/public/images/retrieval-agent-conversation.png)
 
 For more info on retrieval chains, [see this page](https://js.langchain.com/docs/use_cases/question_answering/).
 The specific variant of the conversational retrieval chain used here is composed using LangChain Expression Language, which you can
