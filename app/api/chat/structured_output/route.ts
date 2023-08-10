@@ -14,6 +14,12 @@ The field "entity" refers to the first mentioned entity in the input.
 
 {input}`;
 
+/*
+ * This handler initializes and calls an OpenAI Functions powered
+ * structured output chain. See the docs for more information:
+ *
+ * https://js.langchain.com/docs/modules/chains/popular/structured_output
+ */
 export async function POST(req: NextRequest) {
   const body = await req.json();
   const messages = body.messages ?? [];

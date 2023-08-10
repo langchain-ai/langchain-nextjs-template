@@ -62,6 +62,12 @@ Question: {question}
 `;
 const ANSWER_PROMPT = PromptTemplate.fromTemplate(answerTemplate);
 
+/*
+ * This handler initializes and calls a retrieval chain. It composes the chain using
+ * LangChain Expression Language. See the docs for more information:
+ *
+ * https://js.langchain.com/docs/guides/expression_language/cookbook#conversational-retrieval-chain
+ */
 export async function POST(req: NextRequest) {
   const body = await req.json();
   const messages = body.messages ?? [];

@@ -29,6 +29,12 @@ Current conversation:
 User: {input}
 AI:`;
 
+/*
+ * This handler initializes and calls an OpenAI Functions agent.
+ * See the docs for more information:
+ *
+ * https://js.langchain.com/docs/modules/agents/agent_types/openai_functions_agent
+ */
 export async function POST(req: NextRequest) {
   const body = await req.json();
   /*

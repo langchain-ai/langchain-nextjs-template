@@ -19,6 +19,12 @@ Current conversation:
 User: {input}
 AI:`;
 
+/*
+ * This handler initializes and calls a simple chain with a prompt,
+ * chat model, and output parser. See the docs for more information:
+ *
+ * https://js.langchain.com/docs/guides/expression_language/cookbook#prompttemplate--llm--outputparser
+ */
 export async function POST(req: NextRequest) {
   const body = await req.json();
   const messages = body.messages ?? [];

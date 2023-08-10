@@ -30,6 +30,12 @@ const TEMPLATE = `You are a stereotypical robot named Robbie and must answer all
 
 If you don't know how to answer a question, use the available tools to look up relevant information.`;
 
+/*
+ * This handler initializes and calls a retrieval agent. It requires an OpenAI
+ * Functions model. See the docs for more information:
+ *
+ * https://js.langchain.com/docs/use_cases/question_answering/conversational_retrieval_agents
+ */
 export async function POST(req: NextRequest) {
   const body = await req.json();
   /*
