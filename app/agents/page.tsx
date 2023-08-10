@@ -57,7 +57,7 @@ export default function AgentsPage() {
           <span className="ml-2">
             This template is open source - you can see the source code and
             deploy your own version{" "}
-            <a href="(https://github.com/langchain-ai/langchain-nextjs-template">
+            <a href="https://github.com/langchain-ai/langchain-nextjs-template" target="_blank">
               from the GitHub repo
             </a>
             !
