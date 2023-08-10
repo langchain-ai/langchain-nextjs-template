@@ -40,7 +40,7 @@ Backend logic lives in `app/api/chat/route.ts`. From here, you can change the pr
 
 ## 🧱 Structured Output
 
-The second exapmle shows how to have a model return output according to a specific schema using OpenAI Functions.
+The second example shows how to have a model return output according to a specific schema using OpenAI Functions.
 Click the `Structured Output` link in the navbar to try it out:
 
 ![A streaming conversation between the user and an AI agent](/public/images/structured-output-conversations.png)
