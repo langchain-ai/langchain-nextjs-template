@@ -1,5 +1,7 @@
 # 🦜️🔗 LangChain + Next.js Starter Template
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flangchain-ai%2Flangchain-nextjs-template)
+
 This template scaffolds a simple LangChain.js + Next.js starter template. It showcases how to use various LangChain modules for various
 use cases, specifically:
 
@@ -19,7 +21,7 @@ You can check out a hosted version of this repo here: https://langchain-nextjs-t
 
 First, clone this repo and download it locally.
 
-Next, you'll need to set up environment variables in your repo's `.env.local` file. Copy the `.env.local.example` to `.env.local`.
+Next, you'll need to set up environment variables in your repo's `.env.local` file. Copy the `.env.example` file to `.env.local`.
 To start with the basic examples, you'll just need to add your OpenAI API key.
 
 Next, install the required packages using your preferred package manager (e.g. `yarn`).
