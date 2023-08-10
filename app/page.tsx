@@ -2,8 +2,10 @@ import { ChatWindow } from "@/components/ChatWindow";
 
 export default function Home() {
   const InfoCard = (
-    <div className="p-8 rounded bg-[#25252d] w-full max-h-[85%] overflow-hidden">
-      <h1 className="text-4xl mb-4">▲ Next.js + LangChain.js 🦜🔗</h1>
+    <div className="p-4 md:p-8 rounded bg-[#25252d] w-full max-h-[85%] overflow-hidden">
+      <h1 className="text-3xl md:text-4xl mb-4">
+        ▲ Next.js + LangChain.js 🦜🔗
+      </h1>
       <ul>
         <li className="text-l">
           🤝
@@ -23,7 +25,7 @@ export default function Home() {
             project.
           </span>
         </li>
-        <li className="text-l">
+        <li className="hidden text-l md:block">
           💻
           <span className="ml-2">
             You can find the prompt and model logic for this use-case in{" "}
@@ -37,7 +39,7 @@ export default function Home() {
             the prompt to whatever you want!
           </span>
         </li>
-        <li className="text-l">
+        <li className="hidden text-l md:block">
           🎨
           <span className="ml-2">
             The main frontend logic is found in <code>app/page.tsx</code>.

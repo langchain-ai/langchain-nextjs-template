@@ -2,12 +2,12 @@ import { ChatWindow } from "@/components/ChatWindow";
 
 export default function AgentsPage() {
   const InfoCard = (
-    <div className="p-8 rounded bg-[#25252d] w-full max-h-[85%] overflow-hidden">
-      <h1 className="text-4xl mb-4">
+    <div className="p-4 md:p-8 rounded bg-[#25252d] w-full max-h-[85%] overflow-hidden">
+      <h1 className="text-3xl md:text-4xl mb-4">
         ▲ Next.js + LangChain.js Retrieval Agent 🦜🔗
       </h1>
       <ul>
-        <li className="text-l">
+        <li className="hidden text-l md:block">
           🤝
           <span className="ml-2">
             This template showcases a{" "}
@@ -25,7 +25,7 @@ export default function AgentsPage() {
             project.
           </span>
         </li>
-        <li>
+        <li className="hidden text-l md:block">
           🛠️
           <span className="ml-2">
             The agent has access to a vector store retriever as a tool as well
@@ -33,7 +33,7 @@ export default function AgentsPage() {
             about the current conversation.
           </span>
         </li>
-        <li className="text-l">
+        <li className="hidden text-l md:block">
           💻
           <span className="ml-2">
             You can find the prompt and model logic for this use-case in{" "}
@@ -47,7 +47,7 @@ export default function AgentsPage() {
             change the prompt to whatever you want!
           </span>
         </li>
-        <li className="text-l">
+        <li className="hidden text-l md:block">
           🎨
           <span className="ml-2">
             The main frontend logic is found in{" "}
@@ -65,7 +65,7 @@ export default function AgentsPage() {
             !
           </span>
         </li>
-        <li className="text-l">
+        <li className="hidden text-l md:block">
           🔱
           <span className="ml-2">
             Before running this example, you&apos;ll first need to set up a
