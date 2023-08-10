@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
 
 import { createClient } from "@supabase/supabase-js";
@@ -69,61 +69,66 @@ const ANSWER_PROMPT = PromptTemplate.fromTemplate(answerTemplate);
  * https://js.langchain.com/docs/guides/expression_language/cookbook#conversational-retrieval-chain
  */
 export async function POST(req: NextRequest) {
-  const body = await req.json();
-  const messages = body.messages ?? [];
-  const previousMessages = messages.slice(0, -1);
-  const currentMessageContent = messages[messages.length - 1].content;
+  try {
+    const body = await req.json();
+    const messages = body.messages ?? [];
+    const previousMessages = messages.slice(0, -1);
+    const currentMessageContent = messages[messages.length - 1].content;
 
-  const model = new ChatOpenAI({
-    modelName: "gpt-4",
-  });
+    const model = new ChatOpenAI({
+      modelName: "gpt-4",
+    });
 
-  const client = createClient(
-    process.env.SUPABASE_URL!,
-    process.env.SUPABASE_PRIVATE_KEY!,
-  );
-  const vectorstore = new SupabaseVectorStore(new OpenAIEmbeddings(), {
-    client,
-    tableName: "documents",
-    queryName: "match_documents",
-  });
+    const client = createClient(
+      process.env.SUPABASE_URL!,
+      process.env.SUPABASE_PRIVATE_KEY!,
+    );
+    const vectorstore = new SupabaseVectorStore(new OpenAIEmbeddings(), {
+      client,
+      tableName: "documents",
+      queryName: "match_documents",
+    });
 
-  const retriever = vectorstore.asRetriever();
+    const retriever = vectorstore.asRetriever();
 
-  /*
-   * We use LangChain Expression Language to compose two chains.
-   * To learn more, see the guide here:
-   *
-   * https://js.langchain.com/docs/guides/expression_language/cookbook
-   */
-  const standaloneQuestionChain = RunnableSequence.from([
-    {
-      question: (input: ConversationalRetrievalQAChainInput) => input.question,
-      chat_history: (input: ConversationalRetrievalQAChainInput) =>
-        formatVercelMessages(input.chat_history),
-    },
-    CONDENSE_QUESTION_PROMPT,
-    model,
-    new StringOutputParser(),
-  ]);
+    /*
+     * We use LangChain Expression Language to compose two chains.
+     * To learn more, see the guide here:
+     *
+     * https://js.langchain.com/docs/guides/expression_language/cookbook
+     */
+    const standaloneQuestionChain = RunnableSequence.from([
+      {
+        question: (input: ConversationalRetrievalQAChainInput) =>
+          input.question,
+        chat_history: (input: ConversationalRetrievalQAChainInput) =>
+          formatVercelMessages(input.chat_history),
+      },
+      CONDENSE_QUESTION_PROMPT,
+      model,
+      new StringOutputParser(),
+    ]);
 
-  const answerChain = RunnableSequence.from([
-    {
-      context: retriever.pipe(combineDocumentsFn),
-      question: new RunnablePassthrough(),
-    },
-    ANSWER_PROMPT,
-    model,
-    new BytesOutputParser(),
-  ]);
+    const answerChain = RunnableSequence.from([
+      {
+        context: retriever.pipe(combineDocumentsFn),
+        question: new RunnablePassthrough(),
+      },
+      ANSWER_PROMPT,
+      model,
+      new BytesOutputParser(),
+    ]);
 
-  const conversationalRetrievalQAChain =
-    standaloneQuestionChain.pipe(answerChain);
+    const conversationalRetrievalQAChain =
+      standaloneQuestionChain.pipe(answerChain);
 
-  const stream = await conversationalRetrievalQAChain.stream({
-    question: currentMessageContent,
-    chat_history: previousMessages,
-  });
+    const stream = await conversationalRetrievalQAChain.stream({
+      question: currentMessageContent,
+      chat_history: previousMessages,
+    });
 
-  return new StreamingTextResponse(stream);
+    return new StreamingTextResponse(stream);
+  } catch (e: any) {
+    return NextResponse.json({ error: e.message }, { status: 500 });
+  }
 }

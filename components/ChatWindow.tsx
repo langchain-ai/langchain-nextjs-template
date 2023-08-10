@@ -1,5 +1,8 @@
 "use client";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { useChat } from "ai/react";
 import { useRef, useState, useEffect, ReactElement } from "react";
 import type { FormEvent } from "react";
@@ -35,6 +38,11 @@ export function ChatWindow(props: {
   const { messages, input, setInput, handleInputChange, handleSubmit, isLoading: chatEndpointIsLoading, setMessages } =
     useChat({
       api: endpoint,
+      onError: (e) => {
+        toast(e.message, {
+          theme: "dark"
+        });
+      }
     });
 
   async function sendMessage(e: FormEvent<HTMLFormElement>) {
@@ -79,6 +87,9 @@ export function ChatWindow(props: {
         setMessages([...newMessages, { id: (newMessages.length + intermediateStepMessages.length).toString(), content: json.output, role: "assistant" }]);
       } else {
         if (json.error) {
+          toast(json.error, {
+            theme: "dark"
+          });
           throw new Error(json.error);
         }
       }
@@ -129,6 +140,7 @@ export function ChatWindow(props: {
           </button>
         </div>
       </form>
+      <ToastContainer/>
     </div>
   );
 }

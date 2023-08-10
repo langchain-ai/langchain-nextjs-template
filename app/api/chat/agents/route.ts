@@ -36,66 +36,70 @@ AI:`;
  * https://js.langchain.com/docs/modules/agents/agent_types/openai_functions_agent
  */
 export async function POST(req: NextRequest) {
-  const body = await req.json();
-  /*
-   * We represent intermediate steps as system messages for display purposes,
-   * but don't want them in the chat history.
-   */
-  const messages = (body.messages ?? []).filter(
-    (message: VercelChatMessage) =>
-      message.role === "user" ?? message.role === "assistant",
-  );
-  const returnIntermediateSteps = body.show_intermediate_steps;
-  const previousMessages = messages
-    .slice(0, -1)
-    .map(convertVercelMessageToLangChainMessage);
-  const currentMessageContent = messages[messages.length - 1].content;
-
-  // Requires process.env.SERPAPI_API_KEY to be set: https://serpapi.com/
-  const tools = [new Calculator(), new SerpAPI()];
-  const chat = new ChatOpenAI({ modelName: "gpt-4", temperature: 0 });
-
-  const executor = await initializeAgentExecutorWithOptions(tools, chat, {
-    agentType: "openai-functions",
-    verbose: true,
-    returnIntermediateSteps,
-    memory: new BufferMemory({
-      memoryKey: "chat_history",
-      chatHistory: new ChatMessageHistory(previousMessages),
-      returnMessages: true,
-      outputKey: "output",
-    }),
-    agentArgs: {
-      prefix: TEMPLATE,
-    },
-  });
-
-  const result = await executor.call({
-    input: currentMessageContent,
-  });
-
-  // Intermediate steps are too complex to stream
-  if (returnIntermediateSteps) {
-    return NextResponse.json(
-      { output: result.output, intermediate_steps: result.intermediateSteps },
-      { status: 200 },
-    );
-  } else {
+  try {
+    const body = await req.json();
     /*
-     * Agent executors don't support streaming responses (yet!), so stream back the
-     * complete response one character at a time with a delay to simluate it.
+     * We represent intermediate steps as system messages for display purposes,
+     * but don't want them in the chat history.
      */
-    const textEncoder = new TextEncoder();
-    const fakeStream = new ReadableStream({
-      async start(controller) {
-        for (const character of result.output) {
-          controller.enqueue(textEncoder.encode(character));
-          await new Promise((resolve) => setTimeout(resolve, 20));
-        }
-        controller.close();
+    const messages = (body.messages ?? []).filter(
+      (message: VercelChatMessage) =>
+        message.role === "user" ?? message.role === "assistant",
+    );
+    const returnIntermediateSteps = body.show_intermediate_steps;
+    const previousMessages = messages
+      .slice(0, -1)
+      .map(convertVercelMessageToLangChainMessage);
+    const currentMessageContent = messages[messages.length - 1].content;
+
+    // Requires process.env.SERPAPI_API_KEY to be set: https://serpapi.com/
+    const tools = [new Calculator(), new SerpAPI()];
+    const chat = new ChatOpenAI({ modelName: "gpt-4", temperature: 0 });
+
+    const executor = await initializeAgentExecutorWithOptions(tools, chat, {
+      agentType: "openai-functions",
+      verbose: true,
+      returnIntermediateSteps,
+      memory: new BufferMemory({
+        memoryKey: "chat_history",
+        chatHistory: new ChatMessageHistory(previousMessages),
+        returnMessages: true,
+        outputKey: "output",
+      }),
+      agentArgs: {
+        prefix: TEMPLATE,
       },
     });
 
-    return new StreamingTextResponse(fakeStream);
+    const result = await executor.call({
+      input: currentMessageContent,
+    });
+
+    // Intermediate steps are too complex to stream
+    if (returnIntermediateSteps) {
+      return NextResponse.json(
+        { output: result.output, intermediate_steps: result.intermediateSteps },
+        { status: 200 },
+      );
+    } else {
+      /*
+       * Agent executors don't support streaming responses (yet!), so stream back the
+       * complete response one character at a time with a delay to simluate it.
+       */
+      const textEncoder = new TextEncoder();
+      const fakeStream = new ReadableStream({
+        async start(controller) {
+          for (const character of result.output) {
+            controller.enqueue(textEncoder.encode(character));
+            await new Promise((resolve) => setTimeout(resolve, 20));
+          }
+          controller.close();
+        },
+      });
+
+      return new StreamingTextResponse(fakeStream);
+    }
+  } catch (e: any) {
+    return NextResponse.json({ error: e.message }, { status: 500 });
   }
 }
