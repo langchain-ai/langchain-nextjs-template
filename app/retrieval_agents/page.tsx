@@ -2,9 +2,9 @@ import { ChatWindow } from "@/components/ChatWindow";
 
 export default function AgentsPage() {
   const InfoCard = (
-    <div className="p-8 rounded bg-[#25252d]">
+    <div className="p-8 rounded bg-[#25252d] w-full max-h-[85%] overflow-hidden">
       <h1 className="text-4xl mb-4">
-        ▲ Next.js + LangChain.js Retrieval-Focused Agent 🦜🔗
+        ▲ Next.js + LangChain.js Retrieval Agent 🦜🔗
       </h1>
       <ul>
         <li className="text-l">
@@ -86,7 +86,8 @@ export default function AgentsPage() {
       placeholder={
         'Beep boop! I\'m a robot retrieval-focused agent! Ask, "What are some ways of doing retrieval in LangChain.js?"'
       }
-      titleText="🤖 Robbie the Retrieval Robot"
+      emoji="🤖"
+      titleText="Robbie the Retrieval Robot"
     ></ChatWindow>
   );
 }

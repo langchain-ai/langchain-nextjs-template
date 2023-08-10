@@ -17,7 +17,7 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/images/favicon.ico" />
       </head>
       <body className={publicSans.className}>
-        <div className="flex flex-col m-12 h-[calc(100vh-6rem)]">
+        <div className="flex flex-col p-12 h-[100vh]">
           <Navbar></Navbar>
           {children}
         </div>

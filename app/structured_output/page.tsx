@@ -2,7 +2,7 @@ import { ChatWindow } from "@/components/ChatWindow";
 
 export default function AgentsPage() {
   const InfoCard = (
-    <div className="p-8 rounded bg-[#25252d]">
+    <div className="p-8 rounded bg-[#25252d] w-full max-h-[85%] overflow-hidden">
       <h1 className="text-4xl mb-4">
         ▲ Next.js + LangChain.js Structured Output 🦜🔗
       </h1>
@@ -78,7 +78,8 @@ export default function AgentsPage() {
       endpoint="api/chat/structured_output"
       emptyStateComponent={InfoCard}
       placeholder={`No matter what you type here, I'll always return the same JSON object with the same structure!`}
-      titleText="🧱 Structured Output"
+      emoji="🧱"
+      titleText="Structured Output"
     ></ChatWindow>
   );
 }

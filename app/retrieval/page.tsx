@@ -2,7 +2,7 @@ import { ChatWindow } from "@/components/ChatWindow";
 
 export default function AgentsPage() {
   const InfoCard = (
-    <div className="p-8 rounded bg-[#25252d]">
+    <div className="p-8 rounded bg-[#25252d] w-full max-h-[85%] overflow-hidden">
       <h1 className="text-4xl mb-4">
         ▲ Next.js + LangChain.js Retrieval Chain 🦜🔗
       </h1>
@@ -76,8 +76,8 @@ export default function AgentsPage() {
         <li className="text-l">
           🔱
           <span className="ml-2">
-            Before running this example, you&apos;ll first need to set up a
-            Supabase (or other) vector store. See the README for more details.
+            Before running this example on your own, you&apos;ll first need to
+            set up a Supabase vector store. See the README for more details.
           </span>
         </li>
         <li className="text-l">
@@ -98,7 +98,8 @@ export default function AgentsPage() {
       placeholder={
         'I\'ve got a nose for finding the right documents! Ask, "What are some ways of doing retrieval in LangChain.js?"'
       }
-      titleText="🐶 Dana the Document-Retrieving Dog"
+      emoji="🐶"
+      titleText="Dana the Document-Retrieving Dog"
     ></ChatWindow>
   );
 }

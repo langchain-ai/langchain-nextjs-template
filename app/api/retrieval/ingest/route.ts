@@ -18,8 +18,8 @@ export async function POST(req: NextRequest) {
       {
         error: [
           "Ingest is not supported in demo mode.",
-          "Please set up your own version of the repo here: https://github.com/langchain-ai/langchain-nextjs-template"
-        ].join('\n')
+          "Please set up your own version of the repo here: https://github.com/langchain-ai/langchain-nextjs-template",
+        ].join("\n"),
       },
       { status: 403 },
     );

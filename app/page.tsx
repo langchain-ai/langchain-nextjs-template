@@ -2,7 +2,7 @@ import { ChatWindow } from "@/components/ChatWindow";
 
 export default function Home() {
   const InfoCard = (
-    <div className="p-8 rounded bg-[#25252d]">
+    <div className="p-8 rounded bg-[#25252d] w-full max-h-[85%] overflow-hidden">
       <h1 className="text-4xl mb-4">▲ Next.js + LangChain.js 🦜🔗</h1>
       <ul>
         <li className="text-l">
@@ -62,7 +62,8 @@ export default function Home() {
   return (
     <ChatWindow
       endpoint="api/chat"
-      titleText="🏴‍☠️ Patchy the Chatty Pirate"
+      emoji="🏴‍☠️"
+      titleText="Patchy the Chatty Pirate"
       placeholder="I'm an LLM pretending to be a pirate! Ask me what it's like to be a pirate!"
       emptyStateComponent={InfoCard}
     ></ChatWindow>
