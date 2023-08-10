@@ -12,7 +12,11 @@ export default function AgentsPage() {
             <a href="https://js.langchain.com/" target="_blank">
               LangChain.js
             </a>{" "}
-            agent in a{" "}
+            agent and the Vercel{" "}
+            <a href="https://sdk.vercel.ai/docs" target="_blank">
+              AI SDK
+            </a>{" "}
+            in a{" "}
             <a href="https://nextjs.org/" target="_blank">
               Next.js
             </a>{" "}
@@ -23,16 +27,6 @@ export default function AgentsPage() {
           🛠️
           <span className="ml-2">
             The agent has memory and access to a search engine and a calculator.
-          </span>
-        </li>
-        <li className="text-l">
-          🔁
-          <span className="ml-2">
-            It uses the Vercel{" "}
-            <a href="https://sdk.vercel.ai/docs" target="_blank">
-              AI SDK
-            </a>{" "}
-            for streaming HTTP responses and the UI.
           </span>
         </li>
         <li className="text-l">
@@ -57,10 +51,20 @@ export default function AgentsPage() {
           </span>
         </li>
         <li className="text-l">
+          🐙
+          <span className="ml-2">
+            This template is open source - you can see the source code and
+            deploy your own version{" "}
+            <a href="(https://github.com/langchain-ai/langchain-nextjs-template">
+              from the GitHub repo
+            </a>
+            !
+          </span>
+        </li>
+        <li className="text-l">
           👇
           <span className="ml-2">
-            Try asking, &quot;What is the weather in Honolulu?&quot; or another
-            question below!
+            Try asking e.g. <code>What is the weather in Honolulu?</code> below!
           </span>
         </li>
       </ul>

@@ -12,21 +12,15 @@ export default function Home() {
             <a href="https://js.langchain.com/" target="_blank">
               LangChain.js
             </a>{" "}
+            and the Vercel{" "}
+            <a href="https://sdk.vercel.ai/docs" target="_blank">
+              AI SDK
+            </a>{" "}
             in a{" "}
             <a href="https://nextjs.org/" target="_blank">
               Next.js
             </a>{" "}
             project.
-          </span>
-        </li>
-        <li className="text-l">
-          🔁
-          <span className="ml-2">
-            It also uses the Vercel{" "}
-            <a href="https://sdk.vercel.ai/docs" target="_blank">
-              AI SDK
-            </a>{" "}
-            for streaming HTTP responses and the UI.
           </span>
         </li>
         <li className="text-l">
@@ -50,10 +44,20 @@ export default function Home() {
           </span>
         </li>
         <li className="text-l">
+          🐙
+          <span className="ml-2">
+            This template is open source - you can see the source code and
+            deploy your own version{" "}
+            <a href="(https://github.com/langchain-ai/langchain-nextjs-template">
+              from the GitHub repo
+            </a>
+            !
+          </span>
+        </li>
+        <li className="text-l">
           👇
           <span className="ml-2">
-            Try asking, &quot;What is it like to be a pirate?&quot; or another
-            question below!
+            Try asking e.g. <code>What is it like to be a pirate?</code> below!
           </span>
         </li>
       </ul>
@@ -64,7 +68,7 @@ export default function Home() {
       endpoint="api/chat"
       emoji="🏴‍☠️"
       titleText="Patchy the Chatty Pirate"
-      placeholder="I'm an LLM pretending to be a pirate! Ask me what it's like to be a pirate!"
+      placeholder="I'm an LLM pretending to be a pirate! Ask me about the pirate life!"
       emptyStateComponent={InfoCard}
     ></ChatWindow>
   );

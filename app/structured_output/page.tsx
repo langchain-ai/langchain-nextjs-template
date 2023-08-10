@@ -14,7 +14,11 @@ export default function AgentsPage() {
             <a href="https://js.langchain.com/" target="_blank">
               LangChain.js
             </a>{" "}
-            chain in a{" "}
+            chain and the Vercel{" "}
+            <a href="https://sdk.vercel.ai/docs" target="_blank">
+              AI SDK
+            </a>{" "}
+            in a{" "}
             <a href="https://nextjs.org/" target="_blank">
               Next.js
             </a>{" "}
@@ -64,10 +68,20 @@ export default function AgentsPage() {
           </span>
         </li>
         <li className="text-l">
+          🐙
+          <span className="ml-2">
+            This template is open source - you can see the source code and
+            deploy your own version{" "}
+            <a href="(https://github.com/langchain-ai/langchain-nextjs-template">
+              from the GitHub repo
+            </a>
+            !
+          </span>
+        </li>
+        <li className="text-l">
           👇
           <span className="ml-2">
-            Try typing, &quot;What a beautiful day!&quot; or anything else
-            below!
+            Try typing e.g. <code>What a beautiful day!</code> below!
           </span>
         </li>
       </ul>

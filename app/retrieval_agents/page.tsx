@@ -14,7 +14,11 @@ export default function AgentsPage() {
             <a href="https://js.langchain.com/" target="_blank">
               LangChain.js
             </a>{" "}
-            retrieval chain in a{" "}
+            retrieval chain and the Vercel{" "}
+            <a href="https://sdk.vercel.ai/docs" target="_blank">
+              AI SDK
+            </a>{" "}
+            in a{" "}
             <a href="https://nextjs.org/" target="_blank">
               Next.js
             </a>{" "}
@@ -27,16 +31,6 @@ export default function AgentsPage() {
             The agent has access to a vector store retriever as a tool as well
             as a memory. It&apos;s particularly well suited to meta-questions
             about the current conversation.
-          </span>
-        </li>
-        <li className="text-l">
-          🔁
-          <span className="ml-2">
-            It uses the Vercel{" "}
-            <a href="https://sdk.vercel.ai/docs" target="_blank">
-              AI SDK
-            </a>{" "}
-            for streaming HTTP responses and the UI.
           </span>
         </li>
         <li className="text-l">
@@ -61,6 +55,17 @@ export default function AgentsPage() {
           </span>
         </li>
         <li className="text-l">
+          🐙
+          <span className="ml-2">
+            This template is open source - you can see the source code and
+            deploy your own version{" "}
+            <a href="(https://github.com/langchain-ai/langchain-nextjs-template">
+              from the GitHub repo
+            </a>
+            !
+          </span>
+        </li>
+        <li className="text-l">
           🔱
           <span className="ml-2">
             Before running this example, you&apos;ll first need to set up a
@@ -70,8 +75,9 @@ export default function AgentsPage() {
         <li className="text-l">
           👇
           <span className="ml-2">
-            Upload some text, then try asking, &quot;What are some ways of doing
-            retrieval in LangChain?&quot; or another question below!
+            Upload some text, then try asking e.g.{" "}
+            <code>What are some ways of doing retrieval in LangChain</code>{" "}
+            below!
           </span>
         </li>
       </ul>
