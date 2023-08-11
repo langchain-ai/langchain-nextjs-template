@@ -9,6 +9,9 @@
     "lint": "next lint",
     "format": "prettier --write \"app\""
   },
+  "engines": {
+    "node": ">=18"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.32.0",
     "@types/node": "20.4.5",
