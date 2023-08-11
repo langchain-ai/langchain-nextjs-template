@@ -62,7 +62,7 @@ Question: {question}
 `;
 const ANSWER_PROMPT = PromptTemplate.fromTemplate(answerTemplate);
 
-/*
+/**
  * This handler initializes and calls a retrieval chain. It composes the chain using
  * LangChain Expression Language. See the docs for more information:
  *
@@ -91,7 +91,7 @@ export async function POST(req: NextRequest) {
 
     const retriever = vectorstore.asRetriever();
 
-    /*
+    /**
      * We use LangChain Expression Language to compose two chains.
      * To learn more, see the guide here:
      *

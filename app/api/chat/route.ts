@@ -19,7 +19,7 @@ Current conversation:
 User: {input}
 AI:`;
 
-/*
+/**
  * This handler initializes and calls a simple chain with a prompt,
  * chat model, and output parser. See the docs for more information:
  *
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
     const currentMessageContent = messages[messages.length - 1].content;
 
     const prompt = PromptTemplate.fromTemplate(TEMPLATE);
-    /*
+    /**
      * You can also try e.g.:
      *
      * import { ChatAnthropic } from "langchain/chat_models/anthropic";
@@ -45,13 +45,13 @@ export async function POST(req: NextRequest) {
     const model = new ChatOpenAI({
       temperature: 0.8,
     });
-    /*
+    /**
      * Chat models stream message chunks rather than bytes, so this
      * output parser handles serialization and byte-encoding.
      */
     const outputParser = new BytesOutputParser();
 
-    /*
+    /**
      * Can also initialize as:
      *
      * import { RunnableSequence } from "langchain/schema/runnable";

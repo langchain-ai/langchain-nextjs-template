@@ -29,7 +29,7 @@ Current conversation:
 User: {input}
 AI:`;
 
-/*
+/**
  * This handler initializes and calls an OpenAI Functions agent.
  * See the docs for more information:
  *
@@ -38,7 +38,7 @@ AI:`;
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    /*
+    /**
      * We represent intermediate steps as system messages for display purposes,
      * but don't want them in the chat history.
      */
@@ -82,7 +82,7 @@ export async function POST(req: NextRequest) {
         { status: 200 },
       );
     } else {
-      /*
+      /**
        * Agent executors don't support streaming responses (yet!), so stream back the
        * complete response one character at a time with a delay to simluate it.
        */

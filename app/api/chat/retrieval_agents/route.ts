@@ -30,7 +30,7 @@ const TEMPLATE = `You are a stereotypical robot named Robbie and must answer all
 
 If you don't know how to answer a question, use the available tools to look up relevant information.`;
 
-/*
+/**
  * This handler initializes and calls a retrieval agent. It requires an OpenAI
  * Functions model. See the docs for more information:
  *
@@ -39,7 +39,7 @@ If you don't know how to answer a question, use the available tools to look up r
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    /*
+    /**
      * We represent intermediate steps as system messages for display purposes,
      * but don't want them in the chat history.
      */
@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
       previousMessages.map(convertVercelMessageToLangChainMessage),
     );
 
-    /*
+    /**
      * This is a special type of memory specifically for conversational
      * retrieval agents.
      * It tracks intermediate steps as well as chat history up to a
@@ -84,7 +84,7 @@ export async function POST(req: NextRequest) {
 
     const retriever = vectorstore.asRetriever();
 
-    /*
+    /**
      * Wrap the retriever in a tool to present it to the agent in a
      * usable form.
      */

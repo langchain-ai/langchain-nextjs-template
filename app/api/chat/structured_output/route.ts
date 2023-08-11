@@ -14,7 +14,7 @@ The field "entity" refers to the first mentioned entity in the input.
 
 {input}`;
 
-/*
+/**
  * This handler initializes and calls an OpenAI Functions powered
  * structured output chain. See the docs for more information:
  *
@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
     const currentMessageContent = messages[messages.length - 1].content;
 
     const prompt = PromptTemplate.fromTemplate(TEMPLATE);
-    /*
+    /**
      * Function calling is currently only supported with ChatOpenAI models
      */
     const model = new ChatOpenAI({
@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
       modelName: "gpt-4",
     });
 
-    /*
+    /**
      * We use Zod (https://zod.dev) to define our schema for convenience,
      * but you can pass JSON Schema directly using the alternative `createStructuredOutputChain()`
      * method if desired.
@@ -52,7 +52,7 @@ export async function POST(req: NextRequest) {
         .describe("The final punctuation mark in the input, if any."),
     });
 
-    /*
+    /**
      * Returns a specialized, preconfigured LLMChain.
      */
     const chain = createStructuredOutputChainFromZod(schema, {
