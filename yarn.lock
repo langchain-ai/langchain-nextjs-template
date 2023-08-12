@@ -2965,7 +2965,7 @@ __metadata:
     autoprefixer: 10.4.14
     eslint: 8.46.0
     eslint-config-next: 13.4.12
-    langchain: ^0.0.124
+    langchain: ^0.0.127
     next: 13.4.12
     postcss: 8.4.27
     prettier: 3.0.0
@@ -2978,9 +2978,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"langchain@npm:^0.0.124":
-  version: 0.0.124
-  resolution: "langchain@npm:0.0.124"
+"langchain@npm:^0.0.127":
+  version: 0.0.127
+  resolution: "langchain@npm:0.0.127"
   dependencies:
     "@anthropic-ai/sdk": ^0.5.7
     ansi-styles: ^5.0.0
@@ -3014,7 +3014,7 @@ __metadata:
     "@clickhouse/client": ^0.0.14
     "@elastic/elasticsearch": ^8.4.0
     "@getmetal/metal-sdk": "*"
-    "@getzep/zep-js": ^0.4.1
+    "@getzep/zep-js": ^0.6.3
     "@gomomento/sdk": ^1.23.0
     "@google-ai/generativelanguage": ^0.2.1
     "@google-cloud/storage": ^6.10.1
@@ -3024,6 +3024,7 @@ __metadata:
     "@pinecone-database/pinecone": "*"
     "@planetscale/database": ^1.8.0
     "@qdrant/js-client-rest": ^1.2.0
+    "@raycast/api": ^1.55.2
     "@supabase/postgrest-js": ^1.1.1
     "@supabase/supabase-js": ^2.10.0
     "@tensorflow-models/universal-sentence-encoder": "*"
@@ -3064,8 +3065,9 @@ __metadata:
     srt-parser-2: ^1.2.2
     typeorm: ^0.3.12
     typesense: ^1.5.3
+    usearch: ^1.1.1
     vectordb: ^0.1.4
-    weaviate-ts-client: ^1.0.0
+    weaviate-ts-client: ^1.4.0
   peerDependenciesMeta:
     "@aws-sdk/client-dynamodb":
       optional: true
@@ -3106,6 +3108,8 @@ __metadata:
     "@planetscale/database":
       optional: true
     "@qdrant/js-client-rest":
+      optional: true
+    "@raycast/api":
       optional: true
     "@supabase/postgrest-js":
       optional: true
@@ -3187,11 +3191,13 @@ __metadata:
       optional: true
     typesense:
       optional: true
+    usearch:
+      optional: true
     vectordb:
       optional: true
     weaviate-ts-client:
       optional: true
-  checksum: 9a48d8595a681e1643dbacf075bf7f5914484a7952f204efcb944730b431b25bd6285fe22d3a54f1fbd660bfc9308c956b2484b58248debfada4fbc43252e58c
+  checksum: bc537c5625dee2f913e2668f5232b1dc93810b999297242f3e90b9fb9f9a5caeb878a516c90ba1d2815393b699bd15dcfa9c3a5aaa7afb46ce01cef332c2af04
   languageName: node
   linkType: hard
 

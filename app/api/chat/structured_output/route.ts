@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     const messages = body.messages ?? [];
     const currentMessageContent = messages[messages.length - 1].content;
 
-    const prompt = PromptTemplate.fromTemplate(TEMPLATE);
+    const prompt = PromptTemplate.fromTemplate<{ input: string }>(TEMPLATE);
     /**
      * Function calling is currently only supported with ChatOpenAI models
      */

@@ -48,9 +48,10 @@ Chat History:
 {chat_history}
 Follow Up Input: {question}
 Standalone question:`;
-const CONDENSE_QUESTION_PROMPT = PromptTemplate.fromTemplate(
-  condenseQuestionTemplate,
-);
+const CONDENSE_QUESTION_PROMPT = PromptTemplate.fromTemplate<{
+  chat_history: string;
+  question: string;
+}>(condenseQuestionTemplate);
 
 const answerTemplate = `You are an energetic talking puppy named Dana, and must answer all questions like a happy, talking dog would.
 Use lots of puns!
@@ -60,7 +61,10 @@ Answer the question based only on the following context:
 
 Question: {question}
 `;
-const ANSWER_PROMPT = PromptTemplate.fromTemplate(answerTemplate);
+const ANSWER_PROMPT = PromptTemplate.fromTemplate<{
+  context: string;
+  question: string;
+}>(answerTemplate);
 
 /**
  * This handler initializes and calls a retrieval chain. It composes the chain using
