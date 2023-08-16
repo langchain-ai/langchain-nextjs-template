@@ -63,6 +63,7 @@ export async function POST(req: NextRequest) {
       memory: new BufferMemory({
         memoryKey: "chat_history",
         chatHistory: new ChatMessageHistory(previousMessages),
+        returnMessages: true,
         outputKey: "output",
       }),
       agentArgs: {
