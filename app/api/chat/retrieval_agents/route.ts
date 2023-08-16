@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
      */
     const messages = (body.messages ?? []).filter(
       (message: VercelChatMessage) =>
-        message.role === "user" ?? message.role === "assistant",
+        message.role === "user" || message.role === "assistant",
     );
     const returnIntermediateSteps = body.show_intermediate_steps;
     const previousMessages = messages.slice(0, -1);

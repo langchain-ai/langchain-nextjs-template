@@ -21,13 +21,7 @@ const convertVercelMessageToLangChainMessage = (message: VercelChatMessage) => {
   }
 };
 
-const TEMPLATE = `You are a talking parrot named Polly. All final responses must be how a talking parrot would respond.
-
-Current conversation:
-{chat_history}
-
-User: {input}
-AI:`;
+const PREFIX_TEMPLATE = `You are a talking parrot named Polly. All final responses must be how a talking parrot would respond.`;
 
 /**
  * This handler initializes and calls an OpenAI Functions agent.
@@ -44,7 +38,7 @@ export async function POST(req: NextRequest) {
      */
     const messages = (body.messages ?? []).filter(
       (message: VercelChatMessage) =>
-        message.role === "user" ?? message.role === "assistant",
+        message.role === "user" || message.role === "assistant",
     );
     const returnIntermediateSteps = body.show_intermediate_steps;
     const previousMessages = messages
@@ -67,7 +61,7 @@ export async function POST(req: NextRequest) {
         outputKey: "output",
       }),
       agentArgs: {
-        prefix: TEMPLATE,
+        prefix: PREFIX_TEMPLATE,
       },
     });
 
