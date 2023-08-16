@@ -50,6 +50,11 @@ export async function POST(req: NextRequest) {
     const tools = [new Calculator(), new SerpAPI()];
     const chat = new ChatOpenAI({ modelName: "gpt-4", temperature: 0 });
 
+    /**
+     * The default prompt for the OpenAI functions agent has a placeholder
+     * where chat messages get injected - that's why we set "memoryKey" to
+     * "chat_history". This will be made clearer and more customizable in the future.
+     */
     const executor = await initializeAgentExecutorWithOptions(tools, chat, {
       agentType: "openai-functions",
       verbose: true,
