@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
      */
     const schema = z.object({
       tone: z
-        .enum(["positive", "negative"])
+        .enum(["positive", "negative", "neutral"])
         .describe("The overall tone of the input"),
       entity: z.string().describe("The entity mentioned in the input"),
       word_count: z.number().describe("The number of words in the input"),
