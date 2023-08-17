@@ -108,3 +108,8 @@ To learn more about what you can do with LangChain.js, check out the docs here:
 When ready, you can deploy your app on the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme).
 
 Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Thank You!
+
+Thanks for reading! If you have any questions or comments, reach out to us on Twitter
+[@LangChainAI](https://twitter.com/langchainai), or [click here to join our Discord server](https://discord.gg/langchain).
