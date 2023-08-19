@@ -8,9 +8,11 @@ import { PromptTemplate } from "langchain/prompts";
 
 export const runtime = "edge";
 
-const TEMPLATE = `Extract the desired fields from the input.
+const TEMPLATE = `Extract the requested fields from the input.
 
 The field "entity" refers to the first mentioned entity in the input.
+
+Input:
 
 {input}`;
 
