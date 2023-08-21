@@ -40,8 +40,7 @@ export async function POST(req: NextRequest) {
 
     /**
      * We use Zod (https://zod.dev) to define our schema for convenience,
-     * but you can pass JSON Schema directly using the alternative `createStructuredOutputChain()`
-     * method if desired.
+     * but you can pass JSON Schema directly if desired.
      */
     const schema = z.object({
       tone: z
