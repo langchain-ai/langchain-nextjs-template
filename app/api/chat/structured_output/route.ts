@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { z } from "zod";
+import { zodToJsonSchema } from "zod-to-json-schema";
 
-import { createStructuredOutputChainFromZod } from "langchain/chains/openai_functions";
 import { ChatOpenAI } from "langchain/chat_models/openai";
 import { PromptTemplate } from "langchain/prompts";
+import { JsonOutputFunctionsParser } from "langchain/output_parsers";
 
 export const runtime = "edge";
 
@@ -55,19 +56,35 @@ export async function POST(req: NextRequest) {
     });
 
     /**
-     * Returns a specialized, preconfigured LLMChain.
+     * Bind the function and schema to the OpenAI model.
+     * Future invocations of the returned model will always use these arguments.
+     *
+     * Specifying "function_call" ensures that the provided function will always
+     * be called by the model.
      */
-    const chain = createStructuredOutputChainFromZod(schema, {
-      llm: model,
-      prompt,
-      outputKey: "output",
+    const functionCallingModel = model.bind({
+      functions: [
+        {
+          name: "output_formatter",
+          description: "Should always be used to properly format output",
+          parameters: zodToJsonSchema(schema),
+        },
+      ],
+      function_call: { name: "output_formatter" },
     });
 
-    const result = await chain.call({
+    /**
+     * Returns a chain with the function calling model.
+     */
+    const chain = prompt
+      .pipe(functionCallingModel)
+      .pipe(new JsonOutputFunctionsParser());
+
+    const result = await chain.invoke({
       input: currentMessageContent,
     });
 
-    return NextResponse.json(result.output, { status: 200 });
+    return NextResponse.json(result, { status: 200 });
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: 500 });
   }

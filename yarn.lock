@@ -2975,6 +2975,7 @@ __metadata:
     tailwindcss: 3.3.3
     typescript: 5.1.6
     zod: ^3.21.4
+    zod-to-json-schema: ^3.21.4
   languageName: unknown
   linkType: soft
 
@@ -5408,7 +5409,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod-to-json-schema@npm:^3.20.4":
+"zod-to-json-schema@npm:^3.20.4, zod-to-json-schema@npm:^3.21.4":
   version: 3.21.4
   resolution: "zod-to-json-schema@npm:3.21.4"
   peerDependencies:
