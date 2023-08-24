@@ -2965,7 +2965,7 @@ __metadata:
     autoprefixer: 10.4.14
     eslint: 8.46.0
     eslint-config-next: 13.4.12
-    langchain: ^0.0.132
+    langchain: ^0.0.133
     next: 13.4.12
     postcss: 8.4.27
     prettier: 3.0.0
@@ -2979,9 +2979,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"langchain@npm:^0.0.132":
-  version: 0.0.132
-  resolution: "langchain@npm:0.0.132"
+"langchain@npm:^0.0.133":
+  version: 0.0.133
+  resolution: "langchain@npm:0.0.133"
   dependencies:
     "@anthropic-ai/sdk": ^0.5.7
     ansi-styles: ^5.0.0
@@ -2993,7 +2993,7 @@ __metadata:
     js-tiktoken: ^1.0.7
     js-yaml: ^4.1.0
     jsonpointer: ^5.0.1
-    langsmith: ~0.0.16
+    langsmith: ~0.0.26
     ml-distance: ^4.0.0
     object-hash: ^3.0.0
     openai: ^3.3.0
@@ -3222,13 +3222,13 @@ __metadata:
       optional: true
     youtubei.js:
       optional: true
-  checksum: b9acc418405778e8fb86edf3c6ebb73734d86ca59dc1f03c522a010e32dd87e1ba03b8235b54ccf22476d415c4d018fb76d6268bfa58c20e90e505da46f3d4f5
+  checksum: f54ada7b7109d3e4deb3bcfae66ca67cdcd869b12af20040282465ede8f606b6a39a81ca5ab35730e471d571c69b0249c533752ce648f8d6506bf0fd9c86df02
   languageName: node
   linkType: hard
 
-"langsmith@npm:~0.0.16":
-  version: 0.0.19
-  resolution: "langsmith@npm:0.0.19"
+"langsmith@npm:~0.0.26":
+  version: 0.0.26
+  resolution: "langsmith@npm:0.0.26"
   dependencies:
     "@types/uuid": ^9.0.1
     commander: ^10.0.1
@@ -3237,7 +3237,7 @@ __metadata:
     uuid: ^9.0.0
   bin:
     langsmith: dist/cli/main.cjs
-  checksum: 73f6e75057c82435cb85f9968da52ab8dedbad0c8152a494197430158b3aaaccd5c0c101679e3bd24574cc0758dfddd4cc1721e458e1f37cd8167b902d3e20fa
+  checksum: 5b155ae09e6c0b09bdef25a2af93728bf994944d7a487a3943b69a0aa74a51ee3758cf145acebae1b2687b363aa8cf5fd99e147588fb1b4152ecb0e69ba62baf
   languageName: node
   linkType: hard
 
