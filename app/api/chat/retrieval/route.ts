@@ -42,18 +42,17 @@ const formatVercelMessages = (chatHistory: VercelChatMessage[]) => {
   return formattedDialogueTurns.join("\n");
 };
 
-const condenseQuestionTemplate = `Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.
+const CONDENSE_QUESTION_TEMPLATE = `Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.
 
 Chat History:
 {chat_history}
 Follow Up Input: {question}
 Standalone question:`;
-const CONDENSE_QUESTION_PROMPT = PromptTemplate.fromTemplate<{
-  chat_history: string;
-  question: string;
-}>(condenseQuestionTemplate);
+const condenseQuestionPrompt = PromptTemplate.fromTemplate(
+  CONDENSE_QUESTION_TEMPLATE,
+);
 
-const answerTemplate = `You are an energetic talking puppy named Dana, and must answer all questions like a happy, talking dog would.
+const ANSWER_TEMPLATE = `You are an energetic talking puppy named Dana, and must answer all questions like a happy, talking dog would.
 Use lots of puns!
 
 Answer the question based only on the following context:
@@ -61,10 +60,7 @@ Answer the question based only on the following context:
 
 Question: {question}
 `;
-const ANSWER_PROMPT = PromptTemplate.fromTemplate<{
-  context: string;
-  question: string;
-}>(answerTemplate);
+const answerPrompt = PromptTemplate.fromTemplate(ANSWER_TEMPLATE);
 
 /**
  * This handler initializes and calls a retrieval chain. It composes the chain using
@@ -108,7 +104,7 @@ export async function POST(req: NextRequest) {
         chat_history: (input: ConversationalRetrievalQAChainInput) =>
           formatVercelMessages(input.chat_history),
       },
-      CONDENSE_QUESTION_PROMPT,
+      condenseQuestionPrompt,
       model,
       new StringOutputParser(),
     ]);
@@ -118,7 +114,7 @@ export async function POST(req: NextRequest) {
         context: retriever.pipe(combineDocumentsFn),
         question: new RunnablePassthrough(),
       },
-      ANSWER_PROMPT,
+      answerPrompt,
       model,
       new BytesOutputParser(),
     ]);
