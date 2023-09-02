@@ -19,9 +19,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@anthropic-ai/sdk@npm:^0.5.7":
-  version: 0.5.10
-  resolution: "@anthropic-ai/sdk@npm:0.5.10"
+"@anthropic-ai/sdk@npm:^0.6.2":
+  version: 0.6.2
+  resolution: "@anthropic-ai/sdk@npm:0.6.2"
   dependencies:
     "@types/node": ^18.11.18
     "@types/node-fetch": ^2.6.4
@@ -31,7 +31,7 @@ __metadata:
     form-data-encoder: 1.7.2
     formdata-node: ^4.3.2
     node-fetch: ^2.6.7
-  checksum: 4f70b06be7be7e9baee0d2b85648f17643a58c89003331a9b38dea8e3eaea3519d60ac5ef2074b903897214f53358b92c6e87e7ea4f22787410cccb85d5a8b1b
+  checksum: a07dd0d42fe83b79bec506399755161cb12d26df756093df7f6189d062d01bd944a4d909d9d13b178567e7778b8966fe6f4b7051b9397cbd035c3fc184289c36
   languageName: node
   linkType: hard
 
@@ -2965,7 +2965,7 @@ __metadata:
     autoprefixer: 10.4.14
     eslint: 8.46.0
     eslint-config-next: 13.4.12
-    langchain: ^0.0.137
+    langchain: ^0.0.140
     next: 13.4.12
     postcss: 8.4.27
     prettier: 3.0.0
@@ -2979,11 +2979,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"langchain@npm:^0.0.137":
-  version: 0.0.137
-  resolution: "langchain@npm:0.0.137"
+"langchain@npm:^0.0.140":
+  version: 0.0.140
+  resolution: "langchain@npm:0.0.140"
   dependencies:
-    "@anthropic-ai/sdk": ^0.5.7
+    "@anthropic-ai/sdk": ^0.6.2
     ansi-styles: ^5.0.0
     binary-extensions: ^2.2.0
     camelcase: 6
@@ -2993,7 +2993,8 @@ __metadata:
     js-tiktoken: ^1.0.7
     js-yaml: ^4.1.0
     jsonpointer: ^5.0.1
-    langsmith: ~0.0.26
+    langchainhub: ~0.0.6
+    langsmith: ~0.0.31
     ml-distance: ^4.0.0
     object-hash: ^3.0.0
     openai: ^3.3.0
@@ -3019,7 +3020,7 @@ __metadata:
     "@clickhouse/client": ^0.0.14
     "@elastic/elasticsearch": ^8.4.0
     "@getmetal/metal-sdk": "*"
-    "@getzep/zep-js": ^0.6.3
+    "@getzep/zep-js": ^0.7.0
     "@gomomento/sdk": ^1.23.0
     "@google-ai/generativelanguage": ^0.2.1
     "@google-cloud/storage": ^6.10.1
@@ -3051,6 +3052,7 @@ __metadata:
     d3-dsv: ^2.0.0
     epub2: ^3.0.1
     faiss-node: ^0.3.0
+    fast-xml-parser: ^4.2.7
     firebase-admin: ^11.9.0
     google-auth-library: ^8.9.0
     hnswlib-node: ^1.4.2
@@ -3058,7 +3060,6 @@ __metadata:
     ignore: ^5.2.0
     ioredis: ^5.3.2
     jsdom: "*"
-    langchainhub: ~0.0.3
     mammoth: "*"
     mongodb: ^5.2.0
     mysql2: ^3.3.3
@@ -3175,6 +3176,8 @@ __metadata:
       optional: true
     faiss-node:
       optional: true
+    fast-xml-parser:
+      optional: true
     firebase-admin:
       optional: true
     google-auth-library:
@@ -3188,8 +3191,6 @@ __metadata:
     ioredis:
       optional: true
     jsdom:
-      optional: true
-    langchainhub:
       optional: true
     mammoth:
       optional: true
@@ -3237,13 +3238,20 @@ __metadata:
       optional: true
     youtubei.js:
       optional: true
-  checksum: 030657f8d7ccab083e8bdaf9fa6a56116e6221bc7e5cf07c2c96aa3ee958b1bf07bc4b40e4561ef8d8843c8cdfa85c227dd413b2ff90873c28950e8b98a1e139
+  checksum: 6e66494f89d509ceb81c79672f47f8c0643bca4766e86cb34f0149529c719bec72070dc185becbf8c6a2d2e47422a2bb9827b9a30073feb62b7fb803aa85316c
   languageName: node
   linkType: hard
 
-"langsmith@npm:~0.0.26":
-  version: 0.0.26
-  resolution: "langsmith@npm:0.0.26"
+"langchainhub@npm:~0.0.6":
+  version: 0.0.6
+  resolution: "langchainhub@npm:0.0.6"
+  checksum: f771e5375b7ae9cc6fc59d5e2b1fd35c29e5759f4595617e3a235142bc2ca12c4135aa1631d85ee4e25c89968696242dd6380f6b90e87ffbc9006efc3cdc53c4
+  languageName: node
+  linkType: hard
+
+"langsmith@npm:~0.0.31":
+  version: 0.0.32
+  resolution: "langsmith@npm:0.0.32"
   dependencies:
     "@types/uuid": ^9.0.1
     commander: ^10.0.1
@@ -3252,7 +3260,7 @@ __metadata:
     uuid: ^9.0.0
   bin:
     langsmith: dist/cli/main.cjs
-  checksum: 5b155ae09e6c0b09bdef25a2af93728bf994944d7a487a3943b69a0aa74a51ee3758cf145acebae1b2687b363aa8cf5fd99e147588fb1b4152ecb0e69ba62baf
+  checksum: 85d6bcec4ae137f00449e151a3b1867a3634f46d53487ee836d90a8d383d5457af89025a5934ca61d0f6392eda51ccd5203050b91393764aafb6a1ad326bc0ab
   languageName: node
   linkType: hard
 
