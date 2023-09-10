@@ -3,7 +3,7 @@
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/langchain-ai/langchain-nextjs-template)
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Flangchain-ai%2Flangchain-nextjs-template)
 
-This template scaffolds a LangChain.js + Next.js starter template. It showcases how to use and combine LangChain modules for several
+This template scaffolds a LangChain.js + Next.js starter app. It showcases how to use and combine LangChain modules for several
 use cases. Specifically:
 
 - [Simple chat](/app/api/chat/route.ts)
