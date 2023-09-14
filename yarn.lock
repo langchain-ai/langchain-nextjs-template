@@ -2982,7 +2982,7 @@ __metadata:
     autoprefixer: 10.4.14
     eslint: 8.46.0
     eslint-config-next: 13.4.12
-    langchain: ^0.0.146
+    langchain: ^0.0.149
     next: 13.4.12
     postcss: 8.4.27
     prettier: 3.0.0
@@ -2996,9 +2996,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"langchain@npm:^0.0.146":
-  version: 0.0.146
-  resolution: "langchain@npm:0.0.146"
+"langchain@npm:^0.0.149":
+  version: 0.0.149
+  resolution: "langchain@npm:0.0.149"
   dependencies:
     "@anthropic-ai/sdk": ^0.6.2
     ansi-styles: ^5.0.0
@@ -3043,7 +3043,7 @@ __metadata:
     "@google-cloud/storage": ^6.10.1
     "@huggingface/inference": ^1.5.1
     "@mozilla/readability": "*"
-    "@notionhq/client": ^2.2.5
+    "@notionhq/client": ^2.2.10
     "@opensearch-project/opensearch": "*"
     "@pinecone-database/pinecone": "*"
     "@planetscale/database": ^1.8.0
@@ -3100,6 +3100,7 @@ __metadata:
     vectordb: ^0.1.4
     voy-search: 0.6.2
     weaviate-ts-client: ^1.4.0
+    web-auth-library: ^1.0.3
     youtube-transcript: ^1.0.6
     youtubei.js: ^5.8.0
   peerDependenciesMeta:
@@ -3257,11 +3258,13 @@ __metadata:
       optional: true
     weaviate-ts-client:
       optional: true
+    web-auth-library:
+      optional: true
     youtube-transcript:
       optional: true
     youtubei.js:
       optional: true
-  checksum: adecc2e41330a141d01f680a46743c2d44ecd2571725c8dc4c1710b61c32189b8b08b03efac529c2a38d75197abb228f2d8b198a4f9fa95131c8343cd1005086
+  checksum: 76d1ede46f2c653cc59d310cad79971757a3c73217ecca788828866e8898add949d1762f92e2f49e3708b3c5455b2dfba6f368597d2df4345f1e88aae4008d2b
   languageName: node
   linkType: hard
 
