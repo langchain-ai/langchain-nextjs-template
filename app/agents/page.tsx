@@ -31,7 +31,7 @@ export default function AgentsPage() {
             The agent has memory and access to a search engine and a calculator.
           </span>
         </li>
-        <li className="hidden text-l md:block">
+        {/* <li className="hidden text-l md:block">
           💻
           <span className="ml-2">
             You can find the prompt and model logic for this use-case in{" "}
@@ -65,7 +65,7 @@ export default function AgentsPage() {
             </a>
             !
           </span>
-        </li>
+        </li> */}
         <li className="text-l">
           👇
           <span className="ml-2">
@@ -79,8 +79,8 @@ export default function AgentsPage() {
     <ChatWindow
       endpoint="api/chat/agents"
       emptyStateComponent={InfoCard}
-      placeholder="Squawk! I'm a conversational agent! Ask me about the current weather in Honolulu!"
-      titleText="Polly the Agentic Parrot"
+      placeholder="Hi! I'm a conversational agent! Ask me about the current weather in Honolulu!"
+      titleText="AI Agent"
       emoji="🦜"
       showIntermediateStepsToggle={true}
     ></ChatWindow>

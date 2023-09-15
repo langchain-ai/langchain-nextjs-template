@@ -52,6 +52,7 @@ export async function POST(req: NextRequest) {
       final_punctuation: z
         .optional(z.string())
         .describe("The final punctuation mark in the input, if any."),
+        next_message: z.string().describe("The next message to send to the user"),
     });
 
     /**
