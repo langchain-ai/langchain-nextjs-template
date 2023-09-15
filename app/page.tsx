@@ -10,7 +10,7 @@ export default function Home() {
         <li className="text-l">
           🤝
           <span className="ml-2">
-            This Agent showcases a simple chatbot using{" "}
+            This Agent showcases a chatbot using{" "}
             <a href="https://js.langchain.com/" target="_blank">
               LangChain.js
             </a>{" "}
