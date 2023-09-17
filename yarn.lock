@@ -2982,7 +2982,7 @@ __metadata:
     autoprefixer: 10.4.14
     eslint: 8.46.0
     eslint-config-next: 13.4.12
-    langchain: ^0.0.149
+    langchain: ^0.0.150
     next: 13.4.12
     postcss: 8.4.27
     prettier: 3.0.0
@@ -2996,9 +2996,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"langchain@npm:^0.0.149":
-  version: 0.0.149
-  resolution: "langchain@npm:0.0.149"
+"langchain@npm:^0.0.150":
+  version: 0.0.150
+  resolution: "langchain@npm:0.0.150"
   dependencies:
     "@anthropic-ai/sdk": ^0.6.2
     ansi-styles: ^5.0.0
@@ -3091,7 +3091,7 @@ __metadata:
     playwright: ^1.32.1
     puppeteer: ^19.7.2
     redis: ^4.6.4
-    replicate: ^0.12.3
+    replicate: ^0.18.0
     sonix-speech-recognition: ^2.1.1
     srt-parser-2: ^1.2.2
     typeorm: ^0.3.12
@@ -3264,7 +3264,7 @@ __metadata:
       optional: true
     youtubei.js:
       optional: true
-  checksum: 76d1ede46f2c653cc59d310cad79971757a3c73217ecca788828866e8898add949d1762f92e2f49e3708b3c5455b2dfba6f368597d2df4345f1e88aae4008d2b
+  checksum: 81b47a674a2b23c69149f42a5cb6adae764720fb999c702d5e2fa957315731d2db0838f31ac6c91898438e5c3b896f974d062003b2d9c471658464b1dd234cd6
   languageName: node
   linkType: hard
 
