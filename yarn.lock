@@ -2982,7 +2982,7 @@ __metadata:
     autoprefixer: 10.4.14
     eslint: 8.46.0
     eslint-config-next: 13.4.12
-    langchain: ^0.0.150
+    langchain: ^0.0.159
     next: 13.4.12
     postcss: 8.4.27
     prettier: 3.0.0
@@ -2991,14 +2991,14 @@ __metadata:
     react-toastify: ^9.1.3
     tailwindcss: 3.3.3
     typescript: 5.1.6
-    zod: ^3.21.4
+    zod: ^3.22.3
     zod-to-json-schema: ^3.21.4
   languageName: unknown
   linkType: soft
 
-"langchain@npm:^0.0.150":
-  version: 0.0.150
-  resolution: "langchain@npm:0.0.150"
+"langchain@npm:^0.0.159":
+  version: 0.0.159
+  resolution: "langchain@npm:0.0.159"
   dependencies:
     "@anthropic-ai/sdk": ^0.6.2
     ansi-styles: ^5.0.0
@@ -3020,7 +3020,7 @@ __metadata:
     p-retry: 4
     uuid: ^9.0.0
     yaml: ^2.2.1
-    zod: ^3.21.4
+    zod: ^3.22.3
     zod-to-json-schema: ^3.20.4
   peerDependencies:
     "@aws-crypto/sha256-js": ^5.0.0
@@ -3031,10 +3031,9 @@ __metadata:
     "@aws-sdk/client-sagemaker-runtime": ^3.310.0
     "@aws-sdk/client-sfn": ^3.310.0
     "@aws-sdk/credential-provider-node": ^3.388.0
-    "@aws-sdk/protocol-http": ^3.374.0
-    "@aws-sdk/signature-v4": ^3.374.0
     "@azure/storage-blob": ^12.15.0
     "@clickhouse/client": ^0.0.14
+    "@cloudflare/ai": ^1.0.12
     "@elastic/elasticsearch": ^8.4.0
     "@getmetal/metal-sdk": "*"
     "@getzep/zep-js": ^0.7.0
@@ -3050,6 +3049,8 @@ __metadata:
     "@qdrant/js-client-rest": ^1.2.0
     "@raycast/api": ^1.55.2
     "@smithy/eventstream-codec": ^2.0.5
+    "@smithy/protocol-http": ^3.0.6
+    "@smithy/signature-v4": ^2.0.10
     "@smithy/util-utf8": ^2.0.0
     "@supabase/postgrest-js": ^1.1.1
     "@supabase/supabase-js": ^2.10.0
@@ -3057,6 +3058,7 @@ __metadata:
     "@tensorflow/tfjs-converter": "*"
     "@tensorflow/tfjs-core": "*"
     "@upstash/redis": ^1.20.6
+    "@vercel/postgres": ^0.5.0
     "@writerai/writer-sdk": ^0.40.2
     "@xata.io/client": ^0.25.1
     "@xenova/transformers": ^2.5.4
@@ -3072,6 +3074,7 @@ __metadata:
     fast-xml-parser: ^4.2.7
     firebase-admin: ^11.9.0
     google-auth-library: ^8.9.0
+    googleapis: ^126.0.1
     hnswlib-node: ^1.4.2
     html-to-text: ^9.0.5
     ignore: ^5.2.0
@@ -3081,6 +3084,7 @@ __metadata:
     mammoth: "*"
     mongodb: ^5.2.0
     mysql2: ^3.3.3
+    neo4j-driver: "*"
     node-llama-cpp: "*"
     notion-to-md: ^3.1.0
     pdf-parse: 1.1.1
@@ -3120,13 +3124,11 @@ __metadata:
       optional: true
     "@aws-sdk/credential-provider-node":
       optional: true
-    "@aws-sdk/protocol-http":
-      optional: true
-    "@aws-sdk/signature-v4":
-      optional: true
     "@azure/storage-blob":
       optional: true
     "@clickhouse/client":
+      optional: true
+    "@cloudflare/ai":
       optional: true
     "@elastic/elasticsearch":
       optional: true
@@ -3158,6 +3160,10 @@ __metadata:
       optional: true
     "@smithy/eventstream-codec":
       optional: true
+    "@smithy/protocol-http":
+      optional: true
+    "@smithy/signature-v4":
+      optional: true
     "@smithy/util-utf8":
       optional: true
     "@supabase/postgrest-js":
@@ -3171,6 +3177,8 @@ __metadata:
     "@tensorflow/tfjs-core":
       optional: true
     "@upstash/redis":
+      optional: true
+    "@vercel/postgres":
       optional: true
     "@writerai/writer-sdk":
       optional: true
@@ -3202,6 +3210,8 @@ __metadata:
       optional: true
     google-auth-library:
       optional: true
+    googleapis:
+      optional: true
     hnswlib-node:
       optional: true
     html-to-text:
@@ -3219,6 +3229,8 @@ __metadata:
     mongodb:
       optional: true
     mysql2:
+      optional: true
+    neo4j-driver:
       optional: true
     node-llama-cpp:
       optional: true
@@ -3264,7 +3276,7 @@ __metadata:
       optional: true
     youtubei.js:
       optional: true
-  checksum: 81b47a674a2b23c69149f42a5cb6adae764720fb999c702d5e2fa957315731d2db0838f31ac6c91898438e5c3b896f974d062003b2d9c471658464b1dd234cd6
+  checksum: d1967b022fc3fda760a3415613ca52833ec7996c4b58e947c8d8de59d73b267f5f6aae89b00c4238873782599c757ffc7d3aff7a3c81e9e47a16847c8bf2adc2
   languageName: node
   linkType: hard
 
@@ -5550,9 +5562,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:3.21.4, zod@npm:^3.21.4":
+"zod@npm:3.21.4":
   version: 3.21.4
   resolution: "zod@npm:3.21.4"
   checksum: f185ba87342ff16f7a06686767c2b2a7af41110c7edf7c1974095d8db7a73792696bcb4a00853de0d2edeb34a5b2ea6a55871bc864227dace682a0a28de33e1f
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.22.3":
+  version: 3.22.3
+  resolution: "zod@npm:3.22.3"
+  checksum: 65b05139be337078a70700b05942ab7f2ef5f11abe194df14ef257fac4e5c383476a4dc290731842996bd57fc8d5bf38e5a4c907fe8cdf8b15477f8da5bfcc00
   languageName: node
   linkType: hard

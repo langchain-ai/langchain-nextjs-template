@@ -92,8 +92,7 @@ export default function AgentsPage() {
           👇
           <span className="ml-2">
             Upload some text, then try asking e.g.{" "}
-            <code>What are some ways of doing retrieval in LangChain?</code>{" "}
-            below!
+            <code>What is a document loader?</code> below!
           </span>
         </li>
       </ul>
@@ -105,7 +104,7 @@ export default function AgentsPage() {
       emptyStateComponent={InfoCard}
       showIngestForm={true}
       placeholder={
-        'I\'ve got a nose for finding the right documents! Ask, "What are some ways of doing retrieval in LangChain.js?"'
+        'I\'ve got a nose for finding the right documents! Ask, "What is a document loader?"'
       }
       emoji="🐶"
       titleText="Dana the Document-Retrieving Dog"

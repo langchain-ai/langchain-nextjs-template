@@ -19,11 +19,6 @@ import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 
 export const runtime = "edge";
 
-type ConversationalRetrievalQAChainInput = {
-  question: string;
-  chat_history: VercelChatMessage[];
-};
-
 const combineDocumentsFn = (docs: Document[], separator = "\n\n") => {
   const serializedDocs = docs.map((doc) => doc.pageContent);
   return serializedDocs.join(separator);
@@ -44,8 +39,10 @@ const formatVercelMessages = (chatHistory: VercelChatMessage[]) => {
 
 const CONDENSE_QUESTION_TEMPLATE = `Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.
 
-Chat History:
-{chat_history}
+<chat_history>
+  {chat_history}
+</chat_history>
+
 Follow Up Input: {question}
 Standalone question:`;
 const condenseQuestionPrompt = PromptTemplate.fromTemplate(
@@ -55,8 +52,14 @@ const condenseQuestionPrompt = PromptTemplate.fromTemplate(
 const ANSWER_TEMPLATE = `You are an energetic talking puppy named Dana, and must answer all questions like a happy, talking dog would.
 Use lots of puns!
 
-Answer the question based only on the following context:
-{context}
+Answer the question based only on the following context and chat history:
+<context>
+  {context}
+</context>
+
+<chat_history>
+  {chat_history}
+</chat_history>
 
 Question: {question}
 `;
@@ -76,7 +79,7 @@ export async function POST(req: NextRequest) {
     const currentMessageContent = messages[messages.length - 1].content;
 
     const model = new ChatOpenAI({
-      modelName: "gpt-4",
+      modelName: "gpt-3.5-turbo",
     });
 
     const client = createClient(
@@ -89,8 +92,6 @@ export async function POST(req: NextRequest) {
       queryName: "match_documents",
     });
 
-    const retriever = vectorstore.asRetriever();
-
     /**
      * We use LangChain Expression Language to compose two chains.
      * To learn more, see the guide here:
@@ -98,36 +99,74 @@ export async function POST(req: NextRequest) {
      * https://js.langchain.com/docs/guides/expression_language/cookbook
      */
     const standaloneQuestionChain = RunnableSequence.from([
-      {
-        question: (input: ConversationalRetrievalQAChainInput) =>
-          input.question,
-        chat_history: (input: ConversationalRetrievalQAChainInput) =>
-          formatVercelMessages(input.chat_history),
-      },
       condenseQuestionPrompt,
       model,
       new StringOutputParser(),
     ]);
 
+    let resolveWithDocuments: (value: Document[]) => void;
+    const documentPromise = new Promise<Document[]>((resolve) => {
+      resolveWithDocuments = resolve;
+    });
+
+    const retriever = vectorstore.asRetriever({
+      callbacks: [
+        {
+          handleRetrieverEnd(documents) {
+            console.log(documents);
+            resolveWithDocuments(documents);
+          },
+        },
+      ],
+    });
+
+    const retrievalChain = retriever.pipe(combineDocumentsFn);
+
     const answerChain = RunnableSequence.from([
       {
-        context: retriever.pipe(combineDocumentsFn),
-        question: new RunnablePassthrough(),
+        context: RunnableSequence.from([
+          (input) => input.question,
+          retrievalChain,
+        ]),
+        chat_history: (input) => input.chat_history,
+        question: (input) => input.question,
       },
       answerPrompt,
       model,
+    ]);
+
+    const conversationalRetrievalQAChain = RunnableSequence.from([
+      {
+        question: standaloneQuestionChain,
+        chat_history: (input) => input.chat_history,
+      },
+      answerChain,
       new BytesOutputParser(),
     ]);
 
-    const conversationalRetrievalQAChain =
-      standaloneQuestionChain.pipe(answerChain);
-
     const stream = await conversationalRetrievalQAChain.stream({
       question: currentMessageContent,
-      chat_history: previousMessages,
+      chat_history: formatVercelMessages(previousMessages),
     });
 
-    return new StreamingTextResponse(stream);
+    const documents = await documentPromise;
+    const serializedSources = Buffer.from(
+      JSON.stringify(
+        documents.map((doc) => {
+          return {
+            pageContent: doc.pageContent.slice(0, 50) + "...",
+            metadata: doc.metadata,
+          };
+        }),
+      ),
+    ).toString("base64");
+
+    return new StreamingTextResponse(stream, {
+      headers: {
+        "x-message-index": (previousMessages.length + 1).toString(),
+        "x-sources": serializedSources,
+      },
+    });
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: 500 });
   }

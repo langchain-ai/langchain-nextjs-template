@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useChat } from "ai/react";
-import { useRef, useState, useEffect, ReactElement } from "react";
+import { useRef, useState, ReactElement } from "react";
 import type { FormEvent } from "react";
 import type { AgentStep } from "langchain/schema";
 
@@ -35,9 +35,19 @@ export function ChatWindow(props: {
     </div>
   );
 
+  const [sourcesForMessages, setSourcesForMessages] = useState<Record<string, any>>({});
+
   const { messages, input, setInput, handleInputChange, handleSubmit, isLoading: chatEndpointIsLoading, setMessages } =
     useChat({
       api: endpoint,
+      onResponse(response) {
+        const sourcesHeader = response.headers.get("x-sources");
+        const sources = sourcesHeader ? JSON.parse(atob(sourcesHeader)) : [];
+        const messageIndexHeader = response.headers.get("x-message-index");
+        if (sources.length && messageIndexHeader !== null) {
+          setSourcesForMessages({...sourcesForMessages, [messageIndexHeader]: sources});
+        }
+      },
       onError: (e) => {
         toast(e.message, {
           theme: "dark"
@@ -107,9 +117,10 @@ export function ChatWindow(props: {
         {messages.length > 0 ? (
           [...messages]
             .reverse()
-            .map((m) => (
-              m.role === "system" ? <IntermediateStep key={m.id} message={m}></IntermediateStep> : <ChatMessageBubble key={m.id} message={m} aiEmoji={emoji}></ChatMessageBubble>
-            ))
+            .map((m, i) => {
+              const sourceKey = (messages.length - 1 - i).toString();
+              return (m.role === "system" ? <IntermediateStep key={m.id} message={m}></IntermediateStep> : <ChatMessageBubble key={m.id} message={m} aiEmoji={emoji} sources={sourcesForMessages[sourceKey]}></ChatMessageBubble>)
+            })
         ) : (
           ""
         )}
