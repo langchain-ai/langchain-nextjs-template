@@ -88,7 +88,8 @@ After splitting, embedding, and uploading some text, you're ready to ask questio
 
 For more info on retrieval chains, [see this page](https://js.langchain.com/docs/use_cases/question_answering/).
 The specific variant of the conversational retrieval chain used here is composed using LangChain Expression Language, which you can
-[read more about here](https://js.langchain.com/docs/guides/expression_language/cookbook).
+[read more about here](https://js.langchain.com/docs/guides/expression_language/cookbook). This chain example will also return cited sources
+via header in addition to the streaming response.
 
 For more info on retrieval agents, [see this page](https://js.langchain.com/docs/use_cases/question_answering/conversational_retrieval_agents).
 
