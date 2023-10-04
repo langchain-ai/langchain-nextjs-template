@@ -16,13 +16,19 @@ export function ChatMessageBubble(props: { message: Message, aiEmoji?: string, s
       <div className="whitespace-pre-wrap flex flex-col">
         <span>{props.message.content}</span>
         {props.sources && props.sources.length ? <>
-          <code className="mt-4 mr-2 bg-slate-600 px-2 py-1 rounded">
+          <code className="mt-4 mr-auto bg-slate-600 px-2 py-1 rounded">
             <h2>
-              Sources:
+              🔍 Sources:
             </h2>
+          </code>
+          <code className="mt-1 mr-2 bg-slate-600 px-2 py-1 rounded">
             {props.sources?.map((source, i) => (
               <div className="mt-4" key={"source:" + i}>
-                {i + 1}. &quot;{source.pageContent}&quot;<br/>Lines {source.metadata.loc.lines.from} to {source.metadata.loc.lines.to}
+                {i + 1}. &quot;{source.pageContent}&quot;{
+                  source.metadata?.loc?.lines !== undefined
+                    ? <div><br/>Lines {source.metadata?.loc?.lines?.from} to {source.metadata?.loc?.lines?.to}</div>
+                    : ""
+                  }
               </div>
             ))}
           </code>
