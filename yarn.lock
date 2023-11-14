@@ -2982,7 +2982,7 @@ __metadata:
     autoprefixer: 10.4.14
     eslint: 8.46.0
     eslint-config-next: 13.4.12
-    langchain: ^0.0.176
+    langchain: ^0.0.187
     next: 14.0.1
     postcss: 8.4.27
     prettier: 3.0.0
@@ -2996,9 +2996,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"langchain@npm:^0.0.176":
-  version: 0.0.176
-  resolution: "langchain@npm:0.0.176"
+"langchain@npm:^0.0.187":
+  version: 0.0.187
+  resolution: "langchain@npm:0.0.187"
   dependencies:
     "@anthropic-ai/sdk": ^0.6.2
     ansi-styles: ^5.0.0
@@ -3011,10 +3011,9 @@ __metadata:
     js-yaml: ^4.1.0
     jsonpointer: ^5.0.1
     langchainhub: ~0.0.6
-    langsmith: ~0.0.31
+    langsmith: ~0.0.48
     ml-distance: ^4.0.0
-    object-hash: ^3.0.0
-    openai: ~4.4.0
+    openai: ^4.17.0
     openapi-types: ^12.1.3
     p-queue: ^6.6.2
     p-retry: 4
@@ -3037,13 +3036,13 @@ __metadata:
     "@cloudflare/ai": ^1.0.12
     "@elastic/elasticsearch": ^8.4.0
     "@getmetal/metal-sdk": "*"
-    "@getzep/zep-js": ^0.8.0
-    "@gomomento/sdk": ^1.44.1
-    "@gomomento/sdk-core": ^1.44.1
-    "@gomomento/sdk-web": ^1.44.1
+    "@getzep/zep-js": ^0.9.0
+    "@gomomento/sdk": ^1.47.1
+    "@gomomento/sdk-core": ^1.47.1
+    "@gomomento/sdk-web": ^1.47.1
     "@google-ai/generativelanguage": ^0.2.1
     "@google-cloud/storage": ^6.10.1
-    "@huggingface/inference": ^1.5.1
+    "@huggingface/inference": ^2.6.4
     "@mozilla/readability": "*"
     "@notionhq/client": ^2.2.10
     "@opensearch-project/opensearch": "*"
@@ -3090,7 +3089,7 @@ __metadata:
     ignore: ^5.2.0
     ioredis: ^5.3.2
     jsdom: "*"
-    llmonitor: ^0.5.8
+    llmonitor: ^0.5.9
     lodash: ^4.17.21
     mammoth: "*"
     mongodb: ^5.2.0
@@ -3117,6 +3116,7 @@ __metadata:
     voy-search: 0.6.2
     weaviate-ts-client: ^1.4.0
     web-auth-library: ^1.0.3
+    ws: ^8.14.2
     youtube-transcript: ^1.0.6
     youtubei.js: ^5.8.0
   peerDependenciesMeta:
@@ -3308,11 +3308,13 @@ __metadata:
       optional: true
     web-auth-library:
       optional: true
+    ws:
+      optional: true
     youtube-transcript:
       optional: true
     youtubei.js:
       optional: true
-  checksum: 742d904974e0298c7cb405149082a6930b919ee64ca001ed633ccb958e693ac8357398021e0b9e287f61535eedbbc667f76f80f7f370134151e66945251a270c
+  checksum: aeff06dee611bed2e66cb2ac814a41f13616754cfbdc44e8fcf2a43809ff5d83409e61b418d515634da684d250e30a8c38bb1156e5f9cf649cd6c6596cdffb17
   languageName: node
   linkType: hard
 
@@ -3323,9 +3325,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"langsmith@npm:~0.0.31":
-  version: 0.0.32
-  resolution: "langsmith@npm:0.0.32"
+"langsmith@npm:~0.0.48":
+  version: 0.0.48
+  resolution: "langsmith@npm:0.0.48"
   dependencies:
     "@types/uuid": ^9.0.1
     commander: ^10.0.1
@@ -3334,7 +3336,7 @@ __metadata:
     uuid: ^9.0.0
   bin:
     langsmith: dist/cli/main.cjs
-  checksum: 85d6bcec4ae137f00449e151a3b1867a3634f46d53487ee836d90a8d383d5457af89025a5934ca61d0f6392eda51ccd5203050b91393764aafb6a1ad326bc0ab
+  checksum: 2552c1a8549eab8e03a5530e73ce37ad0e147ca3084edbfd56b7a29b92c7c5579e5c1e53222bfb846b5ee8219d8d80cc9a7cc07e78717e95cdefedb95d76cd86
   languageName: node
   linkType: hard
 
@@ -4067,9 +4069,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"openai@npm:~4.4.0":
-  version: 4.4.0
-  resolution: "openai@npm:4.4.0"
+"openai@npm:^4.17.0":
+  version: 4.17.5
+  resolution: "openai@npm:4.17.5"
   dependencies:
     "@types/node": ^18.11.18
     "@types/node-fetch": ^2.6.4
@@ -4079,9 +4081,10 @@ __metadata:
     form-data-encoder: 1.7.2
     formdata-node: ^4.3.2
     node-fetch: ^2.6.7
+    web-streams-polyfill: ^3.2.1
   bin:
     openai: bin/cli
-  checksum: c89b47f3d66c41d8a2080c23192573e8ce985aa3ba099bbe410fac2facf62f665aefad9ea3a7a210e35e650d8568ed1186e12806472d8242fc3dc31e930e6084
+  checksum: 17e2b8c37a1955d8e652b13035aa47899651ab75ea32f169b31cb2faa966c94fc51663132932ea93795b51a711d04855b971abbba4db8a6385dbab6c88771c73
   languageName: node
   linkType: hard
 
@@ -5414,6 +5417,13 @@ __metadata:
   version: 4.0.0-beta.3
   resolution: "web-streams-polyfill@npm:4.0.0-beta.3"
   checksum: dfec1fbf52b9140e4183a941e380487b6c3d5d3838dd1259be81506c1c9f2abfcf5aeb670aeeecfd9dff4271a6d8fef931b193c7bedfb42542a3b05ff36c0d16
+  languageName: node
+  linkType: hard
+
+"web-streams-polyfill@npm:^3.2.1":
+  version: 3.2.1
+  resolution: "web-streams-polyfill@npm:3.2.1"
+  checksum: b119c78574b6d65935e35098c2afdcd752b84268e18746606af149e3c424e15621b6f1ff0b42b2676dc012fc4f0d313f964b41a4b5031e525faa03997457da02
   languageName: node
   linkType: hard
 
