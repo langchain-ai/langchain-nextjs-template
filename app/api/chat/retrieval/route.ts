@@ -19,9 +19,9 @@ import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 
 export const runtime = "edge";
 
-const combineDocumentsFn = (docs: Document[], separator = "\n\n") => {
+const combineDocumentsFn = (docs: Document[]) => {
   const serializedDocs = docs.map((doc) => doc.pageContent);
-  return serializedDocs.join(separator);
+  return serializedDocs.join("\n\n");
 };
 
 const formatVercelMessages = (chatHistory: VercelChatMessage[]) => {
