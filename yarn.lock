@@ -168,12 +168,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/community@npm:~0.0.2":
-  version: 0.0.2
-  resolution: "@langchain/community@npm:0.0.2"
+"@langchain/community@npm:~0.0.3":
+  version: 0.0.3
+  resolution: "@langchain/community@npm:0.0.3"
   dependencies:
-    "@langchain/core": ~0.0.11
-    "@langchain/openai": ~0.0.2
+    "@langchain/core": ~0.1.0
+    "@langchain/openai": ~0.0.5
     flat: ^5.0.2
     langsmith: ~0.0.48
     uuid: ^9.0.0
@@ -408,13 +408,13 @@ __metadata:
       optional: true
     ws:
       optional: true
-  checksum: 3e4260351919581656c3bf27642c3ed2b7a985aa9404b03421d382b7e22200ea1b596a0ec2c8cc4620ee55266bafcf4a7167b662a8ae812260d5acc9920f32b7
+  checksum: fdd5f81b693a4f90a7035202170c17a50916d80000da91e39642ff70bb96f9224b1e837d8f0f45ec0a0103398a8e7db0b3f345ca374703d714d87d465daa24be
   languageName: node
   linkType: hard
 
-"@langchain/core@npm:~0.0.11":
-  version: 0.0.11
-  resolution: "@langchain/core@npm:0.0.11"
+"@langchain/core@npm:~0.1.0":
+  version: 0.1.0
+  resolution: "@langchain/core@npm:0.1.0"
   dependencies:
     ansi-styles: ^5.0.0
     camelcase: 6
@@ -426,20 +426,20 @@ __metadata:
     p-retry: 4
     uuid: ^9.0.0
     zod: ^3.22.3
-  checksum: 064912733591dabd62eaf4fa958253e1427bc3e279ce4fedb1c32b2eff05c38aab844d09ac6f0796c2d254016c1ed30c9eeae64e47d1afe2a51045f6bc052b9d
+  checksum: 8027f2cc0c554d9da0a01c05a2c8e416abf147db77b2c8e6be49f012ac013b4d9bab5d5c664e69c1d91498e1527689253a4d865814e163d090370fcb5cd60767
   languageName: node
   linkType: hard
 
-"@langchain/openai@npm:~0.0.2":
-  version: 0.0.2
-  resolution: "@langchain/openai@npm:0.0.2"
+"@langchain/openai@npm:~0.0.5":
+  version: 0.0.5
+  resolution: "@langchain/openai@npm:0.0.5"
   dependencies:
-    "@langchain/core": ~0.0.11
+    "@langchain/core": ~0.1.0
     js-tiktoken: ^1.0.7
     openai: ^4.19.0
     zod: ^3.22.3
     zod-to-json-schema: 3.20.3
-  checksum: 061767c056b33cdec19b8efa25a873c33dbf7bb1b704862fcec60ea53ca14978e506becb26dd682ca060a02c92d1d00a720e70cfcf5fbbb5c9b336bbb0d2b47e
+  checksum: c1889e9bf0bf8aa07ff23d17fea2b9876e841a35a314002e642741a30b82f09cd597352e373810a3a54c44f6e9d5c67830bf9f664ff45206bde9d0299c7a2b4f
   languageName: node
   linkType: hard
 
@@ -3260,7 +3260,7 @@ __metadata:
     autoprefixer: 10.4.14
     eslint: 8.46.0
     eslint-config-next: 13.4.12
-    langchain: ^0.0.204
+    langchain: ^0.0.205
     next: 14.0.1
     postcss: 8.4.27
     prettier: 3.0.0
@@ -3274,14 +3274,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"langchain@npm:^0.0.204":
-  version: 0.0.204
-  resolution: "langchain@npm:0.0.204"
+"langchain@npm:^0.0.205":
+  version: 0.0.205
+  resolution: "langchain@npm:0.0.205"
   dependencies:
     "@anthropic-ai/sdk": ^0.9.1
-    "@langchain/community": ~0.0.2
-    "@langchain/core": ~0.0.11
-    "@langchain/openai": ~0.0.2
+    "@langchain/community": ~0.0.3
+    "@langchain/core": ~0.1.0
+    "@langchain/openai": ~0.0.5
     binary-extensions: ^2.2.0
     expr-eval: ^2.0.2
     js-tiktoken: ^1.0.7
@@ -3450,7 +3450,7 @@ __metadata:
       optional: true
     youtubei.js:
       optional: true
-  checksum: 15d41a2de0628d77ee13613083d14d5bb475e857b91371e6ebecd70170f261091ddcbfa6f374840a841cbe45760d90809d8dfb5edca0d9d5ad69f9d7c374a6f4
+  checksum: 4efd9ef796569604743663a5b587e1cef944d9e99d48488bb87c4c468c44ac471eefac0a618e1dea8846159d8dde878e87c011e70753b45b0bc7ae16b11f4f0a
   languageName: node
   linkType: hard
 
