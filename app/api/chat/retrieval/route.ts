@@ -9,7 +9,6 @@ import { SupabaseVectorStore } from "langchain/vectorstores/supabase";
 import { Document } from "langchain/document";
 import {
   RunnableSequence,
-  RunnablePassthrough,
 } from "langchain/schema/runnable";
 import {
   BytesOutputParser,
