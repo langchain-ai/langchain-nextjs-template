@@ -418,7 +418,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/core@npm:~0.1.5":
+"@langchain/core@npm:0.1.5":
   version: 0.1.5
   resolution: "@langchain/core@npm:0.1.5"
   dependencies:

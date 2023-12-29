@@ -36,5 +36,16 @@
   },
   "devDependencies": {
     "prettier": "3.0.0"
+  },
+  "resolutions": {
+    "@langchain/core": "0.1.5"
+  },
+  "overrides": {
+    "@langchain/core": "0.1.5"
+  },
+  "pnpm": {
+    "overrides": {
+      "@langchain/core": "0.1.5"
+    }
   }
 }
