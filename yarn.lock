@@ -168,12 +168,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/community@npm:~0.0.7":
-  version: 0.0.7
-  resolution: "@langchain/community@npm:0.0.7"
+"@langchain/community@npm:~0.0.12":
+  version: 0.0.12
+  resolution: "@langchain/community@npm:0.0.12"
   dependencies:
-    "@langchain/core": ~0.1.2
-    "@langchain/openai": ~0.0.6
+    "@langchain/core": ~0.1.5
+    "@langchain/openai": ~0.0.9
     flat: ^5.0.2
     langsmith: ~0.0.48
     uuid: ^9.0.0
@@ -189,6 +189,7 @@ __metadata:
     "@aws-sdk/credential-provider-node": ^3.388.0
     "@clickhouse/client": ^0.2.5
     "@cloudflare/ai": ^1.0.12
+    "@datastax/astra-db-ts": 0.1.2
     "@elastic/elasticsearch": ^8.4.0
     "@getmetal/metal-sdk": "*"
     "@getzep/zep-js": ^0.9.0
@@ -276,6 +277,8 @@ __metadata:
     "@clickhouse/client":
       optional: true
     "@cloudflare/ai":
+      optional: true
+    "@datastax/astra-db-ts":
       optional: true
     "@elastic/elasticsearch":
       optional: true
@@ -411,13 +414,13 @@ __metadata:
       optional: true
     ws:
       optional: true
-  checksum: 645f90c73c96e798885ef5ed5f5b04cbf29bb3f2a98c11211eb43b08af0c8e5709bbdc7a41fd0b4bff7d8d93f7dbe4ed08a5f74242819f47a41232025a573328
+  checksum: 53fd5653790399ed4317e96d2d71e2b35f4b3a65117d70aeb984c12b535397795b041e09841863e8c16471dbae463671a8ed0f2d209e1811258b762618429f29
   languageName: node
   linkType: hard
 
-"@langchain/core@npm:0.1.2":
-  version: 0.1.2
-  resolution: "@langchain/core@npm:0.1.2"
+"@langchain/core@npm:~0.1.5":
+  version: 0.1.5
+  resolution: "@langchain/core@npm:0.1.5"
   dependencies:
     ansi-styles: ^5.0.0
     camelcase: 6
@@ -429,20 +432,20 @@ __metadata:
     p-retry: 4
     uuid: ^9.0.0
     zod: ^3.22.3
-  checksum: 3978ce56cc8ddf19fc4bf73f1f63ccecc8c193a09fb897bfe2f4619711c12a2287f87eafc716afb3862c161b52a2b5b9b7d23bfc843b35f2371e40d3aee8df10
+  checksum: d167187dd264a7aac7317cd9a7772b81d52648285e231cbe2c189050afd8aaf944587a99ad814b6d3895d3ee16bdc76fec5dd6530d36056526c4ecf56885211e
   languageName: node
   linkType: hard
 
-"@langchain/openai@npm:~0.0.6":
-  version: 0.0.6
-  resolution: "@langchain/openai@npm:0.0.6"
+"@langchain/openai@npm:^0.0.9, @langchain/openai@npm:~0.0.9":
+  version: 0.0.9
+  resolution: "@langchain/openai@npm:0.0.9"
   dependencies:
-    "@langchain/core": ~0.1.2
+    "@langchain/core": ~0.1.5
     js-tiktoken: ^1.0.7
     openai: ^4.19.0
     zod: ^3.22.3
     zod-to-json-schema: 3.20.3
-  checksum: 41691b1cde50e32bd877b5d772d3ae5818693a975d09d803e78b1003f8beacaa39711ddb9f5064ed862b8971fa6a1d8b2ab45933a5bf21beb09ac3038998df5c
+  checksum: 89f9d6f30d724e7e007bee95a21afd1a9a6a2c0b4aa2f22d420c8f33a478ec429447e357e9a822cbc181770665e1eb85f2c611b23e25434c6a45af761986cdcd
   languageName: node
   linkType: hard
 
@@ -3254,6 +3257,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "langchain-nextjs-template@workspace:."
   dependencies:
+    "@langchain/openai": ^0.0.9
     "@next/bundle-analyzer": ^13.4.19
     "@supabase/supabase-js": ^2.32.0
     "@types/node": 20.4.5
@@ -3263,7 +3267,7 @@ __metadata:
     autoprefixer: 10.4.14
     eslint: 8.46.0
     eslint-config-next: 13.4.12
-    langchain: ^0.0.209
+    langchain: ^0.0.213
     next: 14.0.1
     postcss: 8.4.27
     prettier: 3.0.0
@@ -3277,14 +3281,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"langchain@npm:^0.0.209":
-  version: 0.0.209
-  resolution: "langchain@npm:0.0.209"
+"langchain@npm:^0.0.213":
+  version: 0.0.213
+  resolution: "langchain@npm:0.0.213"
   dependencies:
     "@anthropic-ai/sdk": ^0.9.1
-    "@langchain/community": ~0.0.7
-    "@langchain/core": ~0.1.2
-    "@langchain/openai": ~0.0.6
+    "@langchain/community": ~0.0.12
+    "@langchain/core": ~0.1.5
+    "@langchain/openai": ~0.0.9
     binary-extensions: ^2.2.0
     expr-eval: ^2.0.2
     js-tiktoken: ^1.0.7
@@ -3330,7 +3334,7 @@ __metadata:
     ignore: ^5.2.0
     ioredis: ^5.3.2
     jsdom: "*"
-    mammoth: "*"
+    mammoth: ^1.6.0
     mongodb: ^5.2.0
     node-llama-cpp: "*"
     notion-to-md: ^3.1.0
@@ -3453,7 +3457,7 @@ __metadata:
       optional: true
     youtubei.js:
       optional: true
-  checksum: 6e0badfc59aba066be099f36ca7cf2dd79dbcb6b6853e16f2e8324d2fe38de41377dd6f8602985abcf0f9f938e53dea738afc3eb30742d72c9963565999d998a
+  checksum: 4beffb02d548d41f06abe7264ea540ab68375a5ae2ae3b33ad8e9473d3337830db057b44dfa8b3a13a056baf4547ec58bc0c8413d694773a827861e4f8960051
   languageName: node
   linkType: hard
 

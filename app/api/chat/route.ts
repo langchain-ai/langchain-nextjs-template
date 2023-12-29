@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
 
-import { ChatOpenAI } from "langchain/chat_models/openai";
-import { BytesOutputParser } from "langchain/schema/output_parser";
+import { ChatOpenAI } from "@langchain/openai";
+import { HttpResponseOutputParser } from "langchain/output_parsers";
 import { PromptTemplate } from "langchain/prompts";
 
 export const runtime = "edge";
@@ -32,6 +32,7 @@ export async function POST(req: NextRequest) {
     const formattedPreviousMessages = messages.slice(0, -1).map(formatMessage);
     const currentMessageContent = messages[messages.length - 1].content;
     const prompt = PromptTemplate.fromTemplate(TEMPLATE);
+
     /**
      * You can also try e.g.:
      *
@@ -43,12 +44,14 @@ export async function POST(req: NextRequest) {
      */
     const model = new ChatOpenAI({
       temperature: 0.8,
+      modelName: "gpt-3.5-turbo-1106",
     });
+
     /**
      * Chat models stream message chunks rather than bytes, so this
      * output parser handles serialization and byte-encoding.
      */
-    const outputParser = new BytesOutputParser();
+    const outputParser = new HttpResponseOutputParser();
 
     /**
      * Can also initialize as:

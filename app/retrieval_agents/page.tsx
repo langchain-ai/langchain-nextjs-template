@@ -79,7 +79,7 @@ export default function AgentsPage() {
           👇
           <span className="ml-2">
             Upload some text, then try asking e.g.{" "}
-            <code>What are some ways of doing retrieval in LangChain</code>{" "}
+            <code>What are some ways of doing retrieval in LangChain?</code>{" "}
             below!
           </span>
         </li>

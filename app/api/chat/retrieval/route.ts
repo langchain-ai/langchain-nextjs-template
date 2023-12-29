@@ -3,19 +3,15 @@ import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
 
 import { createClient } from "@supabase/supabase-js";
 
-import { ChatOpenAI } from "langchain/chat_models/openai";
+import { ChatOpenAI, OpenAIEmbeddings } from "@langchain/openai";
 import { PromptTemplate } from "langchain/prompts";
 import { SupabaseVectorStore } from "langchain/vectorstores/supabase";
-import { Document } from "langchain/document";
-import {
-  RunnableSequence,
-  RunnablePassthrough,
-} from "langchain/schema/runnable";
+import { Document } from "@langchain/core/documents";
+import { RunnableSequence } from "@langchain/core/runnables";
 import {
   BytesOutputParser,
   StringOutputParser,
-} from "langchain/schema/output_parser";
-import { OpenAIEmbeddings } from "langchain/embeddings/openai";
+} from "@langchain/core/output_parsers";
 
 export const runtime = "edge";
 
@@ -79,8 +75,8 @@ export async function POST(req: NextRequest) {
     const currentMessageContent = messages[messages.length - 1].content;
 
     const model = new ChatOpenAI({
-      modelName: "gpt-3.5-turbo",
-      temperature: 0.2
+      modelName: "gpt-3.5-turbo-1106",
+      temperature: 0.2,
     });
 
     const client = createClient(
@@ -98,6 +94,9 @@ export async function POST(req: NextRequest) {
      * To learn more, see the guide here:
      *
      * https://js.langchain.com/docs/guides/expression_language/cookbook
+     *
+     * You can also use the "createRetrievalChain" method with a
+     * "historyAwareRetriever" to get something prebaked.
      */
     const standaloneQuestionChain = RunnableSequence.from([
       condenseQuestionPrompt,
