@@ -168,9 +168,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/community@npm:~0.0.12":
-  version: 0.0.12
-  resolution: "@langchain/community@npm:0.0.12"
+"@langchain/community@npm:~0.0.13":
+  version: 0.0.13
+  resolution: "@langchain/community@npm:0.0.13"
   dependencies:
     "@langchain/core": ~0.1.5
     "@langchain/openai": ~0.0.9
@@ -414,13 +414,13 @@ __metadata:
       optional: true
     ws:
       optional: true
-  checksum: 53fd5653790399ed4317e96d2d71e2b35f4b3a65117d70aeb984c12b535397795b041e09841863e8c16471dbae463671a8ed0f2d209e1811258b762618429f29
+  checksum: d039b6965660c2fb5e592d3af3c27d4d4fae63f80f8c5b0d16df435664ea29641104962bc1052be0ccfa0349fbc260f3e0128ea0b52712acfd8474d7040e6b56
   languageName: node
   linkType: hard
 
-"@langchain/core@npm:0.1.6":
-  version: 0.1.6
-  resolution: "@langchain/core@npm:0.1.6"
+"@langchain/core@npm:~0.1.5":
+  version: 0.1.7
+  resolution: "@langchain/core@npm:0.1.7"
   dependencies:
     ansi-styles: ^5.0.0
     camelcase: 6
@@ -432,7 +432,7 @@ __metadata:
     p-retry: 4
     uuid: ^9.0.0
     zod: ^3.22.3
-  checksum: 9e289d9f81816647a6bbc972c8a2c6bbff2561cc8f88081f830008cf38e071a39eb9efab7e79a943131c9e4345c076042cdcbb2698c9e15f34711229db647121
+  checksum: 395c00b323bff662eacf3f7cedbad1f70a0409c748e035d6af5ce026f3422c67188e6ba07db80146156b683020a16f024f70915a407679ea8aeace0f1dcc00ab
   languageName: node
   linkType: hard
 
@@ -3062,7 +3062,7 @@ __metadata:
     autoprefixer: 10.4.14
     eslint: 8.46.0
     eslint-config-next: 13.4.12
-    langchain: ^0.0.213
+    langchain: ^0.0.214
     next: 14.0.1
     postcss: 8.4.27
     prettier: 3.0.0
@@ -3076,12 +3076,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"langchain@npm:^0.0.213":
-  version: 0.0.213
-  resolution: "langchain@npm:0.0.213"
+"langchain@npm:^0.0.214":
+  version: 0.0.214
+  resolution: "langchain@npm:0.0.214"
   dependencies:
     "@anthropic-ai/sdk": ^0.9.1
-    "@langchain/community": ~0.0.12
+    "@langchain/community": ~0.0.13
     "@langchain/core": ~0.1.5
     "@langchain/openai": ~0.0.9
     binary-extensions: ^2.2.0
@@ -3252,7 +3252,7 @@ __metadata:
       optional: true
     youtubei.js:
       optional: true
-  checksum: 4beffb02d548d41f06abe7264ea540ab68375a5ae2ae3b33ad8e9473d3337830db057b44dfa8b3a13a056baf4547ec58bc0c8413d694773a827861e4f8960051
+  checksum: d47b6a3462098ae12f4ca23c574c5b1bf598cf23e74be6d503bd487e8e2122fb5c08d1c48654c00f0c5b9248d60c7cd132848b6ac73b7c1096c940282aa932e6
   languageName: node
   linkType: hard
 
