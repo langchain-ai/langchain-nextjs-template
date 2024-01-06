@@ -4,8 +4,8 @@ import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
 import { createClient } from "@supabase/supabase-js";
 
 import { ChatOpenAI, OpenAIEmbeddings } from "@langchain/openai";
-import { PromptTemplate } from "langchain/prompts";
-import { SupabaseVectorStore } from "langchain/vectorstores/supabase";
+import { PromptTemplate } from "@langchain/core/prompts";
+import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
 import { Document } from "@langchain/core/documents";
 import { RunnableSequence } from "@langchain/core/runnables";
 import {

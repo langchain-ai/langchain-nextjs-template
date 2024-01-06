@@ -3,10 +3,9 @@ import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
 
 import { createClient } from "@supabase/supabase-js";
 
-import { ChatOpenAI } from "langchain/chat_models/openai";
-import { SupabaseVectorStore } from "langchain/vectorstores/supabase";
-import { AIMessage, ChatMessage, HumanMessage } from "langchain/schema";
-import { OpenAIEmbeddings } from "langchain/embeddings/openai";
+import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
+import { AIMessage, ChatMessage, HumanMessage } from "@langchain/core/messages";
+import { ChatOpenAI, OpenAIEmbeddings } from "@langchain/openai";
 import { createRetrieverTool } from "langchain/tools/retriever";
 import { AgentExecutor, createOpenAIFunctionsAgent } from "langchain/agents";
 

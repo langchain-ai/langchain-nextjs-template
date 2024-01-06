@@ -3,7 +3,7 @@ import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
 
 import { AgentExecutor, createOpenAIFunctionsAgent } from "langchain/agents";
 import { ChatOpenAI } from "@langchain/openai";
-import { SerpAPI } from "langchain/tools";
+import { SerpAPI } from "@langchain/community/tools/serpapi";
 import { Calculator } from "langchain/tools/calculator";
 import { AIMessage, ChatMessage, HumanMessage } from "@langchain/core/messages";
 
