@@ -439,7 +439,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/openai@npm:^0.0.10, @langchain/openai@npm:~0.0.10":
+"@langchain/openai@npm:^0.0.11":
+  version: 0.0.11
+  resolution: "@langchain/openai@npm:0.0.11"
+  dependencies:
+    "@langchain/core": ~0.1.9
+    js-tiktoken: ^1.0.7
+    openai: ^4.24.2
+    zod: ^3.22.3
+    zod-to-json-schema: 3.20.3
+  checksum: 63f5ef596ce0ec102f80116b2cb25c22987d4051d724b7fc7a415260571b88c305d1ef300b89c5e246071f4dacfcb7365aa2f11aea6b23cbfd6123004abc5221
+  languageName: node
+  linkType: hard
+
+"@langchain/openai@npm:~0.0.10":
   version: 0.0.10
   resolution: "@langchain/openai@npm:0.0.10"
   dependencies:
@@ -3056,7 +3069,7 @@ __metadata:
   resolution: "langchain-nextjs-template@workspace:."
   dependencies:
     "@langchain/community": ^0.0.15
-    "@langchain/openai": ^0.0.10
+    "@langchain/openai": ^0.0.11
     "@next/bundle-analyzer": ^13.4.19
     "@supabase/supabase-js": ^2.32.0
     "@types/node": 20.4.5
@@ -3925,6 +3938,25 @@ __metadata:
   bin:
     openai: bin/cli
   checksum: 2d2021ed1e2795f9949120974e99b03de3e5fadf021fbd55dd9026b36a5f4eb9ee3fee66fe770c4c1de6cecda2e4033e09063d8814232f902b8e1d70fa56201b
+  languageName: node
+  linkType: hard
+
+"openai@npm:^4.24.2":
+  version: 4.24.3
+  resolution: "openai@npm:4.24.3"
+  dependencies:
+    "@types/node": ^18.11.18
+    "@types/node-fetch": ^2.6.4
+    abort-controller: ^3.0.0
+    agentkeepalive: ^4.2.1
+    digest-fetch: ^1.3.0
+    form-data-encoder: 1.7.2
+    formdata-node: ^4.3.2
+    node-fetch: ^2.6.7
+    web-streams-polyfill: ^3.2.1
+  bin:
+    openai: bin/cli
+  checksum: eaba0ff95606c729f8df13f4a71eb5d91925ab041817af9105d5439426e0ea998c05b995bac86d986ff46d908088c3b651a4c2c2772fc87dd4cf26430050cdf0
   languageName: node
   linkType: hard
 
