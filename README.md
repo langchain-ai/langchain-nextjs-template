@@ -16,6 +16,8 @@ Most of them use Vercel's [AI SDK](https://github.com/vercel-labs/ai) to stream 
 
 ![Demo GIF](/public/images/agent-convo.gif)
 
+It's free-tier friendly too! Check out the [bundle size stats below](#📦-bundle-size).
+
 You can check out a hosted version of this repo here: https://langchain-nextjs-template.vercel.app/
 
 ## 🚀 Getting Started
