@@ -93,12 +93,24 @@ via header in addition to the streaming response.
 
 For more info on retrieval agents, [see this page](https://js.langchain.com/docs/use_cases/question_answering/conversational_retrieval_agents).
 
+## 📦 Bundle size
+
+The bundle size for LangChain itself is quite small. After compression and chunk splitting, for the RAG use case LangChain uses 37.32 KB of code space (as of [@langchain/core 0.1.15](https://npmjs.com/package/@langchain/core)), which is less than 4% of the total Vercel free tier edge function alottment of 1 MB:
+
+![](/public/images/bundle-size.png)
+
+This package has [@next/bundle-analyzer](https://www.npmjs.com/package/@next/bundle-analyzer) set up by default - you can explore the bundle size interactively by running:
+
+```bash
+$ ANALYZE=true yarn build
+```
+
 ## 📚 Learn More
 
 The example chains in the `app/api/chat/route.ts` and `app/api/chat/retrieval/route.ts` files use
 [LangChain Expression Language](https://js.langchain.com/docs/guides/expression_language/interface) to
 compose different LangChain modules together. You can integrate other retrievers, agents, preconfigured chains, and more too, though keep in mind
-`BytesOutputParser` is meant to be used directly with model output.
+`HttpResponseOutputParser` is meant to be used directly with model output.
 
 To learn more about what you can do with LangChain.js, check out the docs here:
 
