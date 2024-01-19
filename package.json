@@ -13,7 +13,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@langchain/community": "^0.0.17",
+    "@langchain/community": "^0.0.19",
     "@langchain/openai": "^0.0.12",
     "@next/bundle-analyzer": "^13.4.19",
     "@supabase/supabase-js": "^2.32.0",
@@ -39,14 +39,14 @@
     "prettier": "3.0.0"
   },
   "resolutions": {
-    "@langchain/core": "0.1.16"
+    "@langchain/core": "0.1.17"
   },
   "overrides": {
-    "@langchain/core": "0.1.16"
+    "@langchain/core": "0.1.17"
   },
   "pnpm": {
     "overrides": {
-      "@langchain/core": "0.1.16"
+      "@langchain/core": "0.1.17"
     }
   }
 }
