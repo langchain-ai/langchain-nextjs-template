@@ -3333,7 +3333,7 @@ __metadata:
     autoprefixer: 10.4.14
     eslint: 8.46.0
     eslint-config-next: 13.4.12
-    langchain: ^0.1.4
+    langchain: ^0.1.6
     next: 14.0.1
     postcss: 8.4.27
     prettier: 3.0.0
@@ -3347,9 +3347,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"langchain@npm:^0.1.4":
-  version: 0.1.4
-  resolution: "langchain@npm:0.1.4"
+"langchain@npm:^0.1.6":
+  version: 0.1.6
+  resolution: "langchain@npm:0.1.6"
   dependencies:
     "@anthropic-ai/sdk": ^0.9.1
     "@langchain/community": ~0.0.17
@@ -3361,7 +3361,7 @@ __metadata:
     js-yaml: ^4.1.0
     jsonpointer: ^5.0.1
     langchainhub: ~0.0.6
-    langsmith: ~0.0.48
+    langsmith: ~0.0.59
     ml-distance: ^4.0.0
     openapi-types: ^12.1.3
     p-retry: 4
@@ -3381,7 +3381,7 @@ __metadata:
     "@google-ai/generativelanguage": ^0.2.1
     "@google-cloud/storage": ^6.10.1
     "@notionhq/client": ^2.2.10
-    "@pinecone-database/pinecone": ^1.1.0
+    "@pinecone-database/pinecone": "*"
     "@supabase/supabase-js": ^2.10.0
     "@vercel/kv": ^0.2.3
     "@xata.io/client": ^0.28.0
@@ -3526,7 +3526,7 @@ __metadata:
       optional: true
     youtubei.js:
       optional: true
-  checksum: cd47d56b55ca917aa583b471c6274e9c42ad09a6987f1c1aa86679b693bc3ade321fc1da5b557efe3c809b6a8402044b8272302766592ddd08edf9367fbe15b4
+  checksum: 7477c938c4e43efa61a8b22ae602eea1586e5743ffd412d93e8d0e2e6d7b0756c0208a66cd58ed67c79bd86dd6392878f4a58f6cb66971ed9990bcb3da52e1d4
   languageName: node
   linkType: hard
 
@@ -3549,6 +3549,21 @@ __metadata:
   bin:
     langsmith: dist/cli/main.cjs
   checksum: c11e18c31e10c5d92400eaeb27af1d7a2d85d22c8efe3daf600a104b30c141a448a8e341974e003b1cbda27d2ff10884e019540d48ad150151d7ef925e19bd1d
+  languageName: node
+  linkType: hard
+
+"langsmith@npm:~0.0.59":
+  version: 0.0.62
+  resolution: "langsmith@npm:0.0.62"
+  dependencies:
+    "@types/uuid": ^9.0.1
+    commander: ^10.0.1
+    p-queue: ^6.6.2
+    p-retry: 4
+    uuid: ^9.0.0
+  bin:
+    langsmith: dist/cli/main.cjs
+  checksum: 0cb63812852682d00af2cbf0da5c4f989e14108937ebc755e85344f13a205b0e127ce2bc3b5b601ff5c430a02b48c0fa5dda262913573ca18361aa2f43a116bd
   languageName: node
   linkType: hard
 
