@@ -13,7 +13,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@langchain/community": "^0.0.21",
+    "@langchain/community": "^0.0.22",
     "@langchain/openai": "^0.0.13",
     "@next/bundle-analyzer": "^13.4.19",
     "@supabase/supabase-js": "^2.32.0",
@@ -24,7 +24,7 @@
     "autoprefixer": "10.4.14",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
-    "langchain": "^0.1.8",
+    "langchain": "^0.1.10",
     "next": "14.0.1",
     "postcss": "8.4.27",
     "react": "18.2.0",
@@ -39,14 +39,14 @@
     "prettier": "3.0.0"
   },
   "resolutions": {
-    "@langchain/core": "0.1.18"
+    "@langchain/core": "0.1.19"
   },
   "overrides": {
-    "@langchain/core": "0.1.18"
+    "@langchain/core": "0.1.19"
   },
   "pnpm": {
     "overrides": {
-      "@langchain/core": "0.1.18"
+      "@langchain/core": "0.1.19"
     }
   }
 }
