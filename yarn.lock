@@ -168,9 +168,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/community@npm:^0.0.22":
-  version: 0.0.22
-  resolution: "@langchain/community@npm:0.0.22"
+"@langchain/community@npm:^0.0.23":
+  version: 0.0.23
+  resolution: "@langchain/community@npm:0.0.23"
   dependencies:
     "@langchain/core": ~0.1.16
     "@langchain/openai": ~0.0.10
@@ -423,7 +423,7 @@ __metadata:
       optional: true
     ws:
       optional: true
-  checksum: 875764ffbde365b27e7def52524ae28e86711093aac4d3c738a3f6fd73260784ab0102e8e8618d80ff3a2adba8043cda08b655bcc8f7582460330321452e2a05
+  checksum: a644b005d063fb4263a7a18c431b295dbbdb9203f4976b5fca4b93f727f3411fc229ca986f45113e1990098438cc273a3af4aedd4856ff8554ee01560f4784de
   languageName: node
   linkType: hard
 
@@ -3347,7 +3347,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "langchain-nextjs-template@workspace:."
   dependencies:
-    "@langchain/community": ^0.0.22
+    "@langchain/community": ^0.0.23
     "@langchain/openai": ^0.0.13
     "@next/bundle-analyzer": ^13.4.19
     "@supabase/supabase-js": ^2.32.0
@@ -3358,7 +3358,7 @@ __metadata:
     autoprefixer: 10.4.14
     eslint: 8.46.0
     eslint-config-next: 13.4.12
-    langchain: ^0.1.10
+    langchain: ^0.1.11
     next: 14.0.1
     postcss: 8.4.27
     prettier: 3.0.0
@@ -3372,9 +3372,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"langchain@npm:^0.1.10":
-  version: 0.1.10
-  resolution: "langchain@npm:0.1.10"
+"langchain@npm:^0.1.11":
+  version: 0.1.11
+  resolution: "langchain@npm:0.1.11"
   dependencies:
     "@anthropic-ai/sdk": ^0.9.1
     "@langchain/community": ~0.0.20
@@ -3551,7 +3551,7 @@ __metadata:
       optional: true
     youtubei.js:
       optional: true
-  checksum: b835f482a31e590ad8ef63309c28bff9ed568bd2a6276e2de1e6aed4d4cad5a7d3ca838bc0bc96b0acb6ed0f8a911e608183eb6bc7c3b19208a5c8237b306ae3
+  checksum: 82ed2556fd452e26daf7470c87fd54958fe8298adfb00cfcaf610bb09129cd54995636283fee19edb1aacaea6835cb017e6407feee420a8760b9ab061de5acbc
   languageName: node
   linkType: hard
 
