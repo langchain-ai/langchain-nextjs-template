@@ -111,7 +111,7 @@ $ ANALYZE=true yarn build
 
 The example chains in the `app/api/chat/route.ts` and `app/api/chat/retrieval/route.ts` files use
 [LangChain Expression Language](https://js.langchain.com/docs/guides/expression_language/interface) to
-compose different LangChain modules together. You can integrate other retrievers, agents, preconfigured chains, and more too, though keep in mind
+compose different LangChain.js modules together. You can integrate other retrievers, agents, preconfigured chains, and more too, though keep in mind
 `HttpResponseOutputParser` is meant to be used directly with model output.
 
 To learn more about what you can do with LangChain.js, check out the docs here:
