@@ -42,7 +42,7 @@ export function ChatWindow(props: {
       api: endpoint,
       onResponse(response) {
         const sourcesHeader = response.headers.get("x-sources");
-        const sources = sourcesHeader ? JSON.parse(atob(sourcesHeader)) : [];
+        const sources = sourcesHeader ? JSON.parse((Buffer.from(sourcesHeader, 'base64')).toString('utf8')) : [];
         const messageIndexHeader = response.headers.get("x-message-index");
         if (sources.length && messageIndexHeader !== null) {
           setSourcesForMessages({...sourcesForMessages, [messageIndexHeader]: sources});
