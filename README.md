@@ -80,7 +80,7 @@ You can then switch to the `Retrieval` and `Retrieval Agent` examples. The defau
 use case docs, but you can change them to whatever text you'd like.
 
 For a given text, you'll only need to press `Upload` once. Pressing it again will re-ingest the docs, resulting in duplicates.
-You can clear your Supabase vector store by navigating to the console and running `DELETE FROM docuemnts;`.
+You can clear your Supabase vector store by navigating to the console and running `DELETE FROM documents;`.
 
 After splitting, embedding, and uploading some text, you're ready to ask questions!
 
