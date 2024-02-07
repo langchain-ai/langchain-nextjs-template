@@ -3358,7 +3358,7 @@ __metadata:
     autoprefixer: 10.4.14
     eslint: 8.46.0
     eslint-config-next: 13.4.12
-    langchain: ^0.1.14
+    langchain: ^0.1.15
     next: 14.0.1
     postcss: 8.4.27
     prettier: 3.0.0
@@ -3372,13 +3372,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"langchain@npm:^0.1.14":
-  version: 0.1.14
-  resolution: "langchain@npm:0.1.14"
+"langchain@npm:^0.1.15":
+  version: 0.1.15
+  resolution: "langchain@npm:0.1.15"
   dependencies:
     "@anthropic-ai/sdk": ^0.9.1
     "@langchain/community": ~0.0.20
-    "@langchain/core": ~0.1.24
+    "@langchain/core": ~0.1.25
     "@langchain/openai": ~0.0.12
     binary-extensions: ^2.2.0
     expr-eval: ^2.0.2
@@ -3419,7 +3419,6 @@ __metadata:
     d3-dsv: ^2.0.0
     epub2: ^3.0.1
     fast-xml-parser: ^4.2.7
-    glob: ^10.3.10
     google-auth-library: ^8.9.0
     handlebars: ^4.7.8
     html-to-text: ^9.0.5
@@ -3439,7 +3438,6 @@ __metadata:
     redis: ^4.6.4
     sonix-speech-recognition: ^2.1.1
     srt-parser-2: ^1.2.3
-    ts-morph: ^21.0.1
     typeorm: ^0.3.12
     vectordb: ^0.1.4
     weaviate-ts-client: ^1.4.0
@@ -3498,8 +3496,6 @@ __metadata:
       optional: true
     fast-xml-parser:
       optional: true
-    glob:
-      optional: true
     google-auth-library:
       optional: true
     handlebars:
@@ -3538,8 +3534,6 @@ __metadata:
       optional: true
     srt-parser-2:
       optional: true
-    ts-morph:
-      optional: true
     typeorm:
       optional: true
     vectordb:
@@ -3554,7 +3548,7 @@ __metadata:
       optional: true
     youtubei.js:
       optional: true
-  checksum: 2fd29b73ca00df9bba5bb4b8f1f1b8757dd8cd20da7e7ccacd64bfd3a1237b2bf16d5dcd4db9bb1ae54db12b2050efea01746196a3c1282e6c5078117c63df57
+  checksum: c75e5f3edd9ac19dbe7f798c11ca57be95af3b47188fed3cc3fced51e662b8ad8178a6357b5234e00a575518f9e58a86b897d2d8182795683019f3a8a255ce6f
   languageName: node
   linkType: hard
 
