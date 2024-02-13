@@ -40,19 +40,19 @@
   },
   "resolutions": {
     "@langchain/community": "0.0.27",
-    "@langchain/core": "0.1.25",
-    "langsmith": "0.0.69-rc0.0"
+    "@langchain/core": "0.1.27",
+    "langsmith": "0.0.70-rc.0"
   },
   "overrides": {
     "@langchain/community": "0.0.27",
-    "@langchain/core": "0.1.25",
-    "langsmith": "0.0.69-rc0.0"
+    "@langchain/core": "0.1.27",
+    "langsmith": "0.0.70-rc.0"
   },
   "pnpm": {
     "overrides": {
       "@langchain/community": "0.0.27",
-      "@langchain/core": "0.1.25",
-      "langsmith": "0.0.69-rc0.0"
+      "@langchain/core": "0.1.27",
+      "langsmith": "0.0.70-rc.0"
     }
   }
 }
