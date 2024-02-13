@@ -168,7 +168,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/community@npm:0.0.28":
+"@langchain/community@npm:^0.0.28, @langchain/community@npm:~0.0.20":
   version: 0.0.28
   resolution: "@langchain/community@npm:0.0.28"
   dependencies:
