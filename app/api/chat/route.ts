@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
     /**
      * Can also initialize as:
      *
-     * import { RunnableSequence } from "langchain/schema/runnable";
+     * import { RunnableSequence } from "@langchain/core/runnables";
      * const chain = RunnableSequence.from([prompt, model, outputParser]);
      */
     const chain = prompt.pipe(model).pipe(outputParser);
