@@ -39,16 +39,16 @@
     "prettier": "3.0.0"
   },
   "resolutions": {
-    "@langchain/core": "0.1.28",
+    "@langchain/core": "0.1.29-rc.0",
     "langsmith": "0.0.70-rc.0"
   },
   "overrides": {
-    "@langchain/core": "0.1.28",
+    "@langchain/core": "0.1.29-rc.0",
     "langsmith": "0.0.70-rc.0"
   },
   "pnpm": {
     "overrides": {
-      "@langchain/core": "0.1.28",
+      "@langchain/core": "0.1.29-rc.0",
       "langsmith": "0.0.70-rc.0"
     }
   }
