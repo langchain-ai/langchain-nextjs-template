@@ -40,16 +40,16 @@
   },
   "resolutions": {
     "@langchain/core": "0.1.29-rc.0",
-    "langsmith": "0.0.70-rc.1"
+    "langsmith": "0.0.71-rc.0"
   },
   "overrides": {
     "@langchain/core": "0.1.29-rc.0",
-    "langsmith": "0.0.70-rc.1"
+    "langsmith": "0.0.71-rc.0"
   },
   "pnpm": {
     "overrides": {
       "@langchain/core": "0.1.29-rc.0",
-      "langsmith": "0.0.70-rc.1"
+      "langsmith": "0.0.71-rc.0"
     }
   }
 }
