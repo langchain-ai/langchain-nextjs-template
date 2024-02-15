@@ -436,9 +436,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/core@npm:0.1.28":
-  version: 0.1.28
-  resolution: "@langchain/core@npm:0.1.28"
+"@langchain/core@npm:0.1.29-rc.0":
+  version: 0.1.29-rc.0
+  resolution: "@langchain/core@npm:0.1.29-rc.0"
   dependencies:
     ansi-styles: ^5.0.0
     camelcase: 6
@@ -451,7 +451,7 @@ __metadata:
     uuid: ^9.0.0
     zod: ^3.22.4
     zod-to-json-schema: ^3.22.3
-  checksum: 8ef96614c0dfdf18fd8e37d4ee39b954628f3847dc9af51ecebb18f3bc60a5963aa769508f691d72a899aecc0f48df9b1bc0c8eddf33c8e37c2ff3e2616030ec
+  checksum: 44f35ce41386ad406ee793695452fec95cadc46122004ac4db5a2247af9f9ed71936c676878b2e41f043488f6449d4fc3d1b8cb1464443cc9cede71cefd4f051
   languageName: node
   linkType: hard
 
@@ -3283,9 +3283,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"langsmith@npm:0.0.71-rc.0":
-  version: 0.0.71-rc.0
-  resolution: "langsmith@npm:0.0.71-rc.0"
+"langsmith@npm:0.0.71-rc.3":
+  version: 0.0.71-rc.3
+  resolution: "langsmith@npm:0.0.71-rc.3"
   dependencies:
     "@types/uuid": ^9.0.1
     commander: ^10.0.1
@@ -3294,7 +3294,7 @@ __metadata:
     uuid: ^9.0.0
   bin:
     langsmith: dist/cli/main.cjs
-  checksum: c6dbe486e979e0ac4f0cff312f70f4398fbb64b22bdfc2bc49ca04595aa5b8cacf6e5ec4c2e1f259ff64c17d1a414e5638e716dd5c24af5503e9b446eaaca2ab
+  checksum: b5387152ac3a11aceadce2e1f678dbd30e125ea440ae79604fcfc0f13dc462331de3d59f58a4027f8c84d631bc09aef34e5b5227fce0c06ef5d8d32831a8e686
   languageName: node
   linkType: hard
 
