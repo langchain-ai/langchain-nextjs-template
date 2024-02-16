@@ -436,9 +436,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/core@npm:0.1.29":
-  version: 0.1.29
-  resolution: "@langchain/core@npm:0.1.29"
+"@langchain/core@npm:0.1.30":
+  version: 0.1.30
+  resolution: "@langchain/core@npm:0.1.30"
   dependencies:
     ansi-styles: ^5.0.0
     camelcase: 6
@@ -451,7 +451,7 @@ __metadata:
     uuid: ^9.0.0
     zod: ^3.22.4
     zod-to-json-schema: ^3.22.3
-  checksum: d2b5c00fec3eb8ec4e9bcc2b4421f330a63de0bb4e15393e0d55a23199e583305f261d43e834ee2041abdc592b359f550109a9b4f7c3af55b17edcda2a12721e
+  checksum: 1f5f8beb06425e470f37f01a5944f6d018c672af517480aeb7db3af20f6dfc70ebd8d4b5cf8f49a47315c550a6667f038ad0a70f16c9f9a558f835ea9fd69a90
   languageName: node
   linkType: hard
 
@@ -3082,7 +3082,7 @@ __metadata:
     autoprefixer: 10.4.14
     eslint: 8.46.0
     eslint-config-next: 13.4.12
-    langchain: ^0.1.19
+    langchain: ^0.1.20
     next: 14.0.1
     postcss: 8.4.27
     prettier: 3.0.0
@@ -3096,9 +3096,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"langchain@npm:^0.1.19":
-  version: 0.1.19
-  resolution: "langchain@npm:0.1.19"
+"langchain@npm:^0.1.20":
+  version: 0.1.20
+  resolution: "langchain@npm:0.1.20"
   dependencies:
     "@anthropic-ai/sdk": ^0.9.1
     "@langchain/community": ~0.0.29
@@ -3128,7 +3128,7 @@ __metadata:
     "@gomomento/sdk-core": ^1.51.1
     "@gomomento/sdk-web": ^1.51.1
     "@google-ai/generativelanguage": ^0.2.1
-    "@google-cloud/storage": ^6.10.1
+    "@google-cloud/storage": ^6.10.1 || ^7.7.0
     "@notionhq/client": ^2.2.10
     "@pinecone-database/pinecone": "*"
     "@supabase/supabase-js": ^2.10.0
@@ -3275,7 +3275,7 @@ __metadata:
       optional: true
     youtubei.js:
       optional: true
-  checksum: 942b65e4ddb9d6de0fc89de87f89a204791ba45f5250ba07ad0a6ce846ee700403828a77fee68711598eedf8aa9bbe8ef8e92022b6c1398d55faeafa42600b7d
+  checksum: 4171f564a5acd38630474239f93450fe41af9c0f0372602bc777d7392d5dfb1c354ff669d0b444995fa66fd028cc18b992cba0fc98f497c278e423a69402b27c
   languageName: node
   linkType: hard
 

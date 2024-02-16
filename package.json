@@ -24,7 +24,7 @@
     "autoprefixer": "10.4.14",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
-    "langchain": "^0.1.19",
+    "langchain": "^0.1.20",
     "next": "14.0.1",
     "postcss": "8.4.27",
     "react": "18.2.0",
@@ -39,14 +39,14 @@
     "prettier": "3.0.0"
   },
   "resolutions": {
-    "@langchain/core": "0.1.29"
+    "@langchain/core": "0.1.30"
   },
   "overrides": {
-    "@langchain/core": "0.1.29"
+    "@langchain/core": "0.1.30"
   },
   "pnpm": {
     "overrides": {
-      "@langchain/core": "0.1.29"
+      "@langchain/core": "0.1.30"
     }
   }
 }
