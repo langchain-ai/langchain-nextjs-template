@@ -7,7 +7,7 @@ import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase"
 import { AIMessage, ChatMessage, HumanMessage } from "@langchain/core/messages";
 import { ChatOpenAI, OpenAIEmbeddings } from "@langchain/openai";
 import { createRetrieverTool } from "langchain/tools/retriever";
-import { AgentExecutor, createOpenAIFunctionsAgent } from "langchain/agents";
+import { AgentExecutor, createToolCallingAgent } from "langchain/agents";
 
 import {
   ChatPromptTemplate,
@@ -96,7 +96,7 @@ export async function POST(req: NextRequest) {
       new MessagesPlaceholder("agent_scratchpad"),
     ]);
 
-    const agent = await createOpenAIFunctionsAgent({
+    const agent = await createToolCallingAgent({
       llm: chatModel,
       tools: [tool],
       prompt,

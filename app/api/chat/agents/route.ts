@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
 
-import { AgentExecutor, createOpenAIFunctionsAgent } from "langchain/agents";
+import { AgentExecutor, createToolCallingAgent } from "langchain/agents";
 import { ChatOpenAI } from "@langchain/openai";
 import { SerpAPI } from "@langchain/community/tools/serpapi";
-import { Calculator } from "langchain/tools/calculator";
+import { Calculator } from "@langchain/community/tools/calculator";
 import { AIMessage, ChatMessage, HumanMessage } from "@langchain/core/messages";
 
 import {
@@ -74,7 +74,7 @@ export async function POST(req: NextRequest) {
       new MessagesPlaceholder("agent_scratchpad"),
     ]);
 
-    const agent = await createOpenAIFunctionsAgent({
+    const agent = await createToolCallingAgent({
       llm: chat,
       tools,
       prompt,
