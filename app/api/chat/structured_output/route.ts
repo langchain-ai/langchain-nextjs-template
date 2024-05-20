@@ -5,7 +5,7 @@ import { zodToJsonSchema } from "zod-to-json-schema";
 
 import { ChatOpenAI } from "@langchain/openai";
 import { PromptTemplate } from "@langchain/core/prompts";
-import { JsonOutputFunctionsParser } from "langchain/output_parsers";
+import { JsonOutputFunctionsParser } from "@langchain/core/output_parsers/openai_functions";
 
 export const runtime = "edge";
 

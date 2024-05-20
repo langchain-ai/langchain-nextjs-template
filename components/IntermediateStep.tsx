@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Message } from "ai/react";
-import type { AgentStep } from "langchain/schema";
+import type { AgentStep } from "langchain/agents";
 
 export function IntermediateStep(props: { message: Message }) {
   const parsedInput: AgentStep = JSON.parse(props.message.content);

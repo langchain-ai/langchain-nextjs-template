@@ -6,11 +6,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useChat } from "ai/react";
 import { useRef, useState, ReactElement } from "react";
 import type { FormEvent } from "react";
-import type { AgentStep } from "langchain/schema";
 
 import { ChatMessageBubble } from "@/components/ChatMessageBubble";
 import { UploadDocumentsForm } from "@/components/UploadDocumentsForm";
 import { IntermediateStep } from "./IntermediateStep";
+import type { AgentStep } from 'langchain/agents';
 
 export function ChatWindow(props: {
   endpoint: string,
