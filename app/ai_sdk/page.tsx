@@ -62,7 +62,7 @@ export default function Home() {
             className="inline-flex items-center gap-1"
           >
             streamEvents
-            <ExternalLinkSVG className="inline" height={10} width={10} />
+            <ExternalLinkSVG className="inline" height={12} width={12} />
           </a>{" "}
           API. The second shows how to invoke a simple tool calling model, and
           stream back the result.
