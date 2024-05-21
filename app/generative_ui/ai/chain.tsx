@@ -46,7 +46,7 @@ const searchTool = new DynamicStructuredTool({
     const result = await search(input);
 
     stream.done(
-      <div className="flex gap-2">
+      <div className="flex gap-2 flex-wrap justify-end">
         {JSON.parse(result).map((place: any, index: number) => (
           <Place place={place} key={index} />
         ))}

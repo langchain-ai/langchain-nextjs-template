@@ -26,12 +26,21 @@ import { AIProvider } from "./client";
 export function streamRunnableUI<RunInput, RunOutput>(
   runnable: Runnable<RunInput, RunOutput>,
   inputs: RunInput,
+  components?: {
+    [key: string]: ReactNode;
+    llm: ReactNode;
+  },
 ) {
   const ui = createStreamableUI();
   const value = createStreamableValue();
 
   (async () => {
     let lastEvent: StreamEvent | null = null;
+
+    const streamableMap: Record<
+      string,
+      ReturnType<typeof createStreamableUI>
+    > = {};
 
     for await (const streamEvent of runnable.streamEvents(inputs, {
       version: "v1",
@@ -42,17 +51,28 @@ export function streamRunnableUI<RunInput, RunOutput>(
 
         if (isValidElement(chunk)) {
           ui.append(chunk);
-        } else if ("message" in chunk) {
-          // TODO: provide a method of customizing the way
-          // how the messages are rendered and/or expose these
-          // intermediate messages as streamable values
-          ui.append(chunk.text);
+        } else if ("text" in chunk && typeof chunk.text === "string") {
+          if (!streamableMap[streamEvent.run_id]) {
+            streamableMap[streamEvent.run_id] = createStreamableUI();
+            const value = streamableMap[streamEvent.run_id].value;
+
+            // create an AI message
+            ui.append(
+              <div className="empty:hidden border border-gray-700 p-3 rounded-lg max-w-[50vw]">
+                {value}
+              </div>,
+            );
+          }
+
+          streamableMap[streamEvent.run_id].append(chunk.text);
         }
       }
       lastEvent = streamEvent;
     }
 
     value.done(lastEvent?.data.output);
+
+    for (const ui of Object.values(streamableMap)) ui.done();
     ui.done();
   })();
 

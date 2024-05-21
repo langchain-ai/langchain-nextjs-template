@@ -15,7 +15,7 @@ export function Place(props: {
   return (
     <button
       type="button"
-      className="cursor-pointer flex flex-col items-start border border-gray-500 p-4 rounded-md"
+      className="cursor-pointer flex flex-col items-start border border-gray-500 p-4 rounded-md hover:bg-gray-700/50 active:bg-gray-700 transition-colors text-left"
       onClick={() => {
         onSearch(`Show me pictures of ${props.place.title}`);
       }}

@@ -25,11 +25,17 @@ export default function GenerativeUIPage() {
 
     newElements.push(
       <div className="flex flex-col gap-2" key={history.length}>
-        <div className="bg-gray-700 p-3 rounded-lg self-start">{input}</div>
-        <div className="self-end text-right">{element.ui}</div>
+        <div className="bg-gray-700 p-3 rounded-lg self-start max-w-[50vw]">
+          {input}
+        </div>
+        <div className="self-end text-right flex flex-col gap-2 items-end">
+          {element.ui}
+        </div>
       </div>,
     );
 
+    // consume the value stream to obtain the final string value
+    // which we can append to the chat history
     (async () => {
       let finalValue = null;
       for await (const value of readStreamableValue(element.value)) {
@@ -76,12 +82,30 @@ export default function GenerativeUIPage() {
               project.
             </span>
           </li>
+
+          <li className="text-l">
+            👇
+            <span className="ml-2">
+              Try asking e.g.{" "}
+              <code
+                className="underline cursor-pointer"
+                onClick={() =>
+                  onSubmit("What are the attractions found in Prague?")
+                }
+              >
+                What are the attractions found in Prague?
+              </code>{" "}
+              below!
+            </span>
+          </li>
         </ul>
       </div>
 
       <div className="flex flex-col gap-4 items-stretch">
         <LocalContext.Provider value={onSubmit}>
-          <div>{elements}</div>
+          <div className="flex flex-col gap-2 overflow-hidden overflow-y-auto border border-gray-700 rounded-lg p-4">
+            {elements}
+          </div>
         </LocalContext.Provider>
 
         <form
