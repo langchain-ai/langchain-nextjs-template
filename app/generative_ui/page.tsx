@@ -44,7 +44,7 @@ export default function GenerativeUIPage() {
         setHistory((prev) => [
           ...prev,
           ["user", input],
-          ["assistant", finalValue],
+          ["assistant", finalValue as string],
         ]);
       }
     })();
