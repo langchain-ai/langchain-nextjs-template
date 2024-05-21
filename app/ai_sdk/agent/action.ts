@@ -3,7 +3,7 @@
 import { ChatOpenAI } from "@langchain/openai";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { TavilySearchResults } from "@langchain/community/tools/tavily_search";
-import { AgentExecutor, createOpenAIToolsAgent } from "langchain/agents";
+import { AgentExecutor, createToolCallingAgent } from "langchain/agents";
 import { pull } from "langchain/hub";
 import { createStreamableValue } from "ai/rsc";
 
@@ -24,7 +24,7 @@ export async function runAgent(input: string) {
       temperature: 0,
     });
 
-    const agent = await createOpenAIToolsAgent({
+    const agent = createToolCallingAgent({
       llm,
       tools,
       prompt,

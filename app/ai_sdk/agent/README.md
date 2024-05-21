@@ -40,7 +40,7 @@ The first step is to create a new RSC file, and add the imports which we'll use 
 import { ChatOpenAI } from "@langchain/openai";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { TavilySearchResults } from "@langchain/community/tools/tavily_search";
-import { AgentExecutor, createOpenAIToolsAgent } from "langchain/agents";
+import { AgentExecutor, createToolCallingAgent } from "langchain/agents";
 import { pull } from "langchain/hub";
 import { createStreamableValue } from "ai/rsc";
 ```
@@ -80,7 +80,7 @@ Next, lets define our async function inside which contains the agent logic:
       "hwchase17/openai-tools-agent",
     );
 
-    const agent = await createOpenAIToolsAgent({
+    const agent = createToolCallingAgent({
       llm,
       tools,
       prompt,
@@ -96,7 +96,7 @@ Here you can see we're doing a few things:
 
 The first is we're defining our list of tools (in this case we're only using a single tool) and pulling in our prompt from the LangChain prompt hub.
 
-After that, we're passing our LLM, tools and prompt to the `createOpenAIToolsAgent` function, which will construct and return a runnable agent.
+After that, we're passing our LLM, tools and prompt to the `createToolCallingAgent` function, which will construct and return a runnable agent.
 This is then passed into the `AgentExecutor` class, which will handle the execution & streaming of our agent.
 
 Finally, we'll call `.streamEvents` and pass our streamed data back to the `stream` variable we defined above,
