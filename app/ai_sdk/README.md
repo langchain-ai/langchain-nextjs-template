@@ -1,4 +1,4 @@
-# LangChan.js x AI SDK
+# LangChain.js x AI SDK
 
 This directory contains two pages with demo implementations of using [LangChain.js](https://js.langchain.com/v0.2/docs/introduction/) and [AI SDK](https://www.npmjs.com/package/ai) in [React Server Components](https://react.dev/reference/rsc/server-components).
 
@@ -7,3 +7,5 @@ Each directory contains a `README.md` file which documents exactly what is happe
 ### [Agents](./agent/README.md)
 
 ### [Tools](./tools/README.md)
+
+Looking for Generative UI samples? Check out the [Generative UI](../generative_ui/README.md) directory.

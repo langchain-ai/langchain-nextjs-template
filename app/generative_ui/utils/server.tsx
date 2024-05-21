@@ -26,10 +26,6 @@ import { AIProvider } from "./client";
 export function streamRunnableUI<RunInput, RunOutput>(
   runnable: Runnable<RunInput, RunOutput>,
   inputs: RunInput,
-  components?: {
-    [key: string]: ReactNode;
-    llm: ReactNode;
-  },
 ) {
   const ui = createStreamableUI();
   const value = createStreamableValue();
