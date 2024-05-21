@@ -4,10 +4,10 @@ export default function AgentsPage() {
   const InfoCard = (
     <div className="p-4 md:p-8 rounded bg-[#25252d] w-full max-h-[85%] overflow-hidden">
       <h1 className="text-3xl md:text-4xl mb-4">
-        ▲ Next.js + LangChain.js Agents 🦜🔗
+        BetterMan Agent with Tools🦜🔗
       </h1>
       <ul>
-        <li className="text-l">
+        {/* <li className="text-l">
           🤝
           <span className="ml-2">
             This template showcases a{" "}
@@ -24,11 +24,11 @@ export default function AgentsPage() {
             </a>{" "}
             project.
           </span>
-        </li>
+        </li> */}
         <li>
           🛠️
           <span className="ml-2">
-            The agent has memory and access to a search engine and a calculator.
+            The agent has memory and access to a search engine and a calculator & Various other toolkits possibilities coming in the future
           </span>
         </li>
         {/* <li className="hidden text-l md:block">
@@ -69,7 +69,7 @@ export default function AgentsPage() {
         <li className="text-l">
           👇
           <span className="ml-2">
-            Try asking e.g. <code>What is the weather in Honolulu?</code> below!
+            Try asking e.g. <code>how do I create code to fetch the weather data for Johannesburg and covert to celcius?</code> below!
           </span>
         </li>
       </ul>
@@ -79,7 +79,7 @@ export default function AgentsPage() {
     <ChatWindow
       endpoint="api/chat/agents"
       emptyStateComponent={InfoCard}
-      placeholder="Hi! I'm a conversational agent! Ask me about the current weather in Honolulu!"
+      placeholder="Hi! I'm a conversational agent! Ask me any technical questions!"
       titleText="AI Agent"
       emoji="🦜"
       showIntermediateStepsToggle={true}

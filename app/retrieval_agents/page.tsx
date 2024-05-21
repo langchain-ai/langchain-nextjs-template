@@ -4,12 +4,12 @@ export default function AgentsPage() {
   const InfoCard = (
     <div className="p-4 md:p-8 rounded bg-[#25252d] w-full max-h-[85%] overflow-hidden">
       <h1 className="text-3xl md:text-4xl mb-4">
-        ▲ Next.js + LangChain.js Retrieval Agent 🦜🔗
+        BetterMan Retrieval Agent 🦜🔗
       </h1>
       <ul>
         <li className="hidden text-l md:block">
           🤝
-          <span className="ml-2">
+          {/* <span className="ml-2">
             This template showcases a{" "}
             <a href="https://js.langchain.com/" target="_blank">
               LangChain.js
@@ -23,7 +23,7 @@ export default function AgentsPage() {
               Next.js
             </a>{" "}
             project.
-          </span>
+          </span> */}
         </li>
         <li className="hidden text-l md:block">
           🛠️
@@ -33,21 +33,20 @@ export default function AgentsPage() {
             about the current conversation.
           </span>
         </li>
-        <li className="hidden text-l md:block">
+        {/* <li className="hidden text-l md:block">
           💻
           <span className="ml-2">
             You can find the prompt and model logic for this use-case in{" "}
             <code>app/api/chat/retrieval_agents/route.ts</code>.
           </span>
-        </li>
+        </li> */}
         <li>
           🤖
           <span className="ml-2">
-            By default, the agent is pretending to be a robot, but you can
-            change the prompt to whatever you want!
+            Use this Agent to ask meta-converstaional Questions about your converstion with the Agent
           </span>
         </li>
-        <li className="hidden text-l md:block">
+        {/* <li className="hidden text-l md:block">
           🎨
           <span className="ml-2">
             The main frontend logic is found in{" "}
@@ -67,7 +66,7 @@ export default function AgentsPage() {
             </a>
             !
           </span>
-        </li>
+        </li> */}
         <li className="hidden text-l md:block">
           🔱
           <span className="ml-2">

@@ -28,7 +28,7 @@ export function UploadDocumentsForm() {
   return (
     <form onSubmit={ingest} className="flex w-full mb-4">
     <textarea
-      className="grow mr-8 p-4 rounded"
+      className="grow mr-8 p-4 rounded h-64 w-full bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
       value={document}
       onChange={(e) => setDocument(e.target.value)}
     ></textarea>

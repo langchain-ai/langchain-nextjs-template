@@ -4,10 +4,10 @@ export default function AgentsPage() {
   const InfoCard = (
     <div className="p-4 md:p-8 rounded bg-[#25252d] w-full max-h-[85%] overflow-hidden">
       <h1 className="text-3xl md:text-4xl mb-4">
-        ▲ Next.js + LangChain.js Structured Output 🦜🔗
+        BetterMan Q&A 🦜🔗
       </h1>
       <ul>
-        <li className="text-l">
+        {/* <li className="text-l">
           🧱
           <span className="ml-2">
             This template showcases how to output structured responses with a{" "}
@@ -86,7 +86,7 @@ export default function AgentsPage() {
           <span className="ml-2">
             Try typing e.g. <code>What a beautiful day!</code> below!
           </span>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

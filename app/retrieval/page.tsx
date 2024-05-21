@@ -4,9 +4,9 @@ export default function AgentsPage() {
   const InfoCard = (
     <div className="p-4 md:p-8 rounded bg-[#25252d] w-full max-h-[85%] overflow-hidden">
       <h1 className="text-3xl md:text-4xl mb-4">
-        ▲ Next.js + LangChain.js Retrieval Chain 🦜🔗
+        ▲ BetterMan Document Retrieval Agent 🦜🔗
       </h1>
-      <ul>
+      {/* <ul>
         <li className="hidden text-l md:block">
           🔗
           <span className="ml-2">
@@ -96,7 +96,7 @@ export default function AgentsPage() {
             below!
           </span>
         </li>
-      </ul>
+      </ul> */}
     </div>
   );
   return (
@@ -105,10 +105,10 @@ export default function AgentsPage() {
       emptyStateComponent={InfoCard}
       showIngestForm={true}
       placeholder={
-        'I\'ve got a nose for finding the right documents! Ask, "What are some ways of doing retrieval in LangChain.js?"'
+        'Upload some text documents! Ask, "What are some ways of doing retrieval on any text"'
       }
       emoji="🐶"
-      titleText="Dana the Document-Retrieving Dog"
+      titleText="Document-Retrieving"
     ></ChatWindow>
   );
 }

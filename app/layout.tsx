@@ -13,7 +13,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>AI Agent</title>
+        <title>BetterMan AI Agents</title>
         <link rel="shortcut icon" href="/images/favicon.ico" />
         <meta
           name="description"
@@ -34,7 +34,7 @@ export default function RootLayout({
         <meta name="twitter:image" content="/images/og-image.png" />
       </head>
       <body className={publicSans.className}>
-        <div className="flex flex-col p-4 md:p-12 h-[100vh]">
+        <div className="flex flex-col p-4 md:p-12 h-[100vh] bg-slate-400">
           <Navbar></Navbar>
           {children}
         </div>

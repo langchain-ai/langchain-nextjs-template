@@ -7,7 +7,7 @@ export default function Home() {
         BetterMan AI Agent HEY
       </h1>
       <ul>
-        <li className="text-l">
+        {/* <li className="text-l">
           🤝
           <span className="ml-2">
             This Agent showcases a chatbot using{" "}
@@ -23,8 +23,11 @@ export default function Home() {
               Next.js
             </a>{" "}
             project.
+          </span> */}
+          <span>
+            BetterMan Conversational Agent
           </span>
-        </li>
+        {/* </li> */}
         {/* <li className="hidden text-l md:block">
           💻
           <span className="ml-2">
