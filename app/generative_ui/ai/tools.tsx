@@ -1,9 +1,4 @@
-import { Parser } from "expr-eval";
 import { z } from "zod";
-
-export function calculator(input: { expression: string }) {
-  return Parser.evaluate(input.expression).toString();
-}
 
 export async function images(input: { query: string }) {
   type UrlParameters = Record<
@@ -54,6 +49,8 @@ export async function images(input: { query: string }) {
     .parse(res);
 }
 
+// copied from the implementation of SerpAPI tool
+// in @langchain/community
 export async function search(input: { query: string }) {
   type UrlParameters = Record<
     string,

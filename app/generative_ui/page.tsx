@@ -18,10 +18,8 @@ export default function GenerativeUIPage() {
   async function onSubmit(input: string) {
     const newElements = [...elements];
 
-    const element = await actions.agent({
-      input,
-      chat_history: history,
-    });
+    // execute the agent with user input and chat history
+    const element = await actions.agent({ input, chat_history: history });
 
     newElements.push(
       <div className="flex flex-col gap-2" key={history.length}>
@@ -35,9 +33,9 @@ export default function GenerativeUIPage() {
     );
 
     // consume the value stream to obtain the final string value
-    // which we can append to the chat history
+    // after which we can append to our chat history state
     (async () => {
-      let finalValue = null;
+      let finalValue: string | null = null;
       for await (const value of readStreamableValue(element.value)) {
         finalValue = value;
       }
@@ -101,7 +99,7 @@ export default function GenerativeUIPage() {
         </ul>
       </div>
 
-      <div className="flex flex-col gap-4 items-stretch">
+      <div className="flex flex-col gap-4 items-stretch pb-4">
         <LocalContext.Provider value={onSubmit}>
           <div className="flex flex-col gap-2 overflow-hidden overflow-y-auto border border-gray-700 rounded-lg p-4">
             {elements}
@@ -123,7 +121,7 @@ export default function GenerativeUIPage() {
             onChange={(e) => setInput(e.target.value)}
           />
           <button
-            className="flex p-1 border border-gray-600 rounded-md px-4 py-2"
+            className="flex p-1 border border-gray-600 rounded-md px-4 py-2 hover:bg-gray-700/50 transition-colors"
             type="submit"
           >
             Submit

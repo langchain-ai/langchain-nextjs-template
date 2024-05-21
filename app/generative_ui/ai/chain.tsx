@@ -10,29 +10,8 @@ import { z } from "zod";
 
 import { Place } from "@/app/generative_ui/components/place";
 import { createRunnableUI } from "../utils/server";
-import { calculator, search, images } from "./tools";
-import { Image } from "../components/image";
-
-const calculatorTool = new DynamicStructuredTool({
-  name: "Calculator",
-  description: "a calculator. input should be a mathematical expression.",
-  schema: z.object({
-    expression: z.string().describe("The mathematical expression"),
-  }),
-  func: async (input, config) => {
-    const stream = createRunnableUI(config, <div>Calculating...</div>);
-    const result = calculator(input);
-
-    stream.done(
-      <div>
-        These are the results:{" "}
-        <pre>{JSON.stringify(JSON.parse(result), null, 2)}</pre>
-      </div>,
-    );
-
-    return result;
-  },
-});
+import { search, images } from "./tools";
+import { Images } from "../components/image";
 
 const searchTool = new DynamicStructuredTool({
   name: "SerpAPI",
@@ -70,14 +49,11 @@ const imagesTool = new DynamicStructuredTool({
 
     const result = await images(input);
     stream.done(
-      <div className="flex gap-2">
-        {result.images_results
-          .map((image, idx) => {
-            // eslint-disable-next-line jsx-a11y/alt-text
-            return <Image key={idx} src={image.thumbnail} />;
-          })
+      <Images
+        images={result.images_results
+          .map((image) => image.thumbnail)
           .slice(0, input.limit)}
-      </div>,
+      />,
     );
 
     return `[Returned ${result.images_results.length} images]`;
@@ -100,7 +76,7 @@ const llm = new ChatOpenAI({
   streaming: true,
 });
 
-const tools = [calculatorTool, searchTool, imagesTool];
+const tools = [searchTool, imagesTool];
 
 export const agentExecutor = new AgentExecutor({
   agent: createToolCallingAgent({ llm, tools, prompt }),
