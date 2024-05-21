@@ -10,16 +10,18 @@ import { z } from "zod";
 
 import { Place } from "@/app/generative_ui/components/place";
 import { createRunnableUI } from "../utils/server";
-import { callCalculator, callSerpAPI, callSerpImages } from "./tools";
+import { calculator, search, images } from "./tools";
 import { Image } from "../components/image";
 
-const calculator = new DynamicStructuredTool({
+const calculatorTool = new DynamicStructuredTool({
   name: "Calculator",
   description: "a calculator. input should be a mathematical expression.",
-  schema: z.object({ expression: z.string() }),
+  schema: z.object({
+    expression: z.string().describe("The mathematical expression"),
+  }),
   func: async (input, config) => {
     const stream = createRunnableUI(config, <div>Calculating...</div>);
-    const result = callCalculator(input);
+    const result = calculator(input);
 
     stream.done(
       <div>
@@ -32,19 +34,16 @@ const calculator = new DynamicStructuredTool({
   },
 });
 
-const search = new DynamicStructuredTool({
+const searchTool = new DynamicStructuredTool({
   name: "SerpAPI",
   description:
     "A search engine. useful for when you need to answer questions about current events. input should be a search query.",
   schema: z.object({ query: z.string() }),
   func: async (input, config) => {
     const stream = createRunnableUI(config);
-
     stream.update(<div>Searching the internet...</div>);
 
-    const result = await callSerpAPI(input);
-
-    console.log(result);
+    const result = await search(input);
 
     stream.done(
       <div className="flex gap-2">
@@ -58,7 +57,7 @@ const search = new DynamicStructuredTool({
   },
 });
 
-const images = new DynamicStructuredTool({
+const imagesTool = new DynamicStructuredTool({
   name: "Images",
   description: "A tool to search for images. input should be a search query.",
   schema: z.object({
@@ -67,12 +66,9 @@ const images = new DynamicStructuredTool({
   }),
   func: async (input, config) => {
     const stream = createRunnableUI(config);
-
     stream.update(<div>Searching...</div>);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    const result = await callSerpImages(input);
-
+    const result = await images(input);
     stream.done(
       <div className="flex gap-2">
         {result.images_results
@@ -104,7 +100,7 @@ const llm = new ChatOpenAI({
   streaming: true,
 });
 
-const tools = [calculator, search, images];
+const tools = [calculatorTool, searchTool, imagesTool];
 
 export const agentExecutor = new AgentExecutor({
   agent: createToolCallingAgent({ llm, tools, prompt }),

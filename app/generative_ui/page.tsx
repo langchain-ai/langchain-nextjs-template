@@ -55,6 +55,28 @@ export default function GenerativeUIPage() {
         <h1 className="text-3xl md:text-4xl mb-4">
           ▲ Next.js + LangChain.js Generative UI
         </h1>
+
+        <ul>
+          <li className="hidden text-l md:block">
+            🔗
+            <span className="ml-2">
+              This template showcases how to render React components right from
+              a{" "}
+              <a href="https://js.langchain.com/" target="_blank">
+                LangChain.js
+              </a>{" "}
+              chain and the Vercel{" "}
+              <a href="https://sdk.vercel.ai/docs" target="_blank">
+                AI SDK
+              </a>{" "}
+              in a{" "}
+              <a href="https://nextjs.org/" target="_blank">
+                Next.js
+              </a>{" "}
+              project.
+            </span>
+          </li>
+        </ul>
       </div>
 
       <div className="flex flex-col gap-4 items-stretch">

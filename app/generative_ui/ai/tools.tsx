@@ -1,11 +1,11 @@
 import { Parser } from "expr-eval";
 import { z } from "zod";
 
-export function callCalculator(input: { expression: string }) {
+export function calculator(input: { expression: string }) {
   return Parser.evaluate(input.expression).toString();
 }
 
-export async function callSerpImages(input: { query: string }) {
+export async function images(input: { query: string }) {
   type UrlParameters = Record<
     string,
     string | number | boolean | undefined | null
@@ -54,7 +54,7 @@ export async function callSerpImages(input: { query: string }) {
     .parse(res);
 }
 
-export async function callSerpAPI(input: { query: string }) {
+export async function search(input: { query: string }) {
   type UrlParameters = Record<
     string,
     string | number | boolean | undefined | null

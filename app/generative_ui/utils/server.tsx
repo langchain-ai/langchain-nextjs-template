@@ -43,6 +43,9 @@ export function streamRunnableUI<RunInput, RunOutput>(
         if (isValidElement(chunk)) {
           ui.append(chunk);
         } else if ("message" in chunk) {
+          // TODO: provide a method of customizing the way
+          // how the messages are rendered and/or expose these
+          // intermediate messages as streamable values
           ui.append(chunk.text);
         }
       }
@@ -112,9 +115,11 @@ export const createRunnableUI = (
  * We wrap the functions in order to properly resolve importing
  * client components.
  *
+ * TODO: replace with createAI instead, even though that
+ * implicitly handles state management
+ *
  * See https://github.com/vercel/next.js/pull/59615
  * @param actions
- * @returns
  */
 export function exposeEndpoints<T extends Record<string, unknown>>(
   actions: T,
