@@ -5,12 +5,13 @@ The code in this doc is taken from the `page.tsx` and `action.ts` files in this 
 and [here for the client file](/page.tsx).
 
 > ## Prerequisites
+>
 > This guide assumes familiarity with the following concepts:
+>
 > - [LangChain Expression Language](https://js.langchain.com/v0.2/docs/concepts#langchain-expression-language)
 > - [Chat models](https://js.langchain.com/v0.2/docs/concepts#chat-models)
 > - [Tool calling](https://js.langchain.com/v0.2/docs/concepts#functiontool-calling)
 > - [Agents](https://js.langchain.com/v0.2/docs/concepts#agents)
-
 
 ## Setup
 
