@@ -34,14 +34,10 @@ export default function Page() {
 
   return (
     <div className="mx-auto w-full max-w-4xl py-12 flex flex-col stretch gap-3">
-      <form
-        onSubmit={handleSubmit}
-        aria-disabled={isLoading}
-        className="flex flex-col gap-2"
-      >
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
         <input
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          placeholder="Tell me a joke about..."
+          placeholder="What's the weather like in..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />

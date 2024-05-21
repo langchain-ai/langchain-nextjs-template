@@ -8,7 +8,6 @@ export default function Page() {
   const [input, setInput] = React.useState("");
   const [data, setData] = React.useState<Record<string, any>[]>([]);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [question, setQuestion] = React.useState("");
   const [options, setOptions] = React.useState({
     wso: false,
     streamEvents: false,
@@ -26,8 +25,7 @@ export default function Page() {
     e.preventDefault();
     if (!input) return;
     setIsLoading(true);
-    setQuestion(input);
-    setInput("");
+    setData([]);
 
     const { streamData } = await executeTool(input, options);
     for await (const item of readStreamableValue(streamData)) {
@@ -38,11 +36,7 @@ export default function Page() {
 
   return (
     <div className="mx-auto w-full max-w-4xl py-12 flex flex-col stretch gap-3">
-      <form
-        onSubmit={handleSubmit}
-        aria-disabled={isLoading}
-        className="flex flex-col gap-2"
-      >
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
         <input
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
           placeholder="What's the weather in XYZ city and XYZ state"
@@ -57,11 +51,11 @@ export default function Page() {
             onChange={(e) =>
               setOptions((prev) => ({ ...prev, wso: e.target.checked }))
             }
-            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+            className="w-4 h-4 text-gray-100 border-gray-300 rounded focus:ring-blue-500"
           />
           <label
             htmlFor="wso-checkbox"
-            className="ml-2 text-sm font-medium text-gray-900"
+            className="ml-2 text-sm font-medium text-gray-100"
           >
             Use withStructuredOutput
           </label>
@@ -81,7 +75,7 @@ export default function Page() {
           />
           <label
             htmlFor="stream-events-checkbox"
-            className="ml-2 text-sm font-medium text-gray-900"
+            className="ml-2 text-sm font-medium text-gray-100"
           >
             Use streamEvents
           </label>
@@ -96,10 +90,10 @@ export default function Page() {
       </form>
       <div
         ref={scrollRef}
-        className="flex flex-col gap-2 px-2 h-[650px] overflow-y-auto shadow-inner border-[1px] border-gray-200 rounded-md"
+        className="flex flex-col gap-2 px-2 h-[650px] overflow-y-auto"
       >
         {data.map((item, i) => (
-          <div key={i} className="p-4 bg-gray-100 rounded-lg">
+          <div key={i} className="p-4 bg-[#25252f] rounded-lg">
             {options.streamEvents ? (
               <>
                 <strong>Event:</strong> <p className="text-sm">{item.event}</p>
@@ -116,12 +110,6 @@ export default function Page() {
           </div>
         ))}
       </div>
-      {question && (
-        <div className="flex flex-col w-full gap-2">
-          <strong className="text-center">Question</strong>
-          <p className="break-words">{question}</p>
-        </div>
-      )}
       {!isLoading && data.length > 1 && (
         <>
           <hr />
