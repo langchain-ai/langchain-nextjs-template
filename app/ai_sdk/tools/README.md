@@ -1,8 +1,8 @@
 # How to stream agent data to the client
 
 This guide will walk you through how we stream agent data to the client using [React Server Components](https://react.dev/reference/rsc/server-components) inside this directory.
-The code in this doc is taken from the `page.tsx` and `action.ts` files in this directory. To view the full, uninterrupted code, click [here for the actions file](/action.ts)
-and [here for the client file](/page.tsx).
+The code in this doc is taken from the `page.tsx` and `action.ts` files in this directory. To view the full, uninterrupted code, click [here for the actions file](./action.ts)
+and [here for the client file](./page.tsx).
 
 > ## Prerequisites
 >
