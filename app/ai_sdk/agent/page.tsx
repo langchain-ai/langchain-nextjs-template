@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { readStreamableValue } from "ai/rsc";
 import { runAgent } from "./action";
 import { StreamEvent } from "@langchain/core/tracers/log_stream";
 
 export default function Page() {
-  const [input, setInput] = React.useState("");
-  const [data, setData] = React.useState<StreamEvent[]>([]);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [input, setInput] = useState("");
+  const [data, setData] = useState<StreamEvent[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const scrollRef = useRef<HTMLDivElement>(null);
 

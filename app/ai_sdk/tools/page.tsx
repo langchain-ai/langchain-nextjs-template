@@ -1,14 +1,14 @@
 "use client";
 
 import { readStreamableValue } from "ai/rsc";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { executeTool } from "./action";
 
 export default function Page() {
-  const [input, setInput] = React.useState("");
-  const [data, setData] = React.useState<Record<string, any>[]>([]);
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [options, setOptions] = React.useState({
+  const [input, setInput] = useState("");
+  const [data, setData] = useState<Record<string, any>[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [options, setOptions] = useState({
     wso: false,
     streamEvents: false,
   });
