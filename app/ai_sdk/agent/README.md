@@ -103,12 +103,8 @@ Finally, we'll call `.streamEvents` and pass our streamed data back to the `stre
 
 ```typescript action.ts
     const streamingEvents = agentExecutor.streamEvents(
-      {
-        input,
-      },
-      {
-        version: "v1",
-      },
+      { input },
+      { version: "v1" },
     );
 
     for await (const item of streamingEvents) {

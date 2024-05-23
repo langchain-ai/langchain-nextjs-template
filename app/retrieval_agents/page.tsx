@@ -97,6 +97,6 @@ export default function AgentsPage() {
       }
       emoji="🤖"
       titleText="Robbie the Retrieval Robot"
-    ></ChatWindow>
+    />
   );
 }
