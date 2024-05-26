@@ -48,6 +48,7 @@ export function ChatWindow(props: {
           setSourcesForMessages({...sourcesForMessages, [messageIndexHeader]: sources});
         }
       },
+      streamMode: "text",
       onError: (e) => {
         toast(e.message, {
           theme: "dark"
