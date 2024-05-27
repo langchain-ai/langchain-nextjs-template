@@ -15,6 +15,7 @@ import {
   StreamEvent,
 } from "@langchain/core/tracers/log_stream";
 import { AIProvider } from "./client";
+import { AIMessage } from "../ai/message";
 
 /**
  * Executes `streamEvents` method on a runnable
@@ -28,14 +29,14 @@ export function streamRunnableUI<RunInput, RunOutput>(
   inputs: RunInput,
 ) {
   const ui = createStreamableUI();
-  const value = createStreamableValue();
+  const [lastEvent, resolve] = withResolvers<string>();
 
   (async () => {
-    let lastEvent: StreamEvent | null = null;
+    let lastEventValue: StreamEvent | null = null;
 
-    const streamableMap: Record<
+    const callbacks: Record<
       string,
-      ReturnType<typeof createStreamableUI>
+      ReturnType<typeof createStreamableUI | typeof createStreamableValue>
     > = {};
 
     for await (const streamEvent of runnable.streamEvents(inputs, {
@@ -48,34 +49,30 @@ export function streamRunnableUI<RunInput, RunOutput>(
         if (isValidElement(chunk)) {
           ui.append(chunk);
         } else if ("text" in chunk && typeof chunk.text === "string") {
-          if (!streamableMap[streamEvent.run_id]) {
-            streamableMap[streamEvent.run_id] = createStreamableUI();
-            const value = streamableMap[streamEvent.run_id].value;
-
-            // create an AI message
-            ui.append(
-              <div className="empty:hidden border border-gray-700 p-3 rounded-lg max-w-[50vw]">
-                {value}
-              </div>,
-            );
+          if (!callbacks[streamEvent.run_id]) {
+            // the createStreamableValue / useStreamableValue is preferred
+            // as the stream events are updated immediately in the UI
+            // rather than being batched by React via createStreamableUI
+            const textStream = createStreamableValue();
+            ui.append(<AIMessage value={textStream.value} />);
+            callbacks[streamEvent.run_id] = textStream;
           }
 
-          streamableMap[streamEvent.run_id].append(chunk.text);
+          callbacks[streamEvent.run_id].append(chunk.text);
         }
       }
-      lastEvent = streamEvent;
+      lastEventValue = streamEvent;
     }
 
-    value.done(lastEvent?.data.output);
+    // resolve the promise, which will be sent
+    // to the client thanks to RSC
+    resolve(lastEventValue?.data.output);
 
-    for (const ui of Object.values(streamableMap)) ui.done();
+    Object.values(callbacks).forEach((cb) => cb.done());
     ui.done();
   })();
 
-  return {
-    ui: ui.value,
-    value: value.value,
-  };
+  return { ui: ui.value, lastEvent };
 }
 
 /**
@@ -146,4 +143,20 @@ export function exposeEndpoints<T extends Record<string, unknown>>(
   return async function AI(props: { children: ReactNode }) {
     return <AIProvider actions={actions}>{props.children}</AIProvider>;
   };
+}
+
+/**
+ * Polyfill to emulate the upcoming Promise.withResolvers
+ */
+export function withResolvers<T>() {
+  let resolve: (value: T) => void;
+  let reject: (reason?: any) => void;
+
+  const innerPromise = new Promise<T>((res, rej) => {
+    resolve = res;
+    reject = rej;
+  });
+
+  // @ts-expect-error
+  return [innerPromise, resolve, reject] as const;
 }

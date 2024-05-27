@@ -4,7 +4,6 @@ import { useState } from "react";
 import type { EndpointsContext } from "./agent";
 import { useActions } from "./utils/client";
 import { LocalContext } from "./shared";
-import { readStreamableValue } from "ai/rsc";
 
 export default function GenerativeUIPage() {
   const actions = useActions<typeof EndpointsContext>();
@@ -35,16 +34,12 @@ export default function GenerativeUIPage() {
     // consume the value stream to obtain the final string value
     // after which we can append to our chat history state
     (async () => {
-      let finalValue: string | null = null;
-      for await (const value of readStreamableValue(element.value)) {
-        finalValue = value;
-      }
-
-      if (finalValue != null) {
+      let lastEvent = await element.lastEvent;
+      if (typeof lastEvent === "string") {
         setHistory((prev) => [
           ...prev,
           ["user", input],
-          ["assistant", finalValue as string],
+          ["assistant", lastEvent],
         ]);
       }
     })();
