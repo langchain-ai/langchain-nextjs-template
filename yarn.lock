@@ -571,9 +571,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/langgraph@npm:^0.0.24":
-  version: 0.0.24
-  resolution: "@langchain/langgraph@npm:0.0.24"
+"@langchain/langgraph@npm:^0.0.25":
+  version: 0.0.25
+  resolution: "@langchain/langgraph@npm:0.0.25"
   dependencies:
     "@langchain/core": ">0.1.61 <0.3.0"
     uuid: ^9.0.1
@@ -582,7 +582,7 @@ __metadata:
   peerDependenciesMeta:
     better-sqlite3:
       optional: true
-  checksum: f4f4c97c4d2f7ce2bec8976cd8869ec9a4455c29d41c0911f2ec1b736e2a20d2f8038cc164960511ec58771d55b86346d9ebdc539f61c9a1ce9a996018960c00
+  checksum: 320b065f33ac692666764f31fd958b182d77de8bfaea37b608e60e18042be5750da142e21efca4a127248814c98b67b548089d17b11627b3ff8241186a4f2ee5
   languageName: node
   linkType: hard
 
@@ -3362,7 +3362,7 @@ __metadata:
   dependencies:
     "@langchain/community": ^0.2.14
     "@langchain/core": ^0.2.10
-    "@langchain/langgraph": ^0.0.24
+    "@langchain/langgraph": ^0.0.25
     "@langchain/openai": ^0.2.0
     "@next/bundle-analyzer": ^13.4.19
     "@supabase/supabase-js": ^2.32.0
