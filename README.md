@@ -14,6 +14,8 @@ use cases. Specifically:
 
 Most of them use Vercel's [AI SDK](https://github.com/vercel-labs/ai) to stream tokens to the client and display the incoming messages.
 
+The agents use [LangGraph.js](https://langchain-ai.github.io/langgraphjs/), LangChain's framework for building agentic workflows. They use preconfigured helper functions to minimize boilerplate, but you can replace them with custom graphs as desired.
+
 ![Demo GIF](/public/images/agent-convo.gif)
 
 It's free-tier friendly too! Check out the [bundle size stats below](#-bundle-size).
@@ -53,7 +55,7 @@ Click the `Structured Output` link in the navbar to try it out:
 The chain in this example uses a [popular library called Zod](https://zod.dev) to construct a schema, then formats it in the way OpenAI expects.
 It then passes that schema as a function into OpenAI and passes a `function_call` parameter to force OpenAI to return arguments in the specified format.
 
-For more details, [check out this documentation page](https://js.langchain.com/docs/modules/chains/popular/structured_output).
+For more details, [check out this documentation page](https://js.langchain.com/v0.2/docs/how_to/structured_output).
 
 ## 🦜 Agents
 
@@ -64,16 +66,15 @@ You can then click the `Agent` example and try asking it more complex questions:
 
 ![A streaming conversation between the user and an AI agent](/public/images/agent-conversation.png)
 
-This example uses the OpenAI Functions agent, but there are a few other options you can try as well.
-See [this documentation page for more details](https://js.langchain.com/docs/modules/agents/agent_types/).
+This example uses a [prebuilt LangGraph agent](https://langchain-ai.github.io/langgraphjs/tutorials/quickstart/), but you can customize your own as well.
 
 ## 🐶 Retrieval
 
 The retrieval examples both use Supabase as a vector store. However, you can swap in
-[another supported vector store](https://js.langchain.com/docs/modules/data_connection/vectorstores/integrations/) if preferred by changing
+[another supported vector store](https://js.langchain.com/v0.2/docs/integrations/vectorstores) if preferred by changing
 the code under `app/api/retrieval/ingest/route.ts`, `app/api/chat/retrieval/route.ts`, and `app/api/chat/retrieval_agents/route.ts`.
 
-For Supabase, follow [these instructions](https://js.langchain.com/docs/modules/data_connection/vectorstores/integrations/supabase) to set up your
+For Supabase, follow [these instructions](https://js.langchain.com/v0.2/docs/integrations/vectorstores/supabase) to set up your
 database, then get your database URL and private key and paste them into `.env.local`.
 
 You can then switch to the `Retrieval` and `Retrieval Agent` examples. The default document text is pulled from the LangChain.js retrieval
@@ -88,12 +89,12 @@ After splitting, embedding, and uploading some text, you're ready to ask questio
 
 ![A streaming conversation between the user and an AI retrieval agent](/public/images/retrieval-agent-conversation.png)
 
-For more info on retrieval chains, [see this page](https://js.langchain.com/docs/use_cases/question_answering/).
+For more info on retrieval chains, [see this page](https://js.langchain.com/v0.2/docs/tutorials/rag).
 The specific variant of the conversational retrieval chain used here is composed using LangChain Expression Language, which you can
-[read more about here](https://js.langchain.com/docs/guides/expression_language/cookbook). This chain example will also return cited sources
+[read more about here](https://js.langchain.com/v0.2/docs/how_to/qa_sources/). This chain example will also return cited sources
 via header in addition to the streaming response.
 
-For more info on retrieval agents, [see this page](https://js.langchain.com/docs/use_cases/question_answering/conversational_retrieval_agents).
+For more info on retrieval agents, [see this page](https://langchain-ai.github.io/langgraphjs/tutorials/rag/langgraph_agentic_rag/).
 
 ## 📦 Bundle size
 
@@ -110,7 +111,7 @@ $ ANALYZE=true yarn build
 ## 📚 Learn More
 
 The example chains in the `app/api/chat/route.ts` and `app/api/chat/retrieval/route.ts` files use
-[LangChain Expression Language](https://js.langchain.com/docs/guides/expression_language/interface) to
+[LangChain Expression Language](https://js.langchain.com/v0.2/docs/concepts#langchain-expression-language) to
 compose different LangChain.js modules together. You can integrate other retrievers, agents, preconfigured chains, and more too, though keep in mind
 `HttpResponseOutputParser` is meant to be used directly with model output.
 

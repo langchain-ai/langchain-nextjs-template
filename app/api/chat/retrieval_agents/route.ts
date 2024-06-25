@@ -13,12 +13,6 @@ import {
 } from "@langchain/core/messages";
 import { ChatOpenAI, OpenAIEmbeddings } from "@langchain/openai";
 import { createRetrieverTool } from "langchain/tools/retriever";
-import { AgentExecutor, createToolCallingAgent } from "langchain/agents";
-
-import {
-  ChatPromptTemplate,
-  MessagesPlaceholder,
-} from "@langchain/core/prompts";
 import { createReactAgent } from "@langchain/langgraph/prebuilt";
 
 export const runtime = "edge";
@@ -74,7 +68,7 @@ export async function POST(req: NextRequest) {
     const returnIntermediateSteps = body.show_intermediate_steps;
 
     const chatModel = new ChatOpenAI({
-      modelName: "gpt-3.5-turbo-0125",
+      model: "gpt-3.5-turbo-0125",
       temperature: 0.2,
     });
 

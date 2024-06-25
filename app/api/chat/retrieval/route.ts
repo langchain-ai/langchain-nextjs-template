@@ -65,7 +65,7 @@ const answerPrompt = PromptTemplate.fromTemplate(ANSWER_TEMPLATE);
  * This handler initializes and calls a retrieval chain. It composes the chain using
  * LangChain Expression Language. See the docs for more information:
  *
- * https://js.langchain.com/docs/guides/expression_language/cookbook#conversational-retrieval-chain
+ * https://js.langchain.com/v0.2/docs/how_to/qa_chat_history_how_to/
  */
 export async function POST(req: NextRequest) {
   try {
@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
     const currentMessageContent = messages[messages.length - 1].content;
 
     const model = new ChatOpenAI({
-      modelName: "gpt-3.5-turbo-0125",
+      model: "gpt-3.5-turbo-0125",
       temperature: 0.2,
     });
 
