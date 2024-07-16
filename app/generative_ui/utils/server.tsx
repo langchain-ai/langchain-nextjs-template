@@ -2,20 +2,17 @@ import "server-only";
 
 import { ReactNode, isValidElement } from "react";
 import { createStreamableUI, createStreamableValue } from "ai/rsc";
-import { Runnable } from "@langchain/core/runnables";
 import {
-  CallbackManagerForToolRun,
-  CallbackManagerForRetrieverRun,
-  CallbackManagerForChainRun,
-  CallbackManagerForLLMRun,
-} from "@langchain/core/callbacks/manager";
-import {
-  LogStreamCallbackHandler,
-  RunLogPatch,
-  StreamEvent,
-} from "@langchain/core/tracers/log_stream";
+  Runnable,
+  RunnableConfig,
+  RunnableLambda,
+} from "@langchain/core/runnables";
+import { StreamEvent } from "@langchain/core/tracers/log_stream";
 import { AIProvider } from "./client";
 import { AIMessage } from "../ai/message";
+import { CompiledStateGraph } from "@langchain/langgraph";
+
+const STREAM_UI_RUN_NAME = "stream_runnable_ui";
 
 /**
  * Executes `streamEvents` method on a runnable
@@ -25,7 +22,9 @@ import { AIMessage } from "../ai/message";
  * @returns React node which can be sent to the client
  */
 export function streamRunnableUI<RunInput, RunOutput>(
-  runnable: Runnable<RunInput, RunOutput>,
+  runnable:
+    | Runnable<RunInput, RunOutput>
+    | CompiledStateGraph<RunInput, Partial<RunInput>>,
   inputs: RunInput,
 ) {
   const ui = createStreamableUI();
@@ -39,16 +38,24 @@ export function streamRunnableUI<RunInput, RunOutput>(
       ReturnType<typeof createStreamableUI | typeof createStreamableValue>
     > = {};
 
-    for await (const streamEvent of runnable.streamEvents(inputs, {
+    for await (const streamEvent of (
+      runnable as Runnable<RunInput, RunOutput>
+    ).streamEvents(inputs, {
       version: "v1",
     })) {
+      if (
+        streamEvent.name === STREAM_UI_RUN_NAME &&
+        streamEvent.event === "on_chain_end"
+      ) {
+        if (isValidElement(streamEvent.data.output.value)) {
+          ui.append(streamEvent.data.output.value);
+        }
+      }
+
       const [kind, type] = streamEvent.event.split("_").slice(1);
       if (type === "stream" && kind !== "chain") {
         const chunk = streamEvent.data.chunk;
-
-        if (isValidElement(chunk)) {
-          ui.append(chunk);
-        } else if ("text" in chunk && typeof chunk.text === "string") {
+        if ("text" in chunk && typeof chunk.text === "string") {
           if (!callbacks[streamEvent.run_id]) {
             // the createStreamableValue / useStreamableValue is preferred
             // as the stream events are updated immediately in the UI
@@ -61,6 +68,7 @@ export function streamRunnableUI<RunInput, RunOutput>(
           callbacks[streamEvent.run_id].append(chunk.text);
         }
       }
+
       lastEventValue = streamEvent;
     }
 
@@ -79,48 +87,24 @@ export function streamRunnableUI<RunInput, RunOutput>(
  * Yields an UI element within a runnable,
  * which can be streamed to the client via `streamRunnableUI`
  *
- * @param config callback
+ * @param callbackManager callback
  * @param initialValue Initial React node to be sent to the client
  * @returns Vercel AI RSC compatible streamable UI
  */
-export const createRunnableUI = (
-  config:
-    | CallbackManagerForToolRun
-    | CallbackManagerForRetrieverRun
-    | CallbackManagerForChainRun
-    | CallbackManagerForLLMRun
-    | undefined,
+export const createRunnableUI = async (
+  config: RunnableConfig | undefined,
   initialValue?: React.ReactNode,
-): ReturnType<typeof createStreamableUI> => {
-  if (!config) throw new Error("No config provided");
-
-  const logStreamTracer = config.handlers.find(
-    (i): i is LogStreamCallbackHandler => i.name === "log_stream_tracer",
-  );
-
-  const ui = createStreamableUI(initialValue);
-
-  if (!logStreamTracer) throw new Error("No log stream tracer found");
-  // @ts-expect-error Private field
-  const runName = logStreamTracer.keyMapByRunId[config.runId];
-  if (!runName) {
-    console.log("No name found for", config.runId);
-    throw new Error("No run name found");
+): Promise<ReturnType<typeof createStreamableUI>> => {
+  if (!config) {
+    throw new Error("RunnableConfig is not defined");
   }
 
-  logStreamTracer.writer.write(
-    new RunLogPatch({
-      ops: [
-        {
-          op: "add",
-          path: `/logs/${runName}/streamed_output/-`,
-          value: ui.value,
-        },
-      ],
-    }),
-  );
+  const lambda = RunnableLambda.from((init?: React.ReactNode) => {
+    const ui = createStreamableUI(init);
+    return ui;
+  }).withConfig({ runName: STREAM_UI_RUN_NAME });
 
-  return ui;
+  return lambda.invoke(initialValue, config);
 };
 
 /**
