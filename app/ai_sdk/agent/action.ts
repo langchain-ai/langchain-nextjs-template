@@ -40,7 +40,7 @@ export async function runAgent(input: string) {
         input,
       },
       {
-        version: "v1",
+        version: "v2",
       },
     );
 

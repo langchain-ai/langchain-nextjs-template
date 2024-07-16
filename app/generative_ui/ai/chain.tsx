@@ -4,22 +4,16 @@ import {
 } from "@langchain/core/prompts";
 import { AgentExecutor, createToolCallingAgent } from "langchain/agents";
 import { ChatOpenAI } from "@langchain/openai";
-import { DynamicStructuredTool } from "langchain/tools";
-
 import { z } from "zod";
-
 import { Place } from "@/app/generative_ui/components/place";
 import { createRunnableUI } from "../utils/server";
 import { search, images } from "./tools";
 import { Images } from "../components/image";
+import { tool } from "@langchain/core/tools";
 
-const searchTool = new DynamicStructuredTool({
-  name: "SerpAPI",
-  description:
-    "A search engine. useful for when you need to answer questions about current events. input should be a search query.",
-  schema: z.object({ query: z.string() }),
-  func: async (input, config) => {
-    const stream = createRunnableUI(config);
+const searchTool = tool(
+  async (input, config) => {
+    const stream = await createRunnableUI(config);
     stream.update(<div>Searching the internet...</div>);
 
     const result = await search(input);
@@ -34,17 +28,17 @@ const searchTool = new DynamicStructuredTool({
 
     return result;
   },
-});
+  {
+    name: "SerpAPI",
+    description:
+      "A search engine. useful for when you need to answer questions about current events. input should be a search query.",
+    schema: z.object({ query: z.string() }),
+  },
+);
 
-const imagesTool = new DynamicStructuredTool({
-  name: "Images",
-  description: "A tool to search for images. input should be a search query.",
-  schema: z.object({
-    query: z.string().describe("The search query used to search for cats"),
-    limit: z.number().describe("The number of pictures shown to the user"),
-  }),
-  func: async (input, config) => {
-    const stream = createRunnableUI(config);
+const imagesTool = tool(
+  async (input, config) => {
+    const stream = await createRunnableUI(config);
     stream.update(<div>Searching...</div>);
 
     const result = await images(input);
@@ -58,7 +52,15 @@ const imagesTool = new DynamicStructuredTool({
 
     return `[Returned ${result.images_results.length} images]`;
   },
-});
+  {
+    name: "Images",
+    description: "A tool to search for images. input should be a search query.",
+    schema: z.object({
+      query: z.string().describe("The search query used to search for cats"),
+      limit: z.number().describe("The number of pictures shown to the user"),
+    }),
+  },
+);
 
 const prompt = ChatPromptTemplate.fromMessages([
   [
