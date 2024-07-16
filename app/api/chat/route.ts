@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
     /**
      * You can also try e.g.:
      *
-     * import { ChatAnthropic } from "langchain/chat_models/anthropic";
+     * import { ChatAnthropic } from "@langchain/anthropic";
      * const model = new ChatAnthropic({});
      *
      * See a full list of supported models at:
@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
      */
     const model = new ChatOpenAI({
       temperature: 0.8,
-      modelName: "gpt-3.5-turbo-1106",
+      model: "gpt-3.5-turbo-0125",
     });
 
     /**

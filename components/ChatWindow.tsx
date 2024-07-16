@@ -3,6 +3,7 @@
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { Message } from 'ai';
 import { useChat } from "ai/react";
 import { useRef, useState, ReactElement } from "react";
 import type { FormEvent } from "react";
@@ -10,7 +11,6 @@ import type { FormEvent } from "react";
 import { ChatMessageBubble } from "@/components/ChatMessageBubble";
 import { UploadDocumentsForm } from "@/components/UploadDocumentsForm";
 import { IntermediateStep } from "./IntermediateStep";
-import type { AgentStep } from 'langchain/agents';
 
 export function ChatWindow(props: {
   endpoint: string,
@@ -85,17 +85,39 @@ export function ChatWindow(props: {
       const json = await response.json();
       setIntermediateStepsLoading(false);
       if (response.status === 200) {
+        const responseMessages: Message[] = json.messages;
         // Represent intermediate steps as system messages for display purposes
-        const intermediateStepMessages = (json.intermediate_steps ?? []).map((intermediateStep: AgentStep, i: number) => {
-          return {id: (messagesWithUserReply.length + i).toString(), content: JSON.stringify(intermediateStep), role: "system"};
+        // TODO: Add proper support for tool messages
+        const toolCallMessages = responseMessages.filter((responseMessage: Message) => {
+          return (responseMessage.role === "assistant" && !!responseMessage.tool_calls?.length) || responseMessage.role === "tool";
         });
+        const intermediateStepMessages = [];
+        for (let i = 0; i < toolCallMessages.length; i += 2) {
+          const aiMessage = toolCallMessages[i];
+          const toolMessage = toolCallMessages[i + 1];
+          intermediateStepMessages.push({
+            id: (messagesWithUserReply.length + (i / 2)).toString(),
+            role: "system" as const,
+            content: JSON.stringify({
+              action: aiMessage.tool_calls?.[0],
+              observation: toolMessage.content,
+            })
+          });
+        }
         const newMessages = messagesWithUserReply;
         for (const message of intermediateStepMessages) {
           newMessages.push(message);
           setMessages([...newMessages]);
           await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
         }
-        setMessages([...newMessages, { id: (newMessages.length + intermediateStepMessages.length).toString(), content: json.output, role: "assistant" }]);
+        setMessages([
+          ...newMessages,
+          {
+            id: (newMessages.length).toString(),
+            content: responseMessages[responseMessages.length - 1].content,
+            role: "assistant"
+          },
+        ]);
       } else {
         if (json.error) {
           toast(json.error, {
