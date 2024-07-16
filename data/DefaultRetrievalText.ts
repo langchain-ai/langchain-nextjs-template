@@ -151,7 +151,7 @@ Distill the retrieved documents into an answer using an LLM (e.g., \`gpt-3.5-tur
 import { RetrievalQAChain } from "langchain/chains";
 import { ChatOpenAI } from "langchain/chat_models/openai";
 
-const model = new ChatOpenAI({ modelName: "gpt-3.5-turbo" });
+const model = new ChatOpenAI({ model: "gpt-3.5-turbo" });
 const chain = RetrievalQAChain.fromLLM(model, vectorstore.asRetriever());
 
 const response = await chain.call({
@@ -184,7 +184,7 @@ import { RetrievalQAChain } from "langchain/chains";
 import { ChatOpenAI } from "langchain/chat_models/openai";
 import { PromptTemplate } from "langchain/prompts";
 
-const model = new ChatOpenAI({ modelName: "gpt-3.5-turbo" });
+const model = new ChatOpenAI({ model: "gpt-3.5-turbo" });
 
 const template = \`Use the following pieces of context to answer the question at the end.
 If you don't know the answer, just say that you don't know, don't try to make up an answer.
@@ -221,7 +221,7 @@ The full set of retrieved documents used for answer distillation can be returned
 import { RetrievalQAChain } from "langchain/chains";
 import { ChatOpenAI } from "langchain/chat_models/openai";
 
-const model = new ChatOpenAI({ modelName: "gpt-3.5-turbo" });
+const model = new ChatOpenAI({ model: "gpt-3.5-turbo" });
 
 const chain = RetrievalQAChain.fromLLM(model, vectorstore.asRetriever(), {
   returnSourceDocuments: true
@@ -293,7 +293,7 @@ const memory = new BufferMemory({
 Next, we initialize and call the chain:
 
 \`\`\`typescript
-const model = new ChatOpenAI({ modelName: "gpt-3.5-turbo" });
+const model = new ChatOpenAI({ model: "gpt-3.5-turbo" });
 const chain = ConversationalRetrievalQAChain.fromLLM(model, vectorstore.asRetriever(), {
   memory
 });
