@@ -78,7 +78,7 @@ export async function executeTool(
           input,
         },
         {
-          version: "v1",
+          version: "v2",
         },
       );
 

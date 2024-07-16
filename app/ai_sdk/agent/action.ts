@@ -6,7 +6,6 @@ import { TavilySearchResults } from "@langchain/community/tools/tavily_search";
 import { AgentExecutor, createToolCallingAgent } from "langchain/agents";
 import { pull } from "langchain/hub";
 import { createStreamableValue } from "ai/rsc";
-import { StructuredTool } from "@langchain/core/tools";
 
 export async function runAgent(input: string) {
   "use server";
@@ -41,7 +40,7 @@ export async function runAgent(input: string) {
         input,
       },
       {
-        version: "v1",
+        version: "v2",
       },
     );
 
