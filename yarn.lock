@@ -554,9 +554,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/core@npm:0.2.16":
-  version: 0.2.16
-  resolution: "@langchain/core@npm:0.2.16"
+"@langchain/core@npm:0.2.17":
+  version: 0.2.17
+  resolution: "@langchain/core@npm:0.2.17"
   dependencies:
     ansi-styles: ^5.0.0
     camelcase: 6
@@ -570,13 +570,13 @@ __metadata:
     uuid: ^10.0.0
     zod: ^3.22.4
     zod-to-json-schema: ^3.22.3
-  checksum: 778edec53925c1be47dcf6f08cb9ba8e94c68f164771898f5995b5d3878efbbf7c1e9a5610e580072362ff9ac4d3fa88b4cbfab9b05e6ca77d81eb00c26521c8
+  checksum: 76d77a71b7f97ee5383a2d93b9b528349452105a35b0bec181bb5e318a27f95cc75a605975aa604ad176d490fb71d214d43f4ac9be69fbd8312fe6c8e417397a
   languageName: node
   linkType: hard
 
-"@langchain/langgraph@npm:^0.0.27":
-  version: 0.0.27
-  resolution: "@langchain/langgraph@npm:0.0.27"
+"@langchain/langgraph@npm:^0.0.28":
+  version: 0.0.28
+  resolution: "@langchain/langgraph@npm:0.0.28"
   dependencies:
     "@langchain/core": ">=0.2.16 <0.3.0"
     uuid: ^10.0.0
@@ -586,11 +586,11 @@ __metadata:
   peerDependenciesMeta:
     better-sqlite3:
       optional: true
-  checksum: 4184a309a630a33bfe5f393e705eadebab585b3c6e82497836c99c7114c8c7c55a9787bb209754cf49fdc4eb8c45b95a7098bb948341c30c81d7dedf1a23e867
+  checksum: 1465791026ccd6eaa13a2f2d03b8fb9f0972a8c23b9da1cfd581074f413ea60ef860de6d704c6a3b49f7425f23d6ba49c23255167ae83ab7d70dc00cc0560ce2
   languageName: node
   linkType: hard
 
-"@langchain/openai@npm:>=0.1.0 <0.3.0, @langchain/openai@npm:^0.2.2":
+"@langchain/openai@npm:>=0.1.0 <0.3.0":
   version: 0.2.2
   resolution: "@langchain/openai@npm:0.2.2"
   dependencies:
@@ -600,6 +600,19 @@ __metadata:
     zod: ^3.22.4
     zod-to-json-schema: ^3.22.3
   checksum: a61a2a095a7dcdb78dd7962de442266400baf899efde63970e8d67f87b03e8e3c1a91bc7c5674049afd9cafaeda6dab86cbcdd1a434f3a32d31040c2b47aa29d
+  languageName: node
+  linkType: hard
+
+"@langchain/openai@npm:^0.2.4":
+  version: 0.2.4
+  resolution: "@langchain/openai@npm:0.2.4"
+  dependencies:
+    "@langchain/core": ">=0.2.16 <0.3.0"
+    js-tiktoken: ^1.0.12
+    openai: ^4.49.1
+    zod: ^3.22.4
+    zod-to-json-schema: ^3.22.3
+  checksum: 6a9ae0f8708f48bf12e6a910bf6afd11a156c20936e6eebd8ce2bc7f1c0e9e2e04fd203ee7249e4d334bcb179fb321e67a018361f7f922419a35ad2b4e2b2764
   languageName: node
   linkType: hard
 
@@ -3365,9 +3378,9 @@ __metadata:
   resolution: "langchain-nextjs-template@workspace:."
   dependencies:
     "@langchain/community": ^0.2.19
-    "@langchain/core": ^0.2.16
-    "@langchain/langgraph": ^0.0.27
-    "@langchain/openai": ^0.2.2
+    "@langchain/core": ^0.2.17
+    "@langchain/langgraph": ^0.0.28
+    "@langchain/openai": ^0.2.4
     "@next/bundle-analyzer": ^13.4.19
     "@supabase/supabase-js": ^2.32.0
     "@types/node": 20.12.12
