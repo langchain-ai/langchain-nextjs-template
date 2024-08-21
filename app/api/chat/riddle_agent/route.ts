@@ -72,8 +72,6 @@ example_assistant: {{
 }}
 `;
 
-
-
 /**
  * This handler initializes and calls a simple chain with a prompt,
  * chat model, and output parser. See the docs for more information:
@@ -86,7 +84,7 @@ export async function POST(req: NextRequest) {
     const messages = body.messages ?? [];
     const formattedPreviousMessages = messages.slice(0, -1).map(formatMessage);
     const currentMessageContent = messages[messages.length - 1].content;
-    const prompt = PromptTemplate.fromTemplate(TEMPLATE);
+    const prompt = PromptTemplate.fromTemplate(PROMPT);
 
     /**
      * You can also try e.g.:
