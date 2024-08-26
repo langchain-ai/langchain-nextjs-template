@@ -645,39 +645,39 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/langgraph-checkpoint-sqlite@npm:0.0.0":
-  version: 0.0.0
-  resolution: "@langchain/langgraph-checkpoint-sqlite@npm:0.0.0"
+"@langchain/langgraph-checkpoint-sqlite@npm:~0.0.1":
+  version: 0.0.1
+  resolution: "@langchain/langgraph-checkpoint-sqlite@npm:0.0.1"
   dependencies:
-    "@langchain/langgraph-checkpoint": ~0.0.0
+    "@langchain/langgraph-checkpoint": ~0.0.1
   peerDependencies:
     "@langchain/core": ">=0.2.20 <0.3.0"
     better-sqlite3: ^9.5.0
   peerDependenciesMeta:
     better-sqlite3:
       optional: true
-  checksum: e629a20853ba05c7b266c5e8cf0bc5d7c4b84e5f48dd7f9bc87ce1035a1793d743c8fec481dc7cb45aa199a3de385569135d06be4e75a968b0034efd7b564f6e
+  checksum: a916925d2d9ce349a027dc103b424e0e826c39064bdfb6b2e98452f85c671b7a3954a1ac0975ee1c709451375dd91ea034cc4d63a96357e21a806ee89781c34b
   languageName: node
   linkType: hard
 
-"@langchain/langgraph-checkpoint@npm:0.0.0, @langchain/langgraph-checkpoint@npm:~0.0.0":
-  version: 0.0.0
-  resolution: "@langchain/langgraph-checkpoint@npm:0.0.0"
+"@langchain/langgraph-checkpoint@npm:~0.0.1, @langchain/langgraph-checkpoint@npm:~0.0.2":
+  version: 0.0.2
+  resolution: "@langchain/langgraph-checkpoint@npm:0.0.2"
   dependencies:
     uuid: ^10.0.0
   peerDependencies:
     "@langchain/core": ">=0.2.20 <0.3.0"
-  checksum: 828461649a9d63d33de38b86ac0f57da996def26ac46d4800e1bf2cd352d6cd0ff588201fe0ad6920801df86e48fce0551e575e44016d337b666d22e3955863b
+  checksum: a204df9ce4cfbf6f991c8d7dc8a3bc7cb96390f0692b35ad594fe6cfdf7410bf3e0eea1c61efc8325f60d65722eb381cd8353f5ab6c5f25f690c0546a5ab2856
   languageName: node
   linkType: hard
 
-"@langchain/langgraph@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "@langchain/langgraph@npm:0.1.0"
+"@langchain/langgraph@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "@langchain/langgraph@npm:0.1.2"
   dependencies:
     "@langchain/core": ">=0.2.20 <0.3.0"
-    "@langchain/langgraph-checkpoint": 0.0.0
-    "@langchain/langgraph-checkpoint-sqlite": 0.0.0
+    "@langchain/langgraph-checkpoint": ~0.0.2
+    "@langchain/langgraph-checkpoint-sqlite": ~0.0.1
     double-ended-queue: ^2.1.0-0
     uuid: ^10.0.0
     zod: ^3.23.8
@@ -686,7 +686,7 @@ __metadata:
   peerDependenciesMeta:
     better-sqlite3:
       optional: true
-  checksum: 946d794fb7f98dc73a8dbc8a2f5531756749b6a630783d868ec95c8307decaf0bc6e940ae0995a63d32566471fedaf120ddbe9e1c2993fe43ea12588d4e305e2
+  checksum: c05a2846a8216e2391c81e1eefc9c80c73676d6c31290ddaa135e0f316b5df8a5b2d2f298e8dbe78936c2bb4b2632991c428a01c99d393701205d4e8e6bd3f67
   languageName: node
   linkType: hard
 
@@ -3484,7 +3484,7 @@ __metadata:
   dependencies:
     "@langchain/community": ^0.2.30
     "@langchain/core": ^0.2.28
-    "@langchain/langgraph": ^0.1.0
+    "@langchain/langgraph": ^0.1.2
     "@langchain/openai": ^0.2.7
     "@next/bundle-analyzer": ^13.4.19
     "@supabase/supabase-js": ^2.32.0
