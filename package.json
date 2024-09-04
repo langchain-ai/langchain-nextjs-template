@@ -16,7 +16,7 @@
     "@langchain/community": "^0.2.32",
     "@langchain/core": "^0.2.31",
     "@langchain/langgraph": "^0.2.2",
-    "@langchain/openai": "^0.2.8",
+    "@langchain/openai": "^0.2.10",
     "@next/bundle-analyzer": "^13.4.19",
     "@supabase/supabase-js": "^2.32.0",
     "@types/node": "20.12.12",

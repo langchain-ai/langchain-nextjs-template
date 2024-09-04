@@ -670,7 +670,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/openai@npm:>=0.1.0 <0.3.0, @langchain/openai@npm:>=0.2.0 <0.3.0, @langchain/openai@npm:^0.2.8":
+"@langchain/openai@npm:>=0.1.0 <0.3.0, @langchain/openai@npm:>=0.2.0 <0.3.0":
   version: 0.2.9
   resolution: "@langchain/openai@npm:0.2.9"
   dependencies:
@@ -680,6 +680,19 @@ __metadata:
     zod: ^3.22.4
     zod-to-json-schema: ^3.22.3
   checksum: e373d651247b6cd70ed9fd2e56b0e6bae7944a7bb9d6221dea7122c754eb4f69e7e9162761a303cb948193d25820220de6d27e2edb41f09591bbce4820787907
+  languageName: node
+  linkType: hard
+
+"@langchain/openai@npm:^0.2.10":
+  version: 0.2.10
+  resolution: "@langchain/openai@npm:0.2.10"
+  dependencies:
+    "@langchain/core": ">=0.2.26 <0.3.0"
+    js-tiktoken: ^1.0.12
+    openai: ^4.57.3
+    zod: ^3.22.4
+    zod-to-json-schema: ^3.22.3
+  checksum: ebaef6c95ebbc467f66ca844cecfadc3e911697a25a4020aa9c461a3ee70cbffd749fa5ee2017f995cecd1b3b2dacc5c5436c34830cbef93fa77874c5b130290
   languageName: node
   linkType: hard
 
@@ -3501,7 +3514,7 @@ __metadata:
     "@langchain/community": ^0.2.32
     "@langchain/core": ^0.2.31
     "@langchain/langgraph": ^0.2.2
-    "@langchain/openai": ^0.2.8
+    "@langchain/openai": ^0.2.10
     "@next/bundle-analyzer": ^13.4.19
     "@supabase/supabase-js": ^2.32.0
     "@types/node": 20.12.12
@@ -4317,7 +4330,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"openai@npm:^4.55.0":
+"openai@npm:^4.55.0, openai@npm:^4.57.3":
   version: 4.57.3
   resolution: "openai@npm:4.57.3"
   dependencies:
