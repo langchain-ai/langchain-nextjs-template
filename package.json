@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@langchain/community": "^0.3.0",
-    "@langchain/core": "^0.3.0",
+    "@langchain/core": "^0.3.1",
     "@langchain/langgraph": "^0.2.3",
     "@langchain/openai": "^0.3.0",
     "@next/bundle-analyzer": "^13.4.19",
@@ -26,7 +26,7 @@
     "autoprefixer": "10.4.14",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
-    "langchain": "^0.3.0",
+    "langchain": "^0.3.2",
     "next": "^14.2.3",
     "postcss": "8.4.27",
     "react": "^18.3.1",
