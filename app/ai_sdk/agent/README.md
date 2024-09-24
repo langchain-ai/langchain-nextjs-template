@@ -57,7 +57,7 @@ Next, inside our function we'll define our chat model of choice:
 
 ```typescript action.ts
 const llm = new ChatOpenAI({
-  model: "gpt-4o-2024-05-13",
+  model: "gpt-4o-mini",
   temperature: 0,
 });
 ```

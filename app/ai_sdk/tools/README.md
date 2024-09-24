@@ -74,7 +74,7 @@ For the main logic, we'll wrap it in an async function. Start by defining our pr
     ]);
 
     const llm = new ChatOpenAI({
-      model: "gpt-4o-2024-05-13",
+      model: "gpt-4o-mini",
       temperature: 0,
     });
 

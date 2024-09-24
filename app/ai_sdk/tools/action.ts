@@ -36,7 +36,7 @@ export async function executeTool(
     ]);
 
     const llm = new ChatOpenAI({
-      model: "gpt-4o-2024-05-13",
+      model: "gpt-4o-mini",
       temperature: 0,
     });
 
