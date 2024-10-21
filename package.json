@@ -41,7 +41,7 @@
     "prettier": "3.0.0"
   },
   "resolutions": {
-    "langsmith": "0.1.67-rc.2"
+    "langsmith": "0.1.67-rc.3"
   },
   "packageManager": "yarn@3.5.1"
 }
