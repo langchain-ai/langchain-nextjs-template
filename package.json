@@ -13,10 +13,10 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@langchain/community": "^0.3.4",
-    "@langchain/core": "^0.3.8",
-    "@langchain/langgraph": "^0.2.13",
-    "@langchain/openai": "^0.3.5",
+    "@langchain/community": "^0.3.7",
+    "@langchain/core": "^0.3.13",
+    "@langchain/langgraph": "^0.2.16",
+    "@langchain/openai": "^0.3.11",
     "@next/bundle-analyzer": "^13.4.19",
     "@supabase/supabase-js": "^2.32.0",
     "@types/node": "20.12.12",
@@ -26,7 +26,7 @@
     "autoprefixer": "10.4.14",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
-    "langchain": "^0.3.2",
+    "langchain": "^0.3.3",
     "next": "^14.2.3",
     "postcss": "8.4.27",
     "react": "^18.3.1",
@@ -39,6 +39,9 @@
   },
   "devDependencies": {
     "prettier": "3.0.0"
+  },
+  "resolutions": {
+    "langsmith": "0.1.67-rc.2"
   },
   "packageManager": "yarn@3.5.1"
 }

@@ -245,9 +245,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/community@npm:^0.3.4":
-  version: 0.3.4
-  resolution: "@langchain/community@npm:0.3.4"
+"@langchain/community@npm:^0.3.7":
+  version: 0.3.7
+  resolution: "@langchain/community@npm:0.3.7"
   dependencies:
     "@langchain/openai": ">=0.2.0 <0.4.0"
     binary-extensions: ^2.2.0
@@ -289,6 +289,7 @@ __metadata:
     "@huggingface/inference": ^2.6.4
     "@langchain/core": ">=0.2.21 <0.4.0"
     "@layerup/layerup-security": ^1.5.12
+    "@libsql/client": ^0.14.0
     "@mendable/firecrawl-js": ^0.0.13
     "@mlc-ai/web-llm": "*"
     "@mozilla/readability": "*"
@@ -436,6 +437,8 @@ __metadata:
     "@huggingface/inference":
       optional: true
     "@layerup/layerup-security":
+      optional: true
+    "@libsql/client":
       optional: true
     "@mendable/firecrawl-js":
       optional: true
@@ -619,51 +622,51 @@ __metadata:
       optional: true
     youtubei.js:
       optional: true
-  checksum: 25edbccd0bff6357a9599339046cca660794917dc073c0f584c8ff2f65005ee7204fdf12636427f60561c0de209225176aa6f8d5f292282d9a8879984a07a225
+  checksum: e26b8a587b87ce492ceac2f5fff43733828cb6207494da34ae11b21b1bc0ac1dbd969e4f078b9d337effea4f817a057df3a23733658e505bf220e7d6c9c518d2
   languageName: node
   linkType: hard
 
-"@langchain/core@npm:^0.3.8":
-  version: 0.3.8
-  resolution: "@langchain/core@npm:0.3.8"
+"@langchain/core@npm:^0.3.13":
+  version: 0.3.13
+  resolution: "@langchain/core@npm:0.3.13"
   dependencies:
     ansi-styles: ^5.0.0
     camelcase: 6
     decamelize: 1.2.0
     js-tiktoken: ^1.0.12
-    langsmith: ^0.1.56
+    langsmith: ^0.1.65
     mustache: ^4.2.0
     p-queue: ^6.6.2
     p-retry: 4
     uuid: ^10.0.0
     zod: ^3.22.4
     zod-to-json-schema: ^3.22.3
-  checksum: c34525382375aa61b3d88dab72d592c779f420b531d14ec192bec533a193c045adebc880185b28ec366fe6a552d6f182239e52eeccd033a919b09c7e903c3110
+  checksum: 9d6c25f9c276f8107c9b7f824d4b5688f23e4b047fc90af8c1bc4149f61ec2f82f5234c7d23a2029a1c2edc95c9a6caef6122017704be35f91c9a0f0498a2f75
   languageName: node
   linkType: hard
 
-"@langchain/langgraph-checkpoint@npm:~0.0.9":
-  version: 0.0.10
-  resolution: "@langchain/langgraph-checkpoint@npm:0.0.10"
+"@langchain/langgraph-checkpoint@npm:~0.0.10":
+  version: 0.0.11
+  resolution: "@langchain/langgraph-checkpoint@npm:0.0.11"
   dependencies:
     uuid: ^10.0.0
   peerDependencies:
     "@langchain/core": ">=0.2.31 <0.4.0"
-  checksum: dca94c0111e0277a590bec92b7102af153e58af3f3cdf5c5bca9eaa98a29ff67dec0053251a5c6070242a0b12a022d760ba55bb7dcfe1e6c72538a6946d44bdb
+  checksum: 266803945782ca48bead72520125ae61333fe998b88e4c05d60a72758b324ea4e7adfad22195b7b1325c62bc2775ff335cc2e5488108eed93c45b188d4fc8fb1
   languageName: node
   linkType: hard
 
-"@langchain/langgraph@npm:^0.2.13":
-  version: 0.2.13
-  resolution: "@langchain/langgraph@npm:0.2.13"
+"@langchain/langgraph@npm:^0.2.16":
+  version: 0.2.16
+  resolution: "@langchain/langgraph@npm:0.2.16"
   dependencies:
-    "@langchain/langgraph-checkpoint": ~0.0.9
+    "@langchain/langgraph-checkpoint": ~0.0.10
     double-ended-queue: ^2.1.0-0
     uuid: ^10.0.0
     zod: ^3.23.8
   peerDependencies:
-    "@langchain/core": ">=0.2.35 <0.3.0 || >=0.3.8 < 0.4.0"
-  checksum: e6f8f70907ca22d220d433286a6b2c689e7f621749fe15279ce6af96798010357f19238ca966f93199f1266d12cb1478b82f5e2a097ae0006d87f4949f9fb0af
+    "@langchain/core": ">=0.2.36 <0.3.0 || >=0.3.9 < 0.4.0"
+  checksum: 735a8de56974c7e7a7031190eaf72adcc1596887afe65614ee2e48f8b8f24b087d743258338b9dc04dd3301d6806b610ac863c9f870a480de4605f1d0d0cce48
   languageName: node
   linkType: hard
 
@@ -681,17 +684,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/openai@npm:^0.3.5":
-  version: 0.3.5
-  resolution: "@langchain/openai@npm:0.3.5"
+"@langchain/openai@npm:^0.3.11":
+  version: 0.3.11
+  resolution: "@langchain/openai@npm:0.3.11"
   dependencies:
     js-tiktoken: ^1.0.12
-    openai: ^4.57.3
+    openai: ^4.68.0
     zod: ^3.22.4
     zod-to-json-schema: ^3.22.3
   peerDependencies:
     "@langchain/core": ">=0.2.26 <0.4.0"
-  checksum: bc9804ab37fe551c8f116ecbbac9e309fad545ccc9dedb5830e2be5206a7484521aa2ad8e373b9061e460b88171fe961a30c54e7cedb8c6fcf963e36a6cceab2
+  checksum: ea0fe974320a387469b91312c2a2a0ee80f194c7954b8aca0d8ab9cf68fd25ef74663af2e644d217257f2317dee2ac04ff0006b5dd9d3701f52daabfa097d868
   languageName: node
   linkType: hard
 
@@ -3511,10 +3514,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "langchain-nextjs-template@workspace:."
   dependencies:
-    "@langchain/community": ^0.3.4
-    "@langchain/core": ^0.3.8
-    "@langchain/langgraph": ^0.2.13
-    "@langchain/openai": ^0.3.5
+    "@langchain/community": ^0.3.7
+    "@langchain/core": ^0.3.13
+    "@langchain/langgraph": ^0.2.16
+    "@langchain/openai": ^0.3.11
     "@next/bundle-analyzer": ^13.4.19
     "@supabase/supabase-js": ^2.32.0
     "@types/node": 20.12.12
@@ -3524,7 +3527,7 @@ __metadata:
     autoprefixer: 10.4.14
     eslint: 8.46.0
     eslint-config-next: 13.4.12
-    langchain: ^0.3.2
+    langchain: ^0.3.3
     next: ^14.2.3
     postcss: 8.4.27
     prettier: 3.0.0
@@ -3603,16 +3606,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"langchain@npm:^0.3.2":
-  version: 0.3.2
-  resolution: "langchain@npm:0.3.2"
+"langchain@npm:^0.3.3":
+  version: 0.3.3
+  resolution: "langchain@npm:0.3.3"
   dependencies:
     "@langchain/openai": ">=0.1.0 <0.4.0"
     "@langchain/textsplitters": ">=0.0.0 <0.2.0"
     js-tiktoken: ^1.0.12
     js-yaml: ^4.1.0
     jsonpointer: ^5.0.1
-    langsmith: ^0.1.56-rc.1
+    langsmith: ^0.1.56
     openapi-types: ^12.1.3
     p-retry: 4
     uuid: ^10.0.0
@@ -3661,13 +3664,13 @@ __metadata:
       optional: true
     typeorm:
       optional: true
-  checksum: f431fbddb2b9d421b764becefafe22c7ac0d862a4b5408050a83468f99ac6278d73112d15304c57247ca173c4bbcf6d670fe79959c4bc8f2c59fdf1fc6f0461a
+  checksum: f9171264367e0c12a278b59dc3b8d2663dc10048b4349324571166f953e972541299d638874a03f4eb3f30051765678c99cebb0dcf601de0866c951d8f01fb2f
   languageName: node
   linkType: hard
 
-"langsmith@npm:^0.1.56, langsmith@npm:~0.1.56":
-  version: 0.1.62
-  resolution: "langsmith@npm:0.1.62"
+"langsmith@npm:0.1.67-rc.2":
+  version: 0.1.67-rc.2
+  resolution: "langsmith@npm:0.1.67-rc.2"
   dependencies:
     "@types/uuid": ^10.0.0
     commander: ^10.0.1
@@ -3680,51 +3683,7 @@ __metadata:
   peerDependenciesMeta:
     openai:
       optional: true
-  checksum: 88d9d9c98b2139fbbad3090827d569a3ea045a1b160e60547c3b81e942405710a954924ce15e0a1120c4cab488858c0ffdc62408c43df8d31f6d2e48bb403442
-  languageName: node
-  linkType: hard
-
-"langsmith@npm:^0.1.56-rc.1":
-  version: 0.1.56-rc.1
-  resolution: "langsmith@npm:0.1.56-rc.1"
-  dependencies:
-    "@types/uuid": ^10.0.0
-    commander: ^10.0.1
-    p-queue: ^6.6.2
-    p-retry: 4
-    semver: ^7.6.3
-    uuid: ^10.0.0
-  peerDependencies:
-    openai: "*"
-  peerDependenciesMeta:
-    openai:
-      optional: true
-  checksum: 6d144958641bc7bca97b1fd0031fe9214d0e524e758d4a2efb0f34254de218bcfd4354ac71bed7b7d96893063f90a9db7103a6c921448519b1ab7a2200a1506f
-  languageName: node
-  linkType: hard
-
-"langsmith@npm:~0.1.40":
-  version: 0.1.50
-  resolution: "langsmith@npm:0.1.50"
-  dependencies:
-    "@types/uuid": ^10.0.0
-    commander: ^10.0.1
-    p-queue: ^6.6.2
-    p-retry: 4
-    semver: ^7.6.3
-    uuid: ^10.0.0
-  peerDependencies:
-    "@langchain/core": "*"
-    langchain: "*"
-    openai: "*"
-  peerDependenciesMeta:
-    "@langchain/core":
-      optional: true
-    langchain:
-      optional: true
-    openai:
-      optional: true
-  checksum: b4f11683ee515e74c8b8140c4293081b8a5d18787cd72402672115cefcdc87e0467f6d9e30edbf6320c40480a970ca031464899d44049165dce71cae2a44eb23
+  checksum: be2c3c728fe1bf81705076c299c2c41395811ad2d95095591fbba1b80ec6790f1dd32bf0a392e299dc6f99d61ad17c03ba4a364a1b1ca50c2ea55b5232435ba3
   languageName: node
   linkType: hard
 
@@ -4316,6 +4275,28 @@ __metadata:
   bin:
     openai: bin/cli
   checksum: 6e8cef99975af5fd8e9a06685f05396a6fabecda38bd77fa62db4b7ea9bdfa0b4c762c5f74e99e42212af81f74f50748c5034bf78c9abcf74cc6eb984f3dcffa
+  languageName: node
+  linkType: hard
+
+"openai@npm:^4.68.0":
+  version: 4.68.1
+  resolution: "openai@npm:4.68.1"
+  dependencies:
+    "@types/node": ^18.11.18
+    "@types/node-fetch": ^2.6.4
+    abort-controller: ^3.0.0
+    agentkeepalive: ^4.2.1
+    form-data-encoder: 1.7.2
+    formdata-node: ^4.3.2
+    node-fetch: ^2.6.7
+  peerDependencies:
+    zod: ^3.23.8
+  peerDependenciesMeta:
+    zod:
+      optional: true
+  bin:
+    openai: bin/cli
+  checksum: 46b16c06b9e9698b02dcb222421bcd9f94b82436defb2412fbf0091cb0a7c68df06147e9f9cbec6ca036a6e96b4f139f03edff2f3de1289668cebea0a39d0d22
   languageName: node
   linkType: hard
 
