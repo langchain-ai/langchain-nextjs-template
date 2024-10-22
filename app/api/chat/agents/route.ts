@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
     // You can remove this or use a different tool instead.
     const tools = [new Calculator(), new SerpAPI()];
     const chat = new ChatOpenAI({
-      model: "gpt-3.5-turbo-0125",
+      model: "gpt-4o-mini",
       temperature: 0,
     });
 
@@ -126,6 +126,7 @@ export async function POST(req: NextRequest) {
        * the AI SDK is more complicated.
        */
       const result = await agent.invoke({ messages });
+
       return NextResponse.json(
         {
           messages: result.messages.map(convertLangChainMessageToVercelMessage),

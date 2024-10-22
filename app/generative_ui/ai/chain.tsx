@@ -73,7 +73,7 @@ const prompt = ChatPromptTemplate.fromMessages([
 ]);
 
 const llm = new ChatOpenAI({
-  model: "gpt-3.5-turbo-0125",
+  model: "gpt-4o-mini",
   temperature: 0,
   streaming: true,
 });

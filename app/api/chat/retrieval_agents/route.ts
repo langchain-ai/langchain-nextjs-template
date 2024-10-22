@@ -68,7 +68,7 @@ export async function POST(req: NextRequest) {
     const returnIntermediateSteps = body.show_intermediate_steps;
 
     const chatModel = new ChatOpenAI({
-      model: "gpt-3.5-turbo-0125",
+      model: "gpt-4o-mini",
       temperature: 0.2,
     });
 
