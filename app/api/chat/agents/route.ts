@@ -12,6 +12,7 @@ import {
   HumanMessage,
   SystemMessage,
 } from "@langchain/core/messages";
+import { LangChainTracer } from "@langchain/core/tracers/tracer_langchain";
 
 export const runtime = "edge";
 
@@ -51,6 +52,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const returnIntermediateSteps = body.show_intermediate_steps;
+    const tracer = new LangChainTracer({});
     /**
      * We represent intermediate steps as system messages for display purposes,
      * but don't want them in the chat history.
@@ -66,7 +68,7 @@ export async function POST(req: NextRequest) {
     // You can remove this or use a different tool instead.
     const tools = [new Calculator(), new SerpAPI()];
     const chat = new ChatOpenAI({
-      model: "gpt-3.5-turbo-0125",
+      model: "gpt-4o-mini",
       temperature: 0,
     });
 
@@ -100,7 +102,7 @@ export async function POST(req: NextRequest) {
        */
       const eventStream = await agent.streamEvents(
         { messages },
-        { version: "v2" },
+        { version: "v2", callbacks: [tracer] },
       );
 
       const textEncoder = new TextEncoder();
@@ -126,6 +128,9 @@ export async function POST(req: NextRequest) {
        * the AI SDK is more complicated.
        */
       const result = await agent.invoke({ messages });
+
+      await tracer.client.awaitPendingTraceBatches();
+
       return NextResponse.json(
         {
           messages: result.messages.map(convertLangChainMessageToVercelMessage),
