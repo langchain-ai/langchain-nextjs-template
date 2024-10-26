@@ -3605,9 +3605,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"langsmith@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "langsmith@npm:0.2.0"
+"langsmith@npm:0.2.2-rc.2":
+  version: 0.2.2-rc.2
+  resolution: "langsmith@npm:0.2.2-rc.2"
   dependencies:
     "@types/uuid": ^10.0.0
     commander: ^10.0.1
@@ -3620,7 +3620,7 @@ __metadata:
   peerDependenciesMeta:
     openai:
       optional: true
-  checksum: 0cd92d0e31526d309af197a3502c93a00ac8c09f6b2864161a18a5c1e8b95b0e8203bad2dfe3b4beb26055fc815a8d70730592a58c9af7e202917b13d01f695c
+  checksum: 35c2eab7647424b9543bf3c937dcca82d164f2180bc2287d519cadc84da9b7f55d4f481dd9e52e170a6066a3398c938c5128155a9e8ea2ae0e3b5ebf5a978a4f
   languageName: node
   linkType: hard
 

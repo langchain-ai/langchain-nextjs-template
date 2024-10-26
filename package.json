@@ -40,5 +40,8 @@
   "devDependencies": {
     "prettier": "3.0.0"
   },
+  "resolutions": {
+    "langsmith": "0.2.2-rc.2"
+  },
   "packageManager": "yarn@3.5.1"
 }
