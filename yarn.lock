@@ -245,16 +245,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/community@npm:^0.3.9":
-  version: 0.3.9
-  resolution: "@langchain/community@npm:0.3.9"
+"@langchain/community@npm:^0.3.11":
+  version: 0.3.11
+  resolution: "@langchain/community@npm:0.3.11"
   dependencies:
     "@langchain/openai": ">=0.2.0 <0.4.0"
     binary-extensions: ^2.2.0
     expr-eval: ^2.0.2
     flat: ^5.0.2
     js-yaml: ^4.1.0
-    langchain: ">=0.2.3 <0.4.0"
+    langchain: ">=0.2.3 <0.3.0 || >=0.3.4 <0.4.0"
     langsmith: ^0.2.0
     uuid: ^10.0.0
     zod: ^3.22.3
@@ -624,13 +624,13 @@ __metadata:
       optional: true
     youtubei.js:
       optional: true
-  checksum: 7e542e2ddb79ed0b1fcecfa96dd8a92b8e73c789f8fd0591d5057fea7b9e945acff7473c853c78837eef15c7288106ebe1b1e6ecd8d969b744a258a55f06b240
+  checksum: dc7a27a51a9d10fc36905d4cf5040c831a7d699fd91ae3482db3bc16d8316643ab7ddb0dd2a0e4f17d42fa523a2d4f684426c4ff35afb60f872f02a15f19c524
   languageName: node
   linkType: hard
 
-"@langchain/core@npm:^0.3.15":
-  version: 0.3.15
-  resolution: "@langchain/core@npm:0.3.15"
+"@langchain/core@npm:^0.3.16":
+  version: 0.3.16
+  resolution: "@langchain/core@npm:0.3.16"
   dependencies:
     ansi-styles: ^5.0.0
     camelcase: 6
@@ -643,7 +643,7 @@ __metadata:
     uuid: ^10.0.0
     zod: ^3.22.4
     zod-to-json-schema: ^3.22.3
-  checksum: b307a8e8ac4789f80fa0ef8fe737b47b3cc9d15a186eb1f770cf00fa64d5238d08855f0e1f920ac7ce9148a336fb8377988ba5577cc621aedecf068d6ce64939
+  checksum: 2ecfb2cd7375e8d152043c35732b55a99d9ee091007dfd1a2677516f26de531695eb08ec3e6864c3240bb790c913aca4870b42850da9a4ec927f7dbc5efdf110
   languageName: node
   linkType: hard
 
@@ -3516,8 +3516,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "langchain-nextjs-template@workspace:."
   dependencies:
-    "@langchain/community": ^0.3.9
-    "@langchain/core": ^0.3.15
+    "@langchain/community": ^0.3.11
+    "@langchain/core": ^0.3.16
     "@langchain/langgraph": ^0.2.18
     "@langchain/openai": ^0.3.11
     "@next/bundle-analyzer": ^13.4.19
@@ -3529,7 +3529,7 @@ __metadata:
     autoprefixer: 10.4.14
     eslint: 8.46.0
     eslint-config-next: 13.4.12
-    langchain: ^0.3.4
+    langchain: ^0.3.5
     next: ^14.2.3
     postcss: 8.4.27
     prettier: 3.0.0
@@ -3543,9 +3543,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"langchain@npm:>=0.2.3 <0.4.0, langchain@npm:^0.3.4":
-  version: 0.3.4
-  resolution: "langchain@npm:0.3.4"
+"langchain@npm:>=0.2.3 <0.3.0 || >=0.3.4 <0.4.0, langchain@npm:^0.3.5":
+  version: 0.3.5
+  resolution: "langchain@npm:0.3.5"
   dependencies:
     "@langchain/openai": ">=0.1.0 <0.4.0"
     "@langchain/textsplitters": ">=0.0.0 <0.2.0"
@@ -3601,7 +3601,7 @@ __metadata:
       optional: true
     typeorm:
       optional: true
-  checksum: df78f8b9af70bff1d201a425e65eb07f2767279a6e0393383fb8a32b020b83ed327d331fb6fbd504195829fc586287819c0b3480a7522a56a5ee2e5bb7e3fd88
+  checksum: 7fde2cb1866d5a7f28e3532902b2c7ff2368f20cc27111df61e275ca392f3013510c9712c6198c9f3a00538c1e0979bfc2371eff6040eeecf79763f474696682
   languageName: node
   linkType: hard
 
