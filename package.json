@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "@langchain/community": "^0.3.11",
-    "@langchain/core": "^0.3.16",
-    "@langchain/langgraph": "^0.2.18",
+    "@langchain/core": "^0.3.17",
+    "@langchain/langgraph": "^0.2.20",
     "@langchain/openai": "^0.3.11",
     "@next/bundle-analyzer": "^13.4.19",
     "@supabase/supabase-js": "^2.32.0",

@@ -628,9 +628,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/core@npm:^0.3.16":
-  version: 0.3.16
-  resolution: "@langchain/core@npm:0.3.16"
+"@langchain/core@npm:^0.3.17":
+  version: 0.3.17
+  resolution: "@langchain/core@npm:0.3.17"
   dependencies:
     ansi-styles: ^5.0.0
     camelcase: 6
@@ -643,7 +643,7 @@ __metadata:
     uuid: ^10.0.0
     zod: ^3.22.4
     zod-to-json-schema: ^3.22.3
-  checksum: 2ecfb2cd7375e8d152043c35732b55a99d9ee091007dfd1a2677516f26de531695eb08ec3e6864c3240bb790c913aca4870b42850da9a4ec927f7dbc5efdf110
+  checksum: a240965948b2cfc4df4fb76de21d9d1bc9ec0f878db1ea265588e0086c9aff511600bfafc668d71a24dc17b73e335a7a41cd5767779c800f4ab9963fc8b2c730
   languageName: node
   linkType: hard
 
@@ -658,17 +658,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/langgraph@npm:^0.2.18":
-  version: 0.2.18
-  resolution: "@langchain/langgraph@npm:0.2.18"
+"@langchain/langgraph-sdk@npm:~0.0.20":
+  version: 0.0.20
+  resolution: "@langchain/langgraph-sdk@npm:0.0.20"
+  dependencies:
+    "@types/json-schema": ^7.0.15
+    p-queue: ^6.6.2
+    p-retry: 4
+    uuid: ^9.0.0
+  checksum: 0d3f1f887719bdaa3c75adb1409b734b0d3e240e92284ba90bfcf34443d2826f732ab7aab3db10f11b3e809d070566cc53d6cf1fa9660eacb2c2744da5b57cf3
+  languageName: node
+  linkType: hard
+
+"@langchain/langgraph@npm:^0.2.20":
+  version: 0.2.20
+  resolution: "@langchain/langgraph@npm:0.2.20"
   dependencies:
     "@langchain/langgraph-checkpoint": ~0.0.10
-    double-ended-queue: ^2.1.0-0
+    "@langchain/langgraph-sdk": ~0.0.20
     uuid: ^10.0.0
     zod: ^3.23.8
   peerDependencies:
     "@langchain/core": ">=0.2.36 <0.3.0 || >=0.3.9 < 0.4.0"
-  checksum: 0ece41615aa2c76283d1d6be218f3c2d1a275dc4a9e8d736ca3c11f49df474f3f4965f589d638d872ffd2df9e3b509e26570ab8bbb7dd624819b6efc69e26cab
+  checksum: 94ea40e640fa4c060a69f3e04725b888142a36b73377087433c7513f77640ac8f6835564095029e1dd55bea421c7c6da8f440c963350205952b3c5ce1824e890
   languageName: node
   linkType: hard
 
@@ -982,6 +994,13 @@ __metadata:
   version: 1.0.36
   resolution: "@types/diff-match-patch@npm:1.0.36"
   checksum: 7d7ce03422fcc3e79d0cda26e4748aeb176b75ca4b4e5f38459b112bf24660d628424bdb08d330faefa69039d19a5316e7a102a8ab68b8e294c8346790e55113
+  languageName: node
+  linkType: hard
+
+"@types/json-schema@npm:^7.0.15":
+  version: 7.0.15
+  resolution: "@types/json-schema@npm:7.0.15"
+  checksum: 97ed0cb44d4070aecea772b7b2e2ed971e10c81ec87dd4ecc160322ffa55ff330dace1793489540e3e318d90942064bb697cc0f8989391797792d919737b3b98
   languageName: node
   linkType: hard
 
@@ -1982,13 +2001,6 @@ __metadata:
   dependencies:
     esutils: ^2.0.2
   checksum: fd7673ca77fe26cd5cba38d816bc72d641f500f1f9b25b83e8ce28827fe2da7ad583a8da26ab6af85f834138cf8dae9f69b0cd6ab925f52ddab1754db44d99ce
-  languageName: node
-  linkType: hard
-
-"double-ended-queue@npm:^2.1.0-0":
-  version: 2.1.0-0
-  resolution: "double-ended-queue@npm:2.1.0-0"
-  checksum: 3030cf9dcf6f8e7d8cb6ae5b7304890445d7c32233a614e400ba7b378086ad76f5822d0e501afd5ffe0af1de4bcb842fa23d4c79174d54f6566399435fafc271
   languageName: node
   linkType: hard
 
@@ -3517,8 +3529,8 @@ __metadata:
   resolution: "langchain-nextjs-template@workspace:."
   dependencies:
     "@langchain/community": ^0.3.11
-    "@langchain/core": ^0.3.16
-    "@langchain/langgraph": ^0.2.18
+    "@langchain/core": ^0.3.17
+    "@langchain/langgraph": ^0.2.20
     "@langchain/openai": ^0.3.11
     "@next/bundle-analyzer": ^13.4.19
     "@supabase/supabase-js": ^2.32.0
@@ -5538,6 +5550,15 @@ __metadata:
   bin:
     uuid: dist/bin/uuid
   checksum: 4b81611ade2885d2313ddd8dc865d93d8dccc13ddf901745edca8f86d99bc46d7a330d678e7532e7ebf93ce616679fb19b2e3568873ac0c14c999032acb25869
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^9.0.0":
+  version: 9.0.1
+  resolution: "uuid@npm:9.0.1"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 39931f6da74e307f51c0fb463dc2462807531dc80760a9bff1e35af4316131b4fc3203d16da60ae33f07fdca5b56f3f1dd662da0c99fea9aaeab2004780cc5f4
   languageName: node
   linkType: hard
 
