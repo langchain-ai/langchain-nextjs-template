@@ -28,7 +28,7 @@ export function ChatWindow(props: {
   const [showIntermediateSteps, setShowIntermediateSteps] = useState(false);
   const [intermediateStepsLoading, setIntermediateStepsLoading] = useState(false);
   const ingestForm = showIngestForm && <UploadDocumentsForm></UploadDocumentsForm>;
-  const intemediateStepsToggle = showIntermediateStepsToggle && (
+  const intermediateStepsToggle = showIntermediateStepsToggle && (
     <div>
       <input type="checkbox" id="show_intermediate_steps" name="show_intermediate_steps" checked={showIntermediateSteps} onChange={(e) => setShowIntermediateSteps(e.target.checked)}></input>
       <label htmlFor="show_intermediate_steps"> Show intermediate steps</label>
@@ -153,7 +153,7 @@ export function ChatWindow(props: {
 
       <form onSubmit={sendMessage} className="flex w-full flex-col">
         <div className="flex">
-          {intemediateStepsToggle}
+          {intermediateStepsToggle}
         </div>
         <div className="flex w-full mt-4">
           <input
