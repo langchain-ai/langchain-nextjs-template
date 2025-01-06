@@ -14,8 +14,9 @@
   },
   "dependencies": {
     "@langchain/community": "^0.3.11",
-    "@langchain/core": "^0.3.17",
-    "@langchain/langgraph": "^0.2.20",
+    "@langchain/core": "^0.3.27",
+    "@langchain/langgraph": "^0.2.39",
+    "@langchain/langgraph-checkpoint-postgres": "^0.0.2",
     "@langchain/openai": "^0.3.11",
     "@next/bundle-analyzer": "^13.4.19",
     "@supabase/supabase-js": "^2.32.0",
@@ -28,6 +29,7 @@
     "eslint-config-next": "13.4.12",
     "langchain": "^0.3.5",
     "next": "^14.2.3",
+    "pg": "^8.13.1",
     "postcss": "8.4.27",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -38,6 +40,7 @@
     "zod-to-json-schema": "^3.21.4"
   },
   "devDependencies": {
+    "@types/pg": "^8.11.10",
     "prettier": "3.0.0"
   },
   "packageManager": "yarn@3.5.1"
