@@ -264,7 +264,7 @@ export function ChatWindow(props: {
     <StickToBottom>
       <StickyToBottomContent
         className="absolute inset-0"
-        contentClassName="py-8"
+        contentClassName="py-8 px-2"
         content={
           chat.messages.length === 0 ? (
             <div>{props.emptyStateComponent}</div>
@@ -278,7 +278,7 @@ export function ChatWindow(props: {
           )
         }
         footer={
-          <div className="sticky bottom-8">
+          <div className="sticky bottom-8 px-2">
             <ScrollToBottom className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4" />
             <ChatInput
               value={chat.input}
