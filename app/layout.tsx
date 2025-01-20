@@ -80,8 +80,9 @@ export default function RootLayout({
                   🤖 Retrieval Agents
                 </ActiveLink>
                 <ActiveLink href="/ai_sdk">
-                  🌊 LangChain x AI SDK RSC
+                  🌊 React Server Components
                 </ActiveLink>
+                <ActiveLink href="/langgraph">🕸️ LangGraph</ActiveLink>
               </nav>
             </div>
 
