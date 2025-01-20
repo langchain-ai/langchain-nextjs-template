@@ -1,11 +1,9 @@
 import { ChatWindow } from "@/components/ChatWindow";
+import { GuideInfoBox } from "@/components/guide/GuideInfoBox";
 
 export default function AgentsPage() {
   const InfoCard = (
-    <div className="p-4 md:p-8 rounded bg-[#25252d] w-full max-h-[85%] overflow-hidden">
-      <h1 className="text-3xl md:text-4xl mb-4">
-        ▲ Next.js + LangChain.js Structured Output 🦜🔗
-      </h1>
+    <GuideInfoBox>
       <ul>
         <li className="text-l">
           🧱
@@ -68,27 +66,13 @@ export default function AgentsPage() {
           </span>
         </li>
         <li className="text-l">
-          🐙
-          <span className="ml-2">
-            This template is open source - you can see the source code and
-            deploy your own version{" "}
-            <a
-              href="https://github.com/langchain-ai/langchain-nextjs-template"
-              target="_blank"
-            >
-              from the GitHub repo
-            </a>
-            !
-          </span>
-        </li>
-        <li className="text-l">
           👇
           <span className="ml-2">
             Try typing e.g. <code>What a beautiful day!</code> below!
           </span>
         </li>
       </ul>
-    </div>
+    </GuideInfoBox>
   );
   return (
     <ChatWindow
@@ -96,7 +80,6 @@ export default function AgentsPage() {
       emptyStateComponent={InfoCard}
       placeholder={`No matter what you type here, I'll always return the same JSON object with the same structure!`}
       emoji="🧱"
-      titleText="Structured Output"
-    ></ChatWindow>
+    />
   );
 }

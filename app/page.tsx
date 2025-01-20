@@ -1,11 +1,9 @@
 import { ChatWindow } from "@/components/ChatWindow";
+import { GuideInfoBox } from "@/components/guide/GuideInfoBox";
 
 export default function Home() {
   const InfoCard = (
-    <div className="p-4 md:p-8 rounded bg-[#25252d] w-full max-h-[85%] overflow-hidden">
-      <h1 className="text-3xl md:text-4xl mb-4">
-        ▲ Next.js + LangChain.js 🦜🔗
-      </h1>
+    <GuideInfoBox>
       <ul>
         <li className="text-l">
           🤝
@@ -46,35 +44,20 @@ export default function Home() {
           </span>
         </li>
         <li className="text-l">
-          🐙
-          <span className="ml-2">
-            This template is open source - you can see the source code and
-            deploy your own version{" "}
-            <a
-              href="https://github.com/langchain-ai/langchain-nextjs-template"
-              target="_blank"
-            >
-              from the GitHub repo
-            </a>
-            !
-          </span>
-        </li>
-        <li className="text-l">
           👇
           <span className="ml-2">
             Try asking e.g. <code>What is it like to be a pirate?</code> below!
           </span>
         </li>
       </ul>
-    </div>
+    </GuideInfoBox>
   );
   return (
     <ChatWindow
       endpoint="api/chat"
       emoji="🏴‍☠️"
-      titleText="Patchy the Chatty Pirate"
       placeholder="I'm an LLM pretending to be a pirate! Ask me about the pirate life!"
       emptyStateComponent={InfoCard}
-    ></ChatWindow>
+    />
   );
 }

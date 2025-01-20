@@ -3,6 +3,9 @@
 import { readStreamableValue } from "ai/rsc";
 import React, { useEffect, useRef, useState } from "react";
 import { executeTool } from "./action";
+import { Input } from "@/components/ui/input";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "@/components/ui/button";
 
 export default function Page() {
   const [input, setInput] = useState("");
@@ -37,56 +40,41 @@ export default function Page() {
   return (
     <div className="mx-auto w-full max-w-4xl py-12 flex flex-col stretch gap-3">
       <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-        <input
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        <Input
           placeholder="What's the weather in XYZ city and XYZ state"
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
         <div className="flex items-center">
-          <input
+          <Checkbox
             id="wso-checkbox"
-            type="checkbox"
             checked={options.wso}
-            onChange={(e) =>
-              setOptions((prev) => ({ ...prev, wso: e.target.checked }))
+            onCheckedChange={(checked) =>
+              setOptions((prev) => ({ ...prev, wso: !!checked }))
             }
-            className="w-4 h-4 text-gray-100 border-gray-300 rounded focus:ring-blue-500"
           />
-          <label
-            htmlFor="wso-checkbox"
-            className="ml-2 text-sm font-medium text-gray-100"
-          >
-            Use withStructuredOutput
+          <label htmlFor="wso-checkbox" className="ml-2 text-sm font-medium">
+            Use <code>withStructuredOutput</code>
           </label>
         </div>
         <div className="flex items-center">
-          <input
+          <Checkbox
             id="stream-events-checkbox"
-            type="checkbox"
             checked={options.streamEvents}
-            onChange={(e) =>
-              setOptions((prev) => ({
-                ...prev,
-                streamEvents: e.target.checked,
-              }))
+            onCheckedChange={(checked) =>
+              setOptions((prev) => ({ ...prev, streamEvents: !!checked }))
             }
-            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
           />
           <label
             htmlFor="stream-events-checkbox"
-            className="ml-2 text-sm font-medium text-gray-100"
+            className="ml-2 text-sm font-medium"
           >
-            Use streamEvents
+            Use <code>streamEvents</code>
           </label>
         </div>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          type="submit"
-          disabled={isLoading}
-        >
+        <Button type="submit" disabled={isLoading}>
           Submit
-        </button>
+        </Button>
       </form>
       <div
         ref={scrollRef}
