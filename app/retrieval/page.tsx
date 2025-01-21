@@ -1,11 +1,9 @@
 import { ChatWindow } from "@/components/ChatWindow";
+import { GuideInfoBox } from "@/components/guide/GuideInfoBox";
 
 export default function AgentsPage() {
   const InfoCard = (
-    <div className="p-4 md:p-8 rounded bg-[#25252d] w-full max-h-[85%] overflow-hidden">
-      <h1 className="text-3xl md:text-4xl mb-4">
-        ▲ Next.js + LangChain.js Retrieval Chain 🦜🔗
-      </h1>
+    <GuideInfoBox>
       <ul>
         <li className="hidden text-l md:block">
           🔗
@@ -67,20 +65,6 @@ export default function AgentsPage() {
             <code>app/retrieval/page.tsx</code>.
           </span>
         </li>
-        <li className="text-l">
-          🐙
-          <span className="ml-2">
-            This template is open source - you can see the source code and
-            deploy your own version{" "}
-            <a
-              href="https://github.com/langchain-ai/langchain-nextjs-template"
-              target="_blank"
-            >
-              from the GitHub repo
-            </a>
-            !
-          </span>
-        </li>
         <li className="hidden text-l md:block">
           🔱
           <span className="ml-2">
@@ -96,7 +80,7 @@ export default function AgentsPage() {
           </span>
         </li>
       </ul>
-    </div>
+    </GuideInfoBox>
   );
   return (
     <ChatWindow
@@ -107,7 +91,6 @@ export default function AgentsPage() {
         'I\'ve got a nose for finding the right documents! Ask, "What is a document loader?"'
       }
       emoji="🐶"
-      titleText="Dana the Document-Retrieving Dog"
-    ></ChatWindow>
+    />
   );
 }

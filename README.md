@@ -16,7 +16,7 @@ Most of them use Vercel's [AI SDK](https://github.com/vercel-labs/ai) to stream 
 
 The agents use [LangGraph.js](https://langchain-ai.github.io/langgraphjs/), LangChain's framework for building agentic workflows. They use preconfigured helper functions to minimize boilerplate, but you can replace them with custom graphs as desired.
 
-![Demo GIF](/public/images/agent-convo.gif)
+https://github.com/user-attachments/assets/e389e4e4-4fb9-4223-a4c2-dc002c8f20d3
 
 It's free-tier friendly too! Check out the [bundle size stats below](#-bundle-size).
 
@@ -86,10 +86,6 @@ For a given text, you'll only need to press `Upload` once. Pressing it again wil
 You can clear your Supabase vector store by navigating to the console and running `DELETE FROM documents;`.
 
 After splitting, embedding, and uploading some text, you're ready to ask questions!
-
-![A streaming conversation between the user and an AI retrieval chain](/public/images/retrieval-chain-conversation.png)
-
-![A streaming conversation between the user and an AI retrieval agent](/public/images/retrieval-agent-conversation.png)
 
 For more info on retrieval chains, [see this page](https://js.langchain.com/docs/tutorials/rag).
 The specific variant of the conversational retrieval chain used here is composed using LangChain Expression Language, which you can

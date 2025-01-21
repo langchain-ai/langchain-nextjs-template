@@ -1,18 +1,21 @@
 "use client";
 
-import { usePathname } from 'next/navigation';
+import { cn } from "@/utils/cn";
+import { usePathname } from "next/navigation";
+import { ReactNode } from "react";
+import Link from "next/link";
 
-export function Navbar() {
+export const ActiveLink = (props: { href: string; children: ReactNode }) => {
   const pathname = usePathname();
   return (
-    <nav className="mb-4">
-      <a className={`mr-4 ${pathname === "/" ? "text-white border-b" : ""}`} href="/">🏴‍☠️ Chat</a>
-      <a className={`mr-4 ${pathname === "/structured_output" ? "text-white border-b" : ""}`} href="/structured_output">🧱 Structured Output</a>
-      <a className={`mr-4 ${pathname === "/agents" ? "text-white border-b" : ""}`} href="/agents">🦜 Agents</a>
-      <a className={`mr-4 ${pathname === "/retrieval" ? "text-white border-b" : ""}`} href="/retrieval">🐶 Retrieval</a>
-      <a className={`mr-4 ${pathname === "/retrieval_agents" ? "text-white border-b" : ""}`} href="/retrieval_agents">🤖 Retrieval Agents</a>
-      <a className={`mr-4 ${pathname === "/ai_sdk" ? "text-white border-b" : ""}`} href="/ai_sdk">🌊 LangChain x AI SDK</a>
-      <a className={`mr-4 ${pathname === "/generative_ui" ? "text-white border-b" : ""}`} href="/generative_ui">✨ Generative UI</a>
-    </nav>
+    <Link
+      href={props.href}
+      className={cn(
+        "px-4 py-2 rounded-[18px] whitespace-nowrap flex items-center gap-2 text-sm transition-all",
+        pathname === props.href && "bg-primary text-primary-foreground",
+      )}
+    >
+      {props.children}
+    </Link>
   );
-}
+};

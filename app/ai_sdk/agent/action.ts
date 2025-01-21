@@ -11,18 +11,13 @@ export async function runAgent(input: string) {
   "use server";
 
   const stream = createStreamableValue();
-
   (async () => {
     const tools = [new TavilySearchResults({ maxResults: 1 })];
-
     const prompt = await pull<ChatPromptTemplate>(
       "hwchase17/openai-tools-agent",
     );
 
-    const llm = new ChatOpenAI({
-      model: "gpt-4o-mini",
-      temperature: 0,
-    });
+    const llm = new ChatOpenAI({ model: "gpt-4o-mini", temperature: 0 });
 
     const agent = createToolCallingAgent({
       llm,
@@ -30,18 +25,11 @@ export async function runAgent(input: string) {
       prompt,
     });
 
-    const agentExecutor = new AgentExecutor({
-      agent,
-      tools,
-    });
+    const agentExecutor = new AgentExecutor({ agent, tools });
 
     const streamingEvents = agentExecutor.streamEvents(
-      {
-        input,
-      },
-      {
-        version: "v2",
-      },
+      { input },
+      { version: "v2" },
     );
 
     for await (const item of streamingEvents) {

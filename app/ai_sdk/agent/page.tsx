@@ -4,6 +4,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { readStreamableValue } from "ai/rsc";
 import { runAgent } from "./action";
 import { StreamEvent } from "@langchain/core/tracers/log_stream";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export default function Page() {
   const [input, setInput] = useState("");
@@ -21,33 +23,32 @@ export default function Page() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!input) return;
-    setIsLoading(true);
-    setData([]);
-    setInput("");
 
-    const { streamData } = await runAgent(input);
-    for await (const item of readStreamableValue(streamData)) {
-      setData((prev) => [...prev, item]);
+    try {
+      setIsLoading(true);
+      setData([]);
+      setInput("");
+
+      const { streamData } = await runAgent(input);
+      for await (const item of readStreamableValue(streamData)) {
+        setData((prev) => [...prev, item]);
+      }
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }
 
   return (
     <div className="mx-auto w-full max-w-4xl py-12 flex flex-col stretch gap-3">
       <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-        <input
-          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        <Input
           placeholder="What's the weather like in..."
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          type="submit"
-          disabled={isLoading}
-        >
+        <Button type="submit" disabled={isLoading}>
           Submit
-        </button>
+        </Button>
       </form>
       <div
         ref={scrollRef}
@@ -70,6 +71,7 @@ export default function Page() {
           <p className="break-words">{data[0].data.input.input}</p>
         </div>
       )}
+
       {!isLoading && data.length > 1 && (
         <>
           <hr />
