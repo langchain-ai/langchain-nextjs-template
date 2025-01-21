@@ -56,6 +56,7 @@ export function useStream<
     options?.threadId ?? null,
   );
   const { withMessages, onError } = options ?? {};
+  const [events, setEvents] = useState<{ event: string; data: any }[]>([]);
 
   // TODO: fetch the initial values from the server
   const [values, setValues] = useState<StateType>({} as StateType);
@@ -127,6 +128,7 @@ export function useStream<
         }
 
         for await (const { event, data } of run) {
+          setEvents((events) => [...events, { event, data }]);
           if (event === "values") {
             setValues(data);
           } else if (event === "messages") {
@@ -178,5 +180,6 @@ export function useStream<
 
       return getMessages(values);
     },
+    events,
   };
 }

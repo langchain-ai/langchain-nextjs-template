@@ -17,7 +17,9 @@ const builder = new StateGraph(
   }),
 )
   .addNode("agent", async (state) => {
-    const message = await new ChatOpenAI({ modelName: "gpt-4o-mini" })
+    const message = await new ChatAnthropic({
+      modelName: "claude-3-5-sonnet-20240620",
+    })
       .bindTools([new TavilySearchResults({ maxResults: 4 })])
       .invoke([
         new SystemMessage({
