@@ -16,7 +16,7 @@ Most of them use Vercel's [AI SDK](https://github.com/vercel-labs/ai) to stream 
 
 The agents use [LangGraph.js](https://langchain-ai.github.io/langgraphjs/), LangChain's framework for building agentic workflows. They use preconfigured helper functions to minimize boilerplate, but you can replace them with custom graphs as desired.
 
-<video src="./public/images/agent-convo.mp4" controls muted autoPlay loop></video>
+https://github.com/user-attachments/assets/e389e4e4-4fb9-4223-a4c2-dc002c8f20d3
 
 It's free-tier friendly too! Check out the [bundle size stats below](#-bundle-size).
 
