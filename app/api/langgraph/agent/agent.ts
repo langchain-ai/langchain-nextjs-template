@@ -2,13 +2,13 @@ import {
   StateGraph,
   MessagesAnnotation,
   START,
-  END,
   Annotation,
 } from "@langchain/langgraph";
-import { ChatAnthropic } from "@langchain/anthropic";
-import { ChatOpenAI } from "@langchain/openai";
-import { TavilySearchResults } from "@langchain/community/tools/tavily_search";
 import { SystemMessage } from "@langchain/core/messages";
+import { ChatOpenAI } from "@langchain/openai";
+
+// const llm = new ChatOllama({ model: "deepseek-r1" });
+const llm = new ChatOpenAI({ model: "gpt-4o-mini", temperature: 0 });
 
 const builder = new StateGraph(
   Annotation.Root({
@@ -16,18 +16,15 @@ const builder = new StateGraph(
     timestamp: Annotation<number>,
   }),
 )
-  .addNode("agent", async (state) => {
-    const message = await new ChatAnthropic({
-      modelName: "claude-3-5-sonnet-20240620",
-    })
-      .bindTools([new TavilySearchResults({ maxResults: 4 })])
-      .invoke([
-        new SystemMessage({
-          content:
-            "You are a web search agent that uses tools to search the web for information",
-        }),
-        ...state.messages,
-      ]);
+  .addNode("agent", async (state, config) => {
+    // stream custom events
+    for (let count = 0; count < 10; count++) config.writer?.({ count });
+    const message = await llm.invoke([
+      new SystemMessage(
+        "You are a web search agent that uses tools to search the web for information",
+      ),
+      ...state.messages,
+    ]);
 
     return { messages: message, timestamp: Date.now() };
   })
