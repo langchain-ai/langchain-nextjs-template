@@ -159,6 +159,7 @@ const client = new Client<{ messages?: Message[]; timestamp?: number }>({
 function StatefulChatInput(props: {
   loading: boolean;
   onSubmit: (value: string) => void;
+  onStop: () => void;
 }) {
   const [input, setInput] = useState("");
 
@@ -167,6 +168,7 @@ function StatefulChatInput(props: {
       loading={props.loading}
       value={input}
       onChange={(e) => setInput(e.target.value)}
+      onStop={props.onStop}
       onSubmit={(e) => {
         e.preventDefault();
         setInput("");
@@ -223,18 +225,10 @@ export default function LanggraphPage() {
                 <Message
                   key={message.id ?? index}
                   message={message}
-                  onEdit={(message) => {
-                    thread.handleSubmit(
-                      { messages: [message] },
-                      { checkpoint },
-                    );
-                  }}
-                  onRegenerate={() =>
-                    thread.handleSubmit(undefined, {
-                      command: { update: null },
-                      checkpoint,
-                    })
+                  onEdit={(message) =>
+                    thread.submit({ messages: [message] }, { checkpoint })
                   }
+                  onRegenerate={() => thread.submit(undefined, { checkpoint })}
                   actions={
                     meta?.branch != null &&
                     meta?.branchOptions != null && (
@@ -248,6 +242,10 @@ export default function LanggraphPage() {
                 />
               );
             })}
+
+            {thread.error ? (
+              <div className="text-red-500">{thread.error.toString()}</div>
+            ) : null}
           </div>
         ) : (
           <GuideInfoBox>
@@ -261,8 +259,9 @@ export default function LanggraphPage() {
       footer={
         <StatefulChatInput
           loading={thread.isLoading}
+          onStop={thread.stop}
           onSubmit={(input) => {
-            thread.handleSubmit(
+            thread.submit(
               { messages: [{ type: "human", content: input }] },
               {
                 optimisticValues: (prev) => ({

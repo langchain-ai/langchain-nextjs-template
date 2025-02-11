@@ -53,6 +53,7 @@ function ChatMessages(props: {
 
 export function ChatInput(props: {
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
+  onStop?: () => void;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   loading?: boolean;
@@ -61,12 +62,18 @@ export function ChatInput(props: {
   className?: string;
   actions?: ReactNode;
 }) {
+  const disabled = props.loading && props.onStop == null;
   return (
     <form
       onSubmit={(e) => {
         e.stopPropagation();
         e.preventDefault();
-        props.onSubmit(e);
+
+        if (props.loading) {
+          props.onStop?.();
+        } else {
+          props.onSubmit(e);
+        }
       }}
       className={cn("flex w-full flex-col", props.className)}
     >
@@ -83,7 +90,7 @@ export function ChatInput(props: {
 
           <div className="flex gap-2 self-end">
             {props.actions}
-            <Button type="submit" className="self-end" disabled={props.loading}>
+            <Button type="submit" className="self-end" disabled={disabled}>
               {props.loading ? (
                 <span role="status" className="flex justify-center">
                   <LoaderCircle className="animate-spin" />
