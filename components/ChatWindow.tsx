@@ -1,16 +1,16 @@
 "use client";
 
-import { type Message } from "ai";
-import { useChat } from "ai/react";
+import { UIMessage, type Message } from "ai";
+import { useChat } from "@ai-sdk/react";
 import { useState } from "react";
 import type { FormEvent, ReactNode } from "react";
 import { toast } from "sonner";
 import { StickToBottom, useStickToBottomContext } from "use-stick-to-bottom";
+import { ArrowDown, LoaderCircle, Paperclip } from "lucide-react";
 
 import { ChatMessageBubble } from "@/components/ChatMessageBubble";
 import { IntermediateStep } from "./IntermediateStep";
 import { Button } from "./ui/button";
-import { ArrowDown, LoaderCircle, Paperclip } from "lucide-react";
 import { Checkbox } from "./ui/checkbox";
 import { UploadDocumentsForm } from "./UploadDocumentsForm";
 import {
@@ -143,6 +143,7 @@ export function ChatWindow(props: {
   emoji?: string;
   showIngestForm?: boolean;
   showIntermediateStepsToggle?: boolean;
+  streamProtocol?: "text" | "data";
 }) {
   const [showIntermediateSteps, setShowIntermediateSteps] = useState(
     !!props.showIntermediateStepsToggle,
@@ -170,16 +171,22 @@ export function ChatWindow(props: {
         });
       }
     },
-    streamMode: "text",
-    onError: (e) =>
+    streamProtocol: props.streamProtocol ?? undefined,
+    onError: (e) => {
+      console.log("Error:", e);
       toast.error(`Error while processing your request`, {
         description: e.message,
-      }),
+      });
+    },
   });
+
+  function isChatLoading(): boolean {
+    return chat.status === "streaming";
+  }
 
   async function sendMessage(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (chat.isLoading || intermediateStepsLoading) return;
+    if (isChatLoading() || intermediateStepsLoading) return;
 
     if (!showIntermediateSteps) {
       chat.handleSubmit(e);
@@ -194,6 +201,7 @@ export function ChatWindow(props: {
       id: chat.messages.length.toString(),
       content: chat.input,
       role: "user",
+      parts: [{ type: "text", text: chat.input }],
     });
     chat.setMessages(messagesWithUserReply);
 
@@ -208,6 +216,7 @@ export function ChatWindow(props: {
     setIntermediateStepsLoading(false);
 
     if (!response.ok) {
+      console.log("Error:", json.error);
       toast.error(`Error while processing your request`, {
         description: json.error,
       });
@@ -222,23 +231,25 @@ export function ChatWindow(props: {
       (responseMessage: Message) => {
         return (
           (responseMessage.role === "assistant" &&
-            !!responseMessage.tool_calls?.length) ||
-          responseMessage.role === "tool"
+            !!responseMessage.parts?.length) ||
+          responseMessage.role === "system"
         );
       },
     );
 
-    const intermediateStepMessages = [];
+    const intermediateStepMessages: UIMessage[] = [];
     for (let i = 0; i < toolCallMessages.length; i += 2) {
       const aiMessage = toolCallMessages[i];
       const toolMessage = toolCallMessages[i + 1];
+      const content = JSON.stringify({
+        action: aiMessage.parts?.[0],
+        observation: toolMessage.content,
+      });
       intermediateStepMessages.push({
         id: (messagesWithUserReply.length + i / 2).toString(),
         role: "system" as const,
-        content: JSON.stringify({
-          action: aiMessage.tool_calls?.[0],
-          observation: toolMessage.content,
-        }),
+        content,
+        parts: [{ type: "text", text: content }],
       });
     }
     const newMessages = messagesWithUserReply;
@@ -319,7 +330,7 @@ export function ChatWindow(props: {
                     id="show_intermediate_steps"
                     name="show_intermediate_steps"
                     checked={showIntermediateSteps}
-                    disabled={chat.isLoading || intermediateStepsLoading}
+                    disabled={isChatLoading() || intermediateStepsLoading}
                     onCheckedChange={(e) => setShowIntermediateSteps(!!e)}
                   />
                   <label htmlFor="show_intermediate_steps" className="text-sm">
