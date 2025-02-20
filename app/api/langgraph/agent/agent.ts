@@ -7,7 +7,6 @@ import {
 import { SystemMessage } from "@langchain/core/messages";
 import { ChatOpenAI } from "@langchain/openai";
 
-// const llm = new ChatOllama({ model: "deepseek-r1" });
 const llm = new ChatOpenAI({ model: "gpt-4o-mini", temperature: 0 });
 
 const builder = new StateGraph(

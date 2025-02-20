@@ -2,7 +2,7 @@
 
 import { ChatInput, ChatLayout } from "@/components/ChatWindow";
 import { GuideInfoBox } from "@/components/guide/GuideInfoBox";
-import { ReactNode, useState } from "react";
+import { ReactNode, Suspense, useState } from "react";
 import { toast } from "sonner";
 import { cn } from "@/utils/cn";
 import { useStream } from "@langchain/langgraph-sdk/react";
@@ -178,7 +178,7 @@ function StatefulChatInput(props: {
   );
 }
 
-export default function LanggraphPage() {
+function ClientLanggraphPage() {
   const [threadId, setThreadId] = useQueryState("threadId");
 
   const thread = useStream<{ messages?: Message[]; timestamp?: number }>({
@@ -274,5 +274,13 @@ export default function LanggraphPage() {
         />
       }
     />
+  );
+}
+
+export default function LanggraphPage() {
+  return (
+    <Suspense>
+      <ClientLanggraphPage />
+    </Suspense>
   );
 }
