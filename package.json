@@ -14,7 +14,6 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@langchain/anthropic": "^0.3.12",
     "@langchain/community": "^0.3.25",
     "@langchain/core": "^0.3.31",
     "@langchain/langgraph": "^0.2.41",
