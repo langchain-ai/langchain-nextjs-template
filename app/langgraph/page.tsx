@@ -181,9 +181,9 @@ function StatefulChatInput(props: {
 export default function LanggraphPage() {
   const [threadId, setThreadId] = useQueryState("threadId");
 
-  const thread = useStream({
+  const thread = useStream<{ messages?: Message[]; timestamp?: number }>({
     assistantId: "agent",
-    client,
+    apiUrl: "http://localhost:2024",
     threadId,
 
     onThreadId: setThreadId,
@@ -191,8 +191,6 @@ export default function LanggraphPage() {
     onFinish: (state) => {
       console.log("onFinish", state);
     },
-
-    withMessages: "messages",
   });
 
   return (
