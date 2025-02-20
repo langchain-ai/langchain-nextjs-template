@@ -80,7 +80,10 @@ function Message(props: {
         <div className="whitespace-pre-wrap flex flex-col">
           {typeof props.message.content === "string"
             ? props.message.content
-            : JSON.stringify(props.message.content, null, 2)}
+            : props.message.content.map((part) => {
+                if (part.type === "text") return part.text;
+                return null;
+              })}
         </div>
       </div>
 
@@ -202,8 +205,6 @@ function ClientLanggraphPage() {
               <span>Timestamp: {thread.values.timestamp}</span>
             </div>
 
-            {/* <DebugSegmentsView sequence={thread.sequence} /> */}
-
             <div className="flex justify-between gap-2 items-center">
               <span>Thread ID: {threadId}</span>
               <Button
@@ -218,6 +219,8 @@ function ClientLanggraphPage() {
             {thread.messages.map((message, index) => {
               const meta = thread.getMessagesMetadata(message, index);
               const checkpoint = meta?.firstSeenState?.parent_checkpoint;
+
+              console.log("message", message);
 
               return (
                 <Message
