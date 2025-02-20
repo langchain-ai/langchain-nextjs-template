@@ -4,7 +4,6 @@ import {
   START,
   Annotation,
 } from "@langchain/langgraph";
-import { SystemMessage } from "@langchain/core/messages";
 import { ChatOpenAI } from "@langchain/openai";
 
 const llm = new ChatOpenAI({ model: "gpt-4o-mini", temperature: 0 });
@@ -16,12 +15,13 @@ const builder = new StateGraph(
   }),
 )
   .addNode("agent", async (state, config) => {
-    // stream custom events
-    for (let count = 0; count < 10; count++) config.writer?.({ count });
     const message = await llm.invoke([
-      new SystemMessage(
-        "You are a web search agent that uses tools to search the web for information",
-      ),
+      {
+        type: "system",
+        content:
+          "You are a pirate named Patchy. " +
+          "All responses must be extremely verbose and in pirate dialect.",
+      },
       ...state.messages,
     ]);
 
