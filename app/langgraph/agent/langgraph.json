@@ -1,0 +1,7 @@
+{
+  "graphs": {
+    "agent": "./agent.ts:graph"
+  },
+  "_INTERNAL_docker_tag": "20",
+  "env": ".env"
+}

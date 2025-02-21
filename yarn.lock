@@ -893,6 +893,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@langchain/langgraph-sdk@npm:^0.0.45":
+  version: 0.0.45
+  resolution: "@langchain/langgraph-sdk@npm:0.0.45"
+  dependencies:
+    "@types/json-schema": ^7.0.15
+    p-queue: ^6.6.2
+    p-retry: 4
+    uuid: ^9.0.0
+  peerDependencies:
+    "@langchain/core": ">=0.2.31 <0.4.0"
+    react: ^18 || ^19
+  peerDependenciesMeta:
+    "@langchain/core":
+      optional: true
+    react:
+      optional: true
+  checksum: cdaa131ecb0c989ee555ea48e579f91d868298205618001671d91ce1366935d001568f9c897e5de482ccac966272afcf7ab5e11622ea34634e9ec64d4241536e
+  languageName: node
+  linkType: hard
+
 "@langchain/langgraph-sdk@npm:~0.0.32":
   version: 0.0.36
   resolution: "@langchain/langgraph-sdk@npm:0.0.36"
@@ -4268,6 +4288,7 @@ __metadata:
     "@langchain/community": ^0.3.25
     "@langchain/core": ^0.3.31
     "@langchain/langgraph": ^0.2.41
+    "@langchain/langgraph-sdk": ^0.0.45
     "@langchain/openai": ^0.3.17
     "@next/bundle-analyzer": ^13.4.19
     "@radix-ui/react-checkbox": ^1.1.3
@@ -4288,6 +4309,7 @@ __metadata:
     lucide-react: ^0.473.0
     next: ^15.1.5
     next-themes: ^0.4.4
+    nuqs: ^2.3.2
     postcss: 8.4.27
     prettier: ^3.4.2
     react: ^18.3.1
@@ -4732,6 +4754,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mitt@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "mitt@npm:3.0.1"
+  checksum: b55a489ac9c2949ab166b7f060601d3b6d893a852515ae9eca4e11df01c013876df777ea109317622b5c1c60e8aae252558e33c8c94e14124db38f64a39614b1
+  languageName: node
+  linkType: hard
+
 "mkdirp@npm:^1.0.3":
   version: 1.0.4
   resolution: "mkdirp@npm:1.0.4"
@@ -4955,6 +4984,30 @@ __metadata:
   version: 0.1.2
   resolution: "normalize-range@npm:0.1.2"
   checksum: 9b2f14f093593f367a7a0834267c24f3cb3e887a2d9809c77d8a7e5fd08738bcd15af46f0ab01cc3a3d660386f015816b5c922cea8bf2ee79777f40874063184
+  languageName: node
+  linkType: hard
+
+"nuqs@npm:^2.3.2":
+  version: 2.3.2
+  resolution: "nuqs@npm:2.3.2"
+  dependencies:
+    mitt: ^3.0.1
+  peerDependencies:
+    "@remix-run/react": ">=2"
+    next: ">=14.2.0"
+    react: ">=18.2.0 || ^19.0.0-0"
+    react-router: ^6 || ^7
+    react-router-dom: ^6 || ^7
+  peerDependenciesMeta:
+    "@remix-run/react":
+      optional: true
+    next:
+      optional: true
+    react-router:
+      optional: true
+    react-router-dom:
+      optional: true
+  checksum: 4dc7846be622677022cd993fda27deddd84c66b1b5d52173e33b9e815d8becadef783d9ab437b09f7c8bf4597917ad3d386ac9d82735d654a87a62d60c445277
   languageName: node
   linkType: hard
 
