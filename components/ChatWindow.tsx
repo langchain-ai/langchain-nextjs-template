@@ -22,6 +22,7 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 import { cn } from "@/utils/cn";
+import { logError } from "@/utils/log";
 
 function ChatMessages(props: {
   messages: Message[];
@@ -173,7 +174,7 @@ export function ChatWindow(props: {
     },
     streamProtocol: props.streamProtocol ?? undefined,
     onError: (e) => {
-      console.log("Error:", e);
+      logError("Error:", e);
       toast.error(`Error while processing your request`, {
         description: e.message,
       });
@@ -216,7 +217,7 @@ export function ChatWindow(props: {
     setIntermediateStepsLoading(false);
 
     if (!response.ok) {
-      console.log("Error:", json.error);
+      logError("Error:", json.error);
       toast.error(`Error while processing your request`, {
         description: json.error,
       });
