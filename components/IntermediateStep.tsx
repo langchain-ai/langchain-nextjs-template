@@ -1,7 +1,7 @@
 import { useState } from "react";
-import type { Message } from "ai/react";
-import { cn } from "@/utils/cn";
+import type { Message } from "@ai-sdk/react";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { cn } from "@/utils/cn";
 
 export function IntermediateStep(props: { message: Message }) {
   const parsedInput = JSON.parse(props.message.content);

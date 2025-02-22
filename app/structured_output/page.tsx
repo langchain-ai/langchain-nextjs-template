@@ -80,6 +80,7 @@ export default function AgentsPage() {
       emptyStateComponent={InfoCard}
       placeholder={`No matter what you type here, I'll always return the same JSON object with the same structure!`}
       emoji="🧱"
+      streamProtocol="text"
     />
   );
 }

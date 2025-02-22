@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
+import { LangChainAdapter, Message as VercelChatMessage } from "ai";
 
 import { createClient } from "@supabase/supabase-js";
 
@@ -46,7 +46,7 @@ const AGENT_SYSTEM_TEMPLATE = `You are a stereotypical robot named Robbie and mu
 If you don't know how to answer a question, use the available tools to look up relevant information. You should particularly do this for questions about LangChain.`;
 
 /**
- * This handler initializes and calls an tool caling ReAct agent.
+ * This handler initializes and calls an tool calling ReAct agent.
  * See the docs for more information:
  *
  * https://langchain-ai.github.io/langgraphjs/tutorials/quickstart/
@@ -96,7 +96,7 @@ export async function POST(req: NextRequest) {
     /**
      * Use a prebuilt LangGraph agent.
      */
-    const agent = await createReactAgent({
+    const agent = createReactAgent({
       llm: chatModel,
       tools: [tool],
       /**
@@ -112,38 +112,20 @@ export async function POST(req: NextRequest) {
       /**
        * Stream back all generated tokens and steps from their runs.
        *
-       * We do some filtering of the generated events and only stream back
-       * the final response as a string.
-       *
        * For this specific type of tool calling ReAct agents with OpenAI, we can tell when
        * the agent is ready to stream back final output when it no longer calls
        * a tool and instead streams back content.
        *
        * See: https://langchain-ai.github.io/langgraphjs/how-tos/stream-tokens/
        */
-      const eventStream = await agent.streamEvents(
+      const eventStream = agent.streamEvents(
         {
           messages,
         },
         { version: "v2" },
       );
 
-      const textEncoder = new TextEncoder();
-      const transformStream = new ReadableStream({
-        async start(controller) {
-          for await (const { event, data } of eventStream) {
-            if (event === "on_chat_model_stream") {
-              // Intermediate chat model generations will contain tool calls and no content
-              if (!!data.chunk.content) {
-                controller.enqueue(textEncoder.encode(data.chunk.content));
-              }
-            }
-          }
-          controller.close();
-        },
-      });
-
-      return new StreamingTextResponse(transformStream);
+      return LangChainAdapter.toDataStreamResponse(eventStream);
     } else {
       /**
        * We could also pick intermediate steps out from `streamEvents` chunks, but
