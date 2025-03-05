@@ -9,7 +9,7 @@ import { useStream } from "@langchain/langgraph-sdk/react";
 import { useQueryState } from "nuqs";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Client, Message } from "@langchain/langgraph-sdk";
+import { Message } from "@langchain/langgraph-sdk";
 
 const onError = (error: unknown) => {
   toast.error("Failed to handle input", {
@@ -155,10 +155,6 @@ function BranchPicker(props: {
   );
 }
 
-const client = new Client<{ messages?: Message[]; timestamp?: number }>({
-  apiUrl: "http://localhost:2024",
-});
-
 function StatefulChatInput(props: {
   loading: boolean;
   onSubmit: (value: string) => void;
@@ -191,9 +187,6 @@ function ClientLanggraphPage() {
 
     onThreadId: setThreadId,
     onError,
-    onFinish: (state) => {
-      console.log("onFinish", state);
-    },
   });
 
   return (
@@ -219,8 +212,6 @@ function ClientLanggraphPage() {
             {thread.messages.map((message, index) => {
               const meta = thread.getMessagesMetadata(message, index);
               const checkpoint = meta?.firstSeenState?.parent_checkpoint;
-
-              console.log("message", message);
 
               return (
                 <Message
