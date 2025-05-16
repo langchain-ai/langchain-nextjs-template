@@ -118,7 +118,13 @@ export async function POST(req: NextRequest) {
         },
       });
 
-      return new StreamingTextResponse(transformStream);
+      return new Response(transformStream, {
+        headers: {
+          "Content-Type": "text/event-stream",
+          "Cache-Control": "no-cache",
+          "Connection": "keep-alive",
+        },  
+      });
     } else {
       /**
        * We could also pick intermediate steps out from `streamEvents` chunks, but
