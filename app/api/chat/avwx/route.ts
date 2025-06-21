@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
+import { Message as VercelChatMessage } from "ai";
 
 import { createReactAgent } from "@langchain/langgraph/prebuilt";
 import { ChatOpenAI } from "@langchain/openai";
-import { SerpAPI } from "@langchain/community/tools/serpapi";
-import { Calculator } from "@langchain/community/tools/calculator";
 import {
   AIMessage,
   BaseMessage,
@@ -13,7 +11,11 @@ import {
   SystemMessage,
 } from "@langchain/core/messages";
 
-export const runtime = "edge";
+import { Client } from "@modelcontextprotocol/sdk/client/index.js";
+import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
+import { loadMcpTools } from "@langchain/mcp-adapters";
+
+// export const runtime = "edge";
 
 const convertVercelMessageToLangChainMessage = (message: VercelChatMessage) => {
   if (message.role === "user") {
@@ -40,7 +42,7 @@ const convertLangChainMessageToVercelMessage = (message: BaseMessage) => {
   }
 };
 
-const AGENT_SYSTEM_TEMPLATE = `You are a talking parrot named Polly. All final responses must be how a talking parrot would respond. Squawk often!`;
+const AGENT_SYSTEM_TEMPLATE = `I am an LLM to answer aviation weather questions. I can use tools to answer questions about aviation weather, such as METARs, TAFs, and more.`;
 
 /**
  * This handler initializes and calls an tool caling ReAct agent.
@@ -63,11 +65,25 @@ export async function POST(req: NextRequest) {
       )
       .map(convertVercelMessageToLangChainMessage);
 
-    // Requires process.env.SERPAPI_API_KEY to be set: https://serpapi.com/
-    // You can remove this or use a different tool instead.
-    const tools = [new Calculator(), new SerpAPI()];
+    const transport = new StreamableHTTPClientTransport(
+      new URL("http://localhost:3001/mcp"),
+    );
+
+    const client = new Client({
+      name: "aviation-weather-client",
+      version: "1.0.0",
+    });
+
+    await client.connect(transport);
+
+    const tools = await loadMcpTools("aviation_weather", client, {
+      throwOnLoadError: true,
+      prefixToolNameWithServerName: false,
+      additionalToolNamePrefix: "",
+    });
+
     const chat = new ChatOpenAI({
-      model: "gpt-4o-mini",
+      model: "gpt-4.1",
       temperature: 0,
     });
 
@@ -77,28 +93,10 @@ export async function POST(req: NextRequest) {
     const agent = createReactAgent({
       llm: chat,
       tools,
-      /**
-       * Modify the stock prompt in the prebuilt agent. See docs
-       * for how to customize your agent:
-       *
-       * https://langchain-ai.github.io/langgraphjs/tutorials/quickstart/
-       */
       messageModifier: new SystemMessage(AGENT_SYSTEM_TEMPLATE),
     });
 
     if (!returnIntermediateSteps) {
-      /**
-       * Stream back all generated tokens and steps from their runs.
-       *
-       * We do some filtering of the generated events and only stream back
-       * the final response as a string.
-       *
-       * For this specific type of tool calling ReAct agents with OpenAI, we can tell when
-       * the agent is ready to stream back final output when it no longer calls
-       * a tool and instead streams back content.
-       *
-       * See: https://langchain-ai.github.io/langgraphjs/how-tos/stream-tokens/
-       */
       const eventStream = await agent.streamEvents(
         { messages },
         { version: "v2" },
