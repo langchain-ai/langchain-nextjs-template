@@ -160,11 +160,14 @@ export async function POST(req: NextRequest) {
       ),
     ).toString("base64");
 
-    return new StreamingTextResponse(stream, {
+    return new Response(stream, {
       headers: {
+        "Content-Type": "text/event-stream",
+        "Cache-Control": "no-cache",
+        "Connection": "keep-alive",
         "x-message-index": (previousMessages.length + 1).toString(),
         "x-sources": serializedSources,
-      },
+      },  
     });
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: e.status ?? 500 });

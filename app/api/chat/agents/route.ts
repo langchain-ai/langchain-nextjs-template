@@ -26,16 +26,17 @@ const convertVercelMessageToLangChainMessage = (message: VercelChatMessage) => {
 };
 
 const convertLangChainMessageToVercelMessage = (message: BaseMessage) => {
-  if (message._getType() === "human") {
+  const type = message.getType();
+  if (type === "human") {
     return { content: message.content, role: "user" };
-  } else if (message._getType() === "ai") {
+  } else if (type === "ai") {
     return {
       content: message.content,
       role: "assistant",
       tool_calls: (message as AIMessage).tool_calls,
     };
   } else {
-    return { content: message.content, role: message._getType() };
+    return { content: message.content, role: type };
   }
 };
 
@@ -118,7 +119,13 @@ export async function POST(req: NextRequest) {
         },
       });
 
-      return new StreamingTextResponse(transformStream);
+      return new Response(transformStream, {
+        headers: {
+          "Content-Type": "text/event-stream",
+          "Cache-Control": "no-cache",
+          "Connection": "keep-alive",
+        },  
+      });
     } else {
       /**
        * We could also pick intermediate steps out from `streamEvents` chunks, but

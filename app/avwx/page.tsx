@@ -14,9 +14,9 @@ export default function Home() {
   );
   return (
     <ChatWindow
-      endpoint="api/chat"
+      endpoint="api/chat/avwx"
       emoji="🏴‍☠️"
-      placeholder="I'm an LLM here to answer your questions"
+      placeholder="I'm an LLM here to answer aviation weather questions"
       emptyStateComponent={InfoCard}
     />
   );

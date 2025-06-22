@@ -1,9 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
+import { Message as VercelChatMessage } from "ai";
 
-import { createClient } from "@supabase/supabase-js";
-
-import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
+import { createReactAgent } from "@langchain/langgraph/prebuilt";
+import { ChatOpenAI } from "@langchain/openai";
 import {
   AIMessage,
   BaseMessage,
@@ -11,11 +10,12 @@ import {
   HumanMessage,
   SystemMessage,
 } from "@langchain/core/messages";
-import { ChatOpenAI, OpenAIEmbeddings } from "@langchain/openai";
-import { createRetrieverTool } from "langchain/tools/retriever";
-import { createReactAgent } from "@langchain/langgraph/prebuilt";
 
-export const runtime = "edge";
+import { Client } from "@modelcontextprotocol/sdk/client/index.js";
+import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
+import { loadMcpTools } from "@langchain/mcp-adapters";
+
+// export const runtime = "edge";
 
 const convertVercelMessageToLangChainMessage = (message: VercelChatMessage) => {
   if (message.role === "user") {
@@ -28,33 +28,32 @@ const convertVercelMessageToLangChainMessage = (message: VercelChatMessage) => {
 };
 
 const convertLangChainMessageToVercelMessage = (message: BaseMessage) => {
-  if (message._getType() === "human") {
+  const type = message.getType();
+  if (type === "human") {
     return { content: message.content, role: "user" };
-  } else if (message._getType() === "ai") {
+  } else if (type === "ai") {
     return {
       content: message.content,
       role: "assistant",
       tool_calls: (message as AIMessage).tool_calls,
     };
   } else {
-    return { content: message.content, role: message._getType() };
+    return { content: message.content, role: type };
   }
 };
 
-const AGENT_SYSTEM_TEMPLATE = `You are a stereotypical robot named Robbie and must answer all questions like a stereotypical robot. Use lots of interjections like "BEEP" and "BOOP".
-
-If you don't know how to answer a question, use the available tools to look up relevant information. You should particularly do this for questions about LangChain.`;
+const AGENT_SYSTEM_TEMPLATE = `I am an LLM to answer aviation weather questions. I can use tools to answer questions about aviation weather, such as METARs, TAFs, and more.`;
 
 /**
  * This handler initializes and calls an tool caling ReAct agent.
  * See the docs for more information:
  *
  * https://langchain-ai.github.io/langgraphjs/tutorials/quickstart/
- * https://js.langchain.com/docs/use_cases/question_answering/conversational_retrieval_agents
  */
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
+    const returnIntermediateSteps = body.show_intermediate_steps;
     /**
      * We represent intermediate steps as system messages for display purposes,
      * but don't want them in the chat history.
@@ -65,66 +64,41 @@ export async function POST(req: NextRequest) {
           message.role === "user" || message.role === "assistant",
       )
       .map(convertVercelMessageToLangChainMessage);
-    const returnIntermediateSteps = body.show_intermediate_steps;
 
-    const chatModel = new ChatOpenAI({
-      model: "gpt-4o-mini",
-      temperature: 0.2,
-    });
-
-    const client = createClient(
-      process.env.SUPABASE_URL!,
-      process.env.SUPABASE_PRIVATE_KEY!,
+    const transport = new StreamableHTTPClientTransport(
+      new URL("http://localhost:3001/mcp"),
     );
-    const vectorstore = new SupabaseVectorStore(new OpenAIEmbeddings(), {
-      client,
-      tableName: "documents",
-      queryName: "match_documents",
+
+    const client = new Client({
+      name: "aviation-weather-client",
+      version: "1.0.0",
     });
 
-    const retriever = vectorstore.asRetriever();
+    await client.connect(transport);
 
-    /**
-     * Wrap the retriever in a tool to present it to the agent in a
-     * usable form.
-     */
-    const tool = createRetrieverTool(retriever, {
-      name: "search_latest_knowledge",
-      description: "Searches and returns up-to-date general information.",
+    const tools = await loadMcpTools("aviation_weather", client, {
+      throwOnLoadError: true,
+      prefixToolNameWithServerName: false,
+      additionalToolNamePrefix: "",
+    });
+
+    const chat = new ChatOpenAI({
+      model: "gpt-4.1",
+      temperature: 0,
     });
 
     /**
      * Use a prebuilt LangGraph agent.
      */
-    const agent = await createReactAgent({
-      llm: chatModel,
-      tools: [tool],
-      /**
-       * Modify the stock prompt in the prebuilt agent. See docs
-       * for how to customize your agent:
-       *
-       * https://langchain-ai.github.io/langgraphjs/tutorials/quickstart/
-       */
+    const agent = createReactAgent({
+      llm: chat,
+      tools,
       messageModifier: new SystemMessage(AGENT_SYSTEM_TEMPLATE),
     });
 
     if (!returnIntermediateSteps) {
-      /**
-       * Stream back all generated tokens and steps from their runs.
-       *
-       * We do some filtering of the generated events and only stream back
-       * the final response as a string.
-       *
-       * For this specific type of tool calling ReAct agents with OpenAI, we can tell when
-       * the agent is ready to stream back final output when it no longer calls
-       * a tool and instead streams back content.
-       *
-       * See: https://langchain-ai.github.io/langgraphjs/how-tos/stream-tokens/
-       */
       const eventStream = await agent.streamEvents(
-        {
-          messages,
-        },
+        { messages },
         { version: "v2" },
       );
 
@@ -157,6 +131,7 @@ export async function POST(req: NextRequest) {
        * the AI SDK is more complicated.
        */
       const result = await agent.invoke({ messages });
+
       return NextResponse.json(
         {
           messages: result.messages.map(convertLangChainMessageToVercelMessage),
