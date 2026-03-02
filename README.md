@@ -96,7 +96,7 @@ For more info on retrieval agents, [see this page](https://langchain-ai.github.i
 
 ## 📦 Bundle size
 
-The bundle size for LangChain itself is quite small. After compression and chunk splitting, for the RAG use case LangChain uses 37.32 KB of code space (as of [@langchain/core 0.1.15](https://npmjs.com/package/@langchain/core)), which is less than 4% of the total Vercel free tier edge function alottment of 1 MB:
+The bundle size for LangChain itself is quite small. After compression and chunk splitting, for the RAG use case LangChain uses 37.32 KB of code space (as of [@langchain/core 0.1.15](https://npmjs.com/package/@langchain/core)), which is less than 4% of the total Vercel free tier edge function allotment of 1 MB:
 
 ![](/public/images/bundle-size.png)
 
