@@ -3,7 +3,7 @@ import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 
 import { createClient } from "@supabase/supabase-js";
 import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
-import { OpenAIEmbeddings } from "@langchain/openai";
+import { GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
 
 export const runtime = "edge";
 
@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
 
     const vectorstore = await SupabaseVectorStore.fromDocuments(
       splitDocuments,
-      new OpenAIEmbeddings(),
+      new GoogleGenerativeAIEmbeddings(),
       {
         client,
         tableName: "documents",

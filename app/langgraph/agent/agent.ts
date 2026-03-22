@@ -4,9 +4,9 @@ import {
   START,
   Annotation,
 } from "@langchain/langgraph";
-import { ChatOpenAI } from "@langchain/openai";
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 
-const llm = new ChatOpenAI({ model: "gpt-4o-mini", temperature: 0 });
+const llm = new ChatGoogleGenerativeAI({ modelName: "gemini-2.5-flash", temperature: 0 });
 
 const builder = new StateGraph(
   Annotation.Root({
@@ -30,3 +30,4 @@ const builder = new StateGraph(
   .addEdge(START, "agent");
 
 export const graph = builder.compile();
+

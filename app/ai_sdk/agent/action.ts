@@ -1,6 +1,6 @@
 "use server";
 
-import { ChatOpenAI } from "@langchain/openai";
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { TavilySearch } from "@langchain/tavily";
 import { AgentExecutor, createToolCallingAgent } from "langchain/agents";
@@ -17,7 +17,10 @@ export async function runAgent(input: string) {
       "hwchase17/openai-tools-agent",
     );
 
-    const llm = new ChatOpenAI({ model: "gpt-4o-mini", temperature: 0 });
+    const llm = new ChatGoogleGenerativeAI({
+      modelName: "gemini-2.5-flash",
+      temperature: 0,
+    });
 
     const agent = createToolCallingAgent({
       llm,

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { z } from "zod";
 
-import { ChatOpenAI } from "@langchain/openai";
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { PromptTemplate } from "@langchain/core/prompts";
 
 export const runtime = "edge";
@@ -28,12 +28,10 @@ export async function POST(req: NextRequest) {
     const currentMessageContent = messages[messages.length - 1].content;
 
     const prompt = PromptTemplate.fromTemplate(TEMPLATE);
-    /**
-     * Function calling is currently only supported with ChatOpenAI models
-     */
-    const model = new ChatOpenAI({
+    
+    const model = new ChatGoogleGenerativeAI({
       temperature: 0.8,
-      model: "gpt-4o-mini",
+      modelName: "gemini-2.5-flash",
     });
 
     /**
