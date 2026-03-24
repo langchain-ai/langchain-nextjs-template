@@ -1,64 +1,138 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, useRef } from "react";
 import DEFAULT_RETRIEVAL_TEXT from "@/data/DefaultRetrievalText";
 import { Button } from "./ui/button";
 import { Textarea } from "./ui/textarea";
+import { Input } from "./ui/input";
+import { FileUp, X, Loader2 } from "lucide-react";
 
 export function UploadDocumentsForm() {
   const [isLoading, setIsLoading] = useState(false);
   const [document, setDocument] = useState(DEFAULT_RETRIEVAL_TEXT);
+  const [file, setFile] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   const ingest = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    const response = await fetch("/api/retrieval/ingest", {
-      method: "POST",
-      body: JSON.stringify({
-        text: document,
-      }),
-    });
-    if (response.status === 200) {
-      setDocument("Uploaded!");
-    } else {
-      const json = await response.json();
-      if (json.error) {
-        setDocument(json.error);
+
+    try {
+      const formData = new FormData();
+      if (file) {
+        formData.append("file", file);
+      } else if (document.trim()) {
+        formData.append("text", document);
+      } else {
+        throw new Error("Vui lòng chọn file hoặc nhập nội dung văn bản.");
       }
+
+      const response = await fetch("/api/retrieval/ingest", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.status === 200) {
+        setDocument("Đã tải lên và xử lý tài liệu thành công!");
+        setFile(null);
+        if (fileInputRef.current) fileInputRef.current.value = "";
+      } else {
+        const json = await response.json();
+        if (json.error) {
+          setDocument(`Lỗi: ${json.error}`);
+        }
+      }
+    } catch (err: any) {
+      setDocument(`Lỗi: ${err.message}`);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
+
+  const clearFile = () => {
+    setFile(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
   return (
-    <form onSubmit={ingest} className="flex flex-col gap-4 w-full">
-      <Textarea
-        className="grow p-4 rounded bg-transparent min-h-[512px]"
-        value={document}
-        onChange={(e) => setDocument(e.target.value)}
-      />
-      <Button type="submit">
-        <div
-          role="status"
-          className={`${isLoading ? "" : "hidden"} flex justify-center`}
-        >
-          <svg
-            aria-hidden="true"
-            className="w-6 h-6 text-white animate-spin dark:text-white fill-sky-800"
-            viewBox="0 0 100 101"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-              fill="currentColor"
-            />
-            <path
-              d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-              fill="currentFill"
-            />
-          </svg>
-          <span className="sr-only">Loading...</span>
+    <form onSubmit={ingest} className="flex flex-col gap-6 w-full max-w-4xl mx-auto p-4">
+      <div className="space-y-4 bg-secondary/20 p-6 rounded-lg border border-border shadow-sm">
+        <div className="flex items-center gap-2 mb-2">
+          <FileUp className="w-5 h-5 text-primary" />
+          <h3 className="font-semibold text-lg">Nạp tài liệu thông minh</h3>
         </div>
-        <span className={isLoading ? "hidden" : ""}>Upload</span>
-      </Button>
+
+        <div className="grid gap-4">
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-muted-foreground">
+              Cách 1: Tải lên tệp tin (Excel, CSV, PDF, Word, Markdown, Text)
+            </label>
+            <div className="flex gap-2">
+              <Input
+                type="file"
+                ref={fileInputRef}
+                onChange={(e) => setFile(e.target.files?.[0] || null)}
+                accept=".xlsx,.xls,.csv,.pdf,.docx,.md,.txt"
+                className="cursor-pointer bg-background"
+              />
+              {file && (
+                <Button 
+                  type="button" 
+                  variant="outline" 
+                  size="icon" 
+                  onClick={clearFile}
+                  title="Xóa tệp đã chọn"
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              )}
+            </div>
+          </div>
+
+          <div className="relative py-2">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t border-muted" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-background px-2 text-muted-foreground font-medium">Hoặc</span>
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-muted-foreground">
+              Cách 2: Dán nội dung văn bản trực tiếp
+            </label>
+            <Textarea
+              className="grow p-4 rounded-md bg-background min-h-[300px] font-sans resize-y"
+              value={document}
+              onChange={(e) => setDocument(e.target.value)}
+              disabled={!!file}
+              placeholder={file ? "Hệ thống sẽ sử dụng file đã chọn bên trên..." : "Dán nội dung tài liệu của bạn vào đây..."}
+            />
+          </div>
+        </div>
+
+        <Button 
+          type="submit" 
+          className="w-full h-12 text-lg font-medium transition-all"
+          disabled={isLoading || (!file && (!document || document === DEFAULT_RETRIEVAL_TEXT))}
+        >
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+              Đang xử lý dữ liệu...
+            </>
+          ) : (
+            "Bắt đầu nạp dữ liệu"
+          )}
+        </Button>
+      </div>
+
+      <div className="text-xs text-muted-foreground px-2 italic">
+        * Lưu ý: Sau khi nạp, AI sẽ mất vài giây để học dữ liệu của bạn trước khi có thể trả lời chính xác.
+      </div>
     </form>
   );
 }

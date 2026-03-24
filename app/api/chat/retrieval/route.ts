@@ -13,7 +13,7 @@ import {
   StringOutputParser,
 } from "@langchain/core/output_parsers";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 const combineDocumentsFn = (docs: Document[]) => {
   const serializedDocs = docs.map((doc) => doc.pageContent);
@@ -33,40 +33,36 @@ const formatVercelMessages = (chatHistory: VercelChatMessage[]) => {
   return formattedDialogueTurns.join("\n");
 };
 
-const CONDENSE_QUESTION_TEMPLATE = `Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.
+const CONDENSE_QUESTION_TEMPLATE = `Dựa trên lịch sử trò chuyện sau đây và một câu hỏi mới, hãy viết lại câu hỏi đó thành một câu hỏi độc lập (standalone question), bằng đúng ngôn ngữ gốc của nó.
 
 <chat_history>
   {chat_history}
 </chat_history>
 
-Follow Up Input: {question}
-Standalone question:`;
+Câu hỏi mới: {question}
+Câu hỏi độc lập:`;
 const condenseQuestionPrompt = PromptTemplate.fromTemplate(
   CONDENSE_QUESTION_TEMPLATE,
 );
 
-const ANSWER_TEMPLATE = `You are an energetic talking puppy named Dana, and must answer all questions like a happy, talking dog would.
-Use lots of puns!
+const ANSWER_TEMPLATE = `Bạn là một Trợ lý Bán hàng chuyên nghiệp. Hãy sử dụng thông tin từ ngữ cảnh (context) và lịch sử trò chuyện để trả lời câu hỏi của khách hàng một cách chính xác nhất về giá cả và kỹ thuật sản phẩm.
 
-Answer the question based only on the following context and chat history:
+Nếu thông tin không có trong ngữ cảnh bên dưới, hãy lịch sự báo rằng bạn chưa có thông tin cụ thể về mục này và hướng dẫn khách liên hệ hotline hoặc xem trên website chính thức.
+
+Ngữ cảnh sản phẩm:
 <context>
   {context}
 </context>
 
+Lịch sử trò chuyện:
 <chat_history>
   {chat_history}
 </chat_history>
 
-Question: {question}
-`;
+Câu hỏi: {question}
+Câu trả lời của Trợ lý Bán hàng:`;
 const answerPrompt = PromptTemplate.fromTemplate(ANSWER_TEMPLATE);
 
-/**
- * This handler initializes and calls a retrieval chain. It composes the chain using
- * LangChain Expression Language. See the docs for more information:
- *
- * https://js.langchain.com/v0.2/docs/how_to/qa_chat_history_how_to/
- */
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -74,30 +70,35 @@ export async function POST(req: NextRequest) {
     const previousMessages = messages.slice(0, -1);
     const currentMessageContent = messages[messages.length - 1].content;
 
+    const apiKey = process.env.GOOGLE_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json({ error: "Thiếu GOOGLE_API_KEY." }, { status: 500 });
+    }
+
+    if (!process.env.SUPABASE_URL || !process.env.SUPABASE_PRIVATE_KEY) {
+      return NextResponse.json({ error: "Thiếu cấu hình Supabase." }, { status: 500 });
+    }
+
     const model = new ChatGoogleGenerativeAI({
-      modelName: "gemini-2.5-flash",
-      temperature: 0.2,
+      apiKey: apiKey,
+      model: "gemini-2.5-flash",
+      apiVersion: "v1beta",
+      temperature: 0.2, // Thấp để đảm bảo độ chính xác khi trích xuất thông tin
     });
 
     const client = createClient(
       process.env.SUPABASE_URL!,
       process.env.SUPABASE_PRIVATE_KEY!,
     );
-    const vectorstore = new SupabaseVectorStore(new GoogleGenerativeAIEmbeddings(), {
+    const vectorstore = new SupabaseVectorStore(new GoogleGenerativeAIEmbeddings({
+      apiKey: apiKey,
+      model: "gemini-embedding-001",
+    }), {
       client,
       tableName: "documents",
       queryName: "match_documents",
     });
 
-    /**
-     * We use LangChain Expression Language to compose two chains.
-     * To learn more, see the guide here:
-     *
-     * https://js.langchain.com/docs/guides/expression_language/cookbook
-     *
-     * You can also use the "createRetrievalChain" method with a
-     * "historyAwareRetriever" to get something prebaked.
-     */
     const standaloneQuestionChain = RunnableSequence.from([
       condenseQuestionPrompt,
       model,
@@ -167,6 +168,7 @@ export async function POST(req: NextRequest) {
       },
     });
   } catch (e: any) {
+    console.error("Retrieval Error:", e);
     return NextResponse.json({ error: e.message }, { status: e.status ?? 500 });
   }
 }

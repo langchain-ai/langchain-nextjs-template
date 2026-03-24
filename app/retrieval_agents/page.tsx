@@ -8,63 +8,47 @@ export default function AgentsPage() {
         <li className="hidden text-l md:block">
           🤝
           <span className="ml-2">
-            This template showcases a{" "}
+            Trang này minh họa khả năng của một{" "}
             <a href="https://js.langchain.com/" target="_blank">
               LangChain.js
             </a>{" "}
-            retrieval chain and the Vercel{" "}
+            Retriever Agent kết hợp với Vercel{" "}
             <a href="https://sdk.vercel.ai/docs" target="_blank">
               AI SDK
-            </a>{" "}
-            in a{" "}
-            <a href="https://nextjs.org/" target="_blank">
-              Next.js
-            </a>{" "}
-            project.
+            </a>.
           </span>
         </li>
         <li className="hidden text-l md:block">
           🛠️
           <span className="ml-2">
-            The agent has access to a vector store retriever as a tool as well
-            as a memory. It&apos;s particularly well suited to meta-questions
-            about the current conversation.
+            Đại lý (Agent) có quyền truy cập vào công cụ tra cứu dữ liệu (Vector Store) 
+            và có bộ nhớ để theo dõi cuộc trò chuyện. Nó tự động quyết định khi nào cần tra cứu thông tin.
           </span>
         </li>
         <li className="hidden text-l md:block">
           💻
           <span className="ml-2">
-            You can find the prompt and model logic for this use-case in{" "}
+            Bạn có thể tìm thấy logic prompt và mô hình trong{" "}
             <code>app/api/chat/retrieval_agents/route.ts</code>.
           </span>
         </li>
         <li>
           🤖
           <span className="ml-2">
-            By default, the agent is pretending to be a robot, but you can
-            change the prompt to whatever you want!
+            Mặc định, đây là một Trợ lý Bán hàng Thông minh giúp tra cứu sản phẩm và kỹ thuật.
           </span>
         </li>
         <li className="hidden text-l md:block">
           🎨
           <span className="ml-2">
-            The main frontend logic is found in{" "}
+            Logic frontend chính nằm tại{" "}
             <code>app/retrieval_agents/page.tsx</code>.
-          </span>
-        </li>
-        <li className="hidden text-l md:block">
-          🔱
-          <span className="ml-2">
-            Before running this example, you&apos;ll first need to set up a
-            Supabase (or other) vector store. See the README for more details.
           </span>
         </li>
         <li className="text-l">
           👇
           <span className="ml-2">
-            Upload some text, then try asking e.g.{" "}
-            <code>What are some ways of doing retrieval in LangChain?</code>{" "}
-            below!
+            Hãy nạp tài liệu (Markdown/Text), sau đó thử hỏi về giá hoặc thông số sản phẩm bên dưới!
           </span>
         </li>
       </ul>
@@ -78,7 +62,7 @@ export default function AgentsPage() {
       showIngestForm={true}
       showIntermediateStepsToggle={true}
       placeholder={
-        'Beep boop! I\'m a robot retrieval-focused agent! Ask, "What are some ways of doing retrieval in LangChain.js?"'
+        'Tôi là Trợ lý Bán hàng Thông minh! Hãy hỏi tôi về sản phẩm của bạn.'
       }
       emoji="🤖"
     />

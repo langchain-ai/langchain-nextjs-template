@@ -3,7 +3,7 @@
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { TavilySearch } from "@langchain/tavily";
-import { AgentExecutor, createToolCallingAgent } from "langchain/agents";
+import { AgentExecutor, createToolCallingAgent } from "@langchain/classic/agents";
 import { pull } from "langchain/hub";
 import { createStreamableValue } from "ai/rsc";
 
@@ -18,7 +18,8 @@ export async function runAgent(input: string) {
     );
 
     const llm = new ChatGoogleGenerativeAI({
-      modelName: "gemini-2.5-flash",
+      model: "gemini-2.5-flash",
+      apiVersion: "v1beta",
       temperature: 0,
     });
 

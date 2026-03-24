@@ -5,18 +5,18 @@ import { z } from "zod";
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 import { PromptTemplate } from "@langchain/core/prompts";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
-const TEMPLATE = `Extract the requested fields from the input.
+const TEMPLATE = `Trích xuất các trường thông tin yêu cầu từ nội dung nhập vào.
 
-The field "entity" refers to the first mentioned entity in the input.
+Trường "entity" đề cập đến đối tượng/thực thể đầu tiên được nhắc đến trong nội dung.
 
-Input:
+Nội dung:
 
 {input}`;
 
 /**
- * This handler initializes and calls an OpenAI Functions powered
+ * This handler initializes and calls a Google Gemini powered
  * structured output chain. See the docs for more information:
  *
  * https://js.langchain.com/v0.2/docs/how_to/structured_output
@@ -29,9 +29,13 @@ export async function POST(req: NextRequest) {
 
     const prompt = PromptTemplate.fromTemplate(TEMPLATE);
     
+    const apiKey = process.env.GOOGLE_API_KEY;
+
     const model = new ChatGoogleGenerativeAI({
+      apiKey: apiKey,
+      model: "gemini-2.5-flash",
+      apiVersion: "v1beta",
       temperature: 0.8,
-      modelName: "gemini-2.5-flash",
     });
 
     /**
@@ -42,18 +46,18 @@ export async function POST(req: NextRequest) {
       .object({
         tone: z
           .enum(["positive", "negative", "neutral"])
-          .describe("The overall tone of the input"),
-        entity: z.string().describe("The entity mentioned in the input"),
-        word_count: z.number().describe("The number of words in the input"),
-        chat_response: z.string().describe("A response to the human's input"),
+          .describe("Tâm trạng tổng thể của nội dung (tích cực, tiêu cực, trung tính)"),
+        entity: z.string().describe("Thực thể được nhắc đến trong nội dung"),
+        word_count: z.number().describe("Số lượng từ trong nội dung"),
+        chat_response: z.string().describe("Một câu phản hồi cho người dùng bằng tiếng Việt"),
         final_punctuation: z
           .optional(z.string())
-          .describe("The final punctuation mark in the input, if any."),
+          .describe("Dấu câu cuối cùng trong nội dung, nếu có."),
       })
-      .describe("Should always be used to properly format output");
+      .describe("Luôn sử dụng trường này để định dạng đầu ra đúng cách");
 
     /**
-     * Bind schema to the OpenAI model.
+     * Bind schema to the model.
      * Future invocations of the returned model will always match the schema.
      *
      * Under the hood, uses tool calling by default.

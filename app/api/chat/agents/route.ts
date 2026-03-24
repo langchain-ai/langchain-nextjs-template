@@ -13,7 +13,7 @@ import {
   SystemMessage,
 } from "@langchain/core/messages";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 const convertVercelMessageToLangChainMessage = (message: VercelChatMessage) => {
   if (message.role === "user") {
@@ -39,7 +39,9 @@ const convertLangChainMessageToVercelMessage = (message: BaseMessage) => {
   }
 };
 
-const AGENT_SYSTEM_TEMPLATE = `You are a talking parrot named Polly. All final responses must be how a talking parrot would respond. Squawk often!`;
+const AGENT_SYSTEM_TEMPLATE = `Bạn là một Trợ lý Bán hàng chuyên nghiệp và thân thiện. 
+Hãy trả lời các câu hỏi của khách hàng một cách lịch sự bằng tiếng Việt. 
+Bạn có thể sử dụng các công cụ hỗ trợ như máy tính hoặc tìm kiếm nếu cần thiết để cung cấp thông tin chính xác nhất.`;
 
 /**
  * This handler initializes and calls an tool caling ReAct agent.
@@ -62,11 +64,18 @@ export async function POST(req: NextRequest) {
       )
       .map(convertVercelMessageToLangChainMessage);
 
-    // Requires process.env.SERPAPI_API_KEY to be set: https://serpapi.com/
-    // You can remove this or use a different tool instead.
-    const tools = [new Calculator(), new SerpAPI()];
+    const apiKey = process.env.GOOGLE_API_KEY;
+
+    // Optional: Requires process.env.SERPAPI_API_KEY to be set: https://serpapi.com/
+    const tools = [new Calculator()];
+    if (process.env.SERPAPI_API_KEY) {
+      tools.push(new SerpAPI());
+    }
+
     const chat = new ChatGoogleGenerativeAI({
-      modelName: "gemini-2.5-flash",
+      apiKey: apiKey,
+      model: "gemini-2.5-flash",
+      apiVersion: "v1beta",
       temperature: 0,
     });
 

@@ -3,6 +3,7 @@ import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
 
 import { createClient } from "@supabase/supabase-js";
 
+import { ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
 import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
 import {
   AIMessage,
@@ -11,12 +12,14 @@ import {
   HumanMessage,
   SystemMessage,
 } from "@langchain/core/messages";
-import { ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
-import { createRetrieverTool } from "langchain/tools/retriever";
+import { createRetrieverTool } from "@langchain/classic/tools/retriever";
 import { createReactAgent } from "@langchain/langgraph/prebuilt";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
+/**
+ * Chuyển đổi tin nhắn từ Vercel sang định dạng LangChain
+ */
 const convertVercelMessageToLangChainMessage = (message: VercelChatMessage) => {
   if (message.role === "user") {
     return new HumanMessage(message.content);
@@ -27,6 +30,9 @@ const convertVercelMessageToLangChainMessage = (message: VercelChatMessage) => {
   }
 };
 
+/**
+ * Chuyển đổi ngược lại từ LangChain sang Vercel để hiển thị lên UI
+ */
 const convertLangChainMessageToVercelMessage = (message: BaseMessage) => {
   if (message._getType() === "human") {
     return { content: message.content, role: "user" };
@@ -41,90 +47,84 @@ const convertLangChainMessageToVercelMessage = (message: BaseMessage) => {
   }
 };
 
-const AGENT_SYSTEM_TEMPLATE = `You are a stereotypical robot named Robbie and must answer all questions like a stereotypical robot. Use lots of interjections like "BEEP" and "BOOP".
-
-If you don't know how to answer a question, use the available tools to look up relevant information. You should particularly do this for questions about LangChain.`;
-
 /**
- * This handler initializes and calls an tool caling ReAct agent.
- * See the docs for more information:
- *
- * https://langchain-ai.github.io/langgraphjs/tutorials/quickstart/
- * https://js.langchain.com/docs/use_cases/question_answering/conversational_retrieval_agents
+ * Hướng dẫn cho Agent (System Prompt)
  */
+const AGENT_SYSTEM_TEMPLATE = `Bạn là một Trợ lý Bán hàng Thông minh của website. 
+
+Nhiệm vụ:
+1. Bạn có một công cụ tra cứu dữ liệu sản phẩm. Hãy sử dụng nó MỖI KHI khách hàng hỏi về giá cả, thông số kỹ thuật hoặc chính sách bảo hành.
+2. Nếu sau khi tra cứu mà không thấy thông tin, hãy báo cho khách hàng biết và đề xuất họ để lại thông tin liên lạc.
+3. Nếu khách hàng chỉ chào hỏi hoặc nói chuyện phiếm, bạn có thể trả lời trực tiếp một cách thân thiện mà không cần dùng công cụ.
+4. Luôn trả lời bằng tiếng Việt lịch sự.
+
+Lưu ý: Bạn KHÔNG ĐƯỢC tự bịa ra giá sản phẩm. Chỉ cung cấp giá nếu tìm thấy trong công cụ tra cứu.`;
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    /**
-     * We represent intermediate steps as system messages for display purposes,
-     * but don't want them in the chat history.
-     */
+    const returnIntermediateSteps = body.show_intermediate_steps;
     const messages = (body.messages ?? [])
       .filter(
         (message: VercelChatMessage) =>
           message.role === "user" || message.role === "assistant",
       )
       .map(convertVercelMessageToLangChainMessage);
-    const returnIntermediateSteps = body.show_intermediate_steps;
 
-    const chatModel = new ChatGoogleGenerativeAI({
-      modelName: "gemini-2.5-flash",
-      temperature: 0.2,
+    if (messages.length === 0) {
+      return NextResponse.json({ error: "Không có tin nhắn nào để xử lý." }, { status: 400 });
+    }
+
+    const apiKey = process.env.GOOGLE_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json({ error: "Thiếu GOOGLE_API_KEY." }, { status: 500 });
+    }
+
+    if (!process.env.SUPABASE_URL || !process.env.SUPABASE_PRIVATE_KEY) {
+      return NextResponse.json({ error: "Thiếu cấu hình Supabase." }, { status: 500 });
+    }
+
+    // Bộ não của Agent
+    const model = new ChatGoogleGenerativeAI({
+      apiKey: apiKey,
+      model: "gemini-2.5-flash",
+      apiVersion: "v1beta",
+      temperature: 0, // Độ chính xác tuyệt đối cho Agent
     });
 
     const client = createClient(
       process.env.SUPABASE_URL!,
       process.env.SUPABASE_PRIVATE_KEY!,
     );
-    const vectorstore = new SupabaseVectorStore(new GoogleGenerativeAIEmbeddings(), {
+
+    // Công cụ tra cứu (Retriever Tool)
+    const vectorstore = new SupabaseVectorStore(new GoogleGenerativeAIEmbeddings({
+      apiKey: apiKey,
+      model: "gemini-embedding-001",
+    }), {
       client,
       tableName: "documents",
       queryName: "match_documents",
     });
 
-    const retriever = vectorstore.asRetriever();
-
-    /**
-     * Wrap the retriever in a tool to present it to the agent in a
-     * usable form.
-     */
-    const tool = createRetrieverTool(retriever, {
-      name: "search_latest_knowledge",
-      description: "Searches and returns up-to-date general information.",
+    const productSearchTool = createRetrieverTool(vectorstore.asRetriever(), {
+      name: "tra_cuu_san_pham",
+      description: "Sử dụng công cụ này để tìm kiếm thông tin chi tiết về giá cả và kỹ thuật của sản phẩm trên website.",
     });
 
     /**
-     * Use a prebuilt LangGraph agent.
+     * Khởi tạo Agent sử dụng LangGraph
      */
     const agent = await createReactAgent({
-      llm: chatModel,
-      tools: [tool],
-      /**
-       * Modify the stock prompt in the prebuilt agent. See docs
-       * for how to customize your agent:
-       *
-       * https://langchain-ai.github.io/langgraphjs/tutorials/quickstart/
-       */
+      llm: model,
+      tools: [productSearchTool],
       messageModifier: new SystemMessage(AGENT_SYSTEM_TEMPLATE),
     });
 
     if (!returnIntermediateSteps) {
-      /**
-       * Stream back all generated tokens and steps from their runs.
-       *
-       * We do some filtering of the generated events and only stream back
-       * the final response as a string.
-       *
-       * For this specific type of tool calling ReAct agents with OpenAI, we can tell when
-       * the agent is ready to stream back final output when it no longer calls
-       * a tool and instead streams back content.
-       *
-       * See: https://langchain-ai.github.io/langgraphjs/how-tos/stream-tokens/
-       */
+      // Chế độ Streaming (Dành cho Chat thông thường)
       const eventStream = await agent.streamEvents(
-        {
-          messages,
-        },
+        { messages },
         { version: "v2" },
       );
 
@@ -133,7 +133,6 @@ export async function POST(req: NextRequest) {
         async start(controller) {
           for await (const { event, data } of eventStream) {
             if (event === "on_chat_model_stream") {
-              // Intermediate chat model generations will contain tool calls and no content
               if (!!data.chunk.content) {
                 controller.enqueue(textEncoder.encode(data.chunk.content));
               }
@@ -145,12 +144,9 @@ export async function POST(req: NextRequest) {
 
       return new StreamingTextResponse(transformStream);
     } else {
-      /**
-       * We could also pick intermediate steps out from `streamEvents` chunks, but
-       * they are generated as JSON objects, so streaming and displaying them with
-       * the AI SDK is more complicated.
-       */
+      // Chế độ hiển thị các bước suy luận (Intermediate Steps)
       const result = await agent.invoke({ messages });
+
       return NextResponse.json(
         {
           messages: result.messages.map(convertLangChainMessageToVercelMessage),
@@ -159,6 +155,7 @@ export async function POST(req: NextRequest) {
       );
     }
   } catch (e: any) {
+    console.error("Agent Error:", e);
     return NextResponse.json({ error: e.message }, { status: e.status ?? 500 });
   }
 }

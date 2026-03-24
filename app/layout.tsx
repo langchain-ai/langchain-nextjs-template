@@ -72,17 +72,17 @@ export default function RootLayout({
                   <Logo />
                 </a>
                 <nav className="flex gap-1 flex-col md:flex-row">
-                  <ActiveLink href="/">🏴‍☠️ Chat</ActiveLink>
+                  <ActiveLink href="/">💬 Chat</ActiveLink>
                   <ActiveLink href="/structured_output">
-                    🧱 Structured Output
+                    🧱 Trích xuất Dữ liệu
                   </ActiveLink>
-                  <ActiveLink href="/agents">🦜 Agents</ActiveLink>
-                  <ActiveLink href="/retrieval">🐶 Retrieval</ActiveLink>
+                  <ActiveLink href="/agents">🦜 Đại lý (Agent)</ActiveLink>
+                  <ActiveLink href="/retrieval">📚 Tra cứu (RAG)</ActiveLink>
                   <ActiveLink href="/retrieval_agents">
-                    🤖 Retrieval Agents
+                    🤖 Đại lý Tra cứu
                   </ActiveLink>
                   <ActiveLink href="/ai_sdk">
-                    🌊 React Server Components
+                    🌊 AI SDK Components
                   </ActiveLink>
                   <ActiveLink href="/langgraph">🕸️ LangGraph</ActiveLink>
                 </nav>

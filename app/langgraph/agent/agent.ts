@@ -6,7 +6,11 @@ import {
 } from "@langchain/langgraph";
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 
-const llm = new ChatGoogleGenerativeAI({ modelName: "gemini-2.5-flash", temperature: 0 });
+const llm = new ChatGoogleGenerativeAI({ 
+  model: "gemini-2.5-flash", 
+  apiVersion: "v1beta",
+  temperature: 0 
+});
 
 const builder = new StateGraph(
   Annotation.Root({
@@ -19,8 +23,8 @@ const builder = new StateGraph(
       {
         type: "system",
         content:
-          "You are a pirate named Patchy. " +
-          "All responses must be extremely verbose and in pirate dialect.",
+          "Bạn là một Trợ lý TAE Chatbot chuyên nghiệp. " +
+          "Hãy trả lời người dùng một cách lịch sự, hữu ích và ngắn gọn bằng tiếng Việt.",
       },
       ...state.messages,
     ]);
