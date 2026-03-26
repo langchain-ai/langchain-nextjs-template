@@ -5,7 +5,7 @@ import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { TavilySearch } from "@langchain/tavily";
 import { AgentExecutor, createToolCallingAgent } from "langchain/agents";
 import { pull } from "langchain/hub";
-import { createStreamableValue } from "ai/rsc";
+import { createStreamableValue } from "@ai-sdk/rsc";
 
 export async function runAgent(input: string) {
   "use server";

@@ -1,8 +1,8 @@
 "use client";
 
-import { type Message } from "ai";
-import { useChat } from "ai/react";
-import { useState } from "react";
+import { type UIMessage, TextStreamChatTransport } from "ai";
+import { useChat } from "@ai-sdk/react";
+import { useMemo, useState } from "react";
 import type { FormEvent, ReactNode } from "react";
 import { toast } from "sonner";
 import { StickToBottom, useStickToBottomContext } from "use-stick-to-bottom";
@@ -24,7 +24,7 @@ import {
 import { cn } from "@/utils/cn";
 
 function ChatMessages(props: {
-  messages: Message[];
+  messages: UIMessage[];
   emptyStateComponent: ReactNode;
   sourcesForMessages: Record<string, any>;
   aiEmoji?: string;
@@ -178,52 +178,67 @@ export function ChatWindow(props: {
   );
   const [intermediateStepsLoading, setIntermediateStepsLoading] =
     useState(false);
+  const [input, setInput] = useState("");
 
   const [sourcesForMessages, setSourcesForMessages] = useState<
     Record<string, any>
   >({});
 
-  const chat = useChat({
-    api: props.endpoint,
-    onResponse(response) {
-      const sourcesHeader = response.headers.get("x-sources");
-      const sources = sourcesHeader
-        ? JSON.parse(Buffer.from(sourcesHeader, "base64").toString("utf8"))
-        : [];
+  const transport = useMemo(
+    () =>
+      new TextStreamChatTransport({
+        api: props.endpoint,
+        fetch: async (url, init) => {
+          const response = await fetch(url as string, init as RequestInit);
+          const sourcesHeader = response.headers.get("x-sources");
+          const messageIndexHeader = response.headers.get("x-message-index");
+          if (sourcesHeader && messageIndexHeader !== null) {
+            const sources = JSON.parse(
+              Buffer.from(sourcesHeader, "base64").toString("utf8"),
+            );
+            setSourcesForMessages((prev) => ({
+              ...prev,
+              [messageIndexHeader]: sources,
+            }));
+          }
+          return response;
+        },
+      }),
+    [props.endpoint],
+  );
 
-      const messageIndexHeader = response.headers.get("x-message-index");
-      if (sources.length && messageIndexHeader !== null) {
-        setSourcesForMessages({
-          ...sourcesForMessages,
-          [messageIndexHeader]: sources,
-        });
-      }
-    },
-    streamMode: "text",
+  const chat = useChat({
+    transport,
     onError: (e) =>
       toast.error(`Error while processing your request`, {
         description: e.message,
       }),
   });
 
+  const isLoading =
+    chat.status === "streaming" || chat.status === "submitted";
+
   async function sendMessage(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (chat.isLoading || intermediateStepsLoading) return;
+    if (isLoading || intermediateStepsLoading) return;
 
     if (!showIntermediateSteps) {
-      chat.handleSubmit(e);
+      chat.sendMessage({ text: input });
+      setInput("");
       return;
     }
 
     // Some extra work to show intermediate steps properly
     setIntermediateStepsLoading(true);
 
-    chat.setInput("");
-    const messagesWithUserReply = chat.messages.concat({
-      id: chat.messages.length.toString(),
-      content: chat.input,
+    const currentInput = input;
+    setInput("");
+    const userMessage: UIMessage = {
+      id: String(chat.messages.length),
       role: "user",
-    });
+      parts: [{ type: "text", text: currentInput }],
+    };
+    const messagesWithUserReply = [...chat.messages, userMessage];
     chat.setMessages(messagesWithUserReply);
 
     const response = await fetch(props.endpoint, {
@@ -243,12 +258,16 @@ export function ChatWindow(props: {
       return;
     }
 
-    const responseMessages: Message[] = json.messages;
+    const responseMessages: Array<{
+      role: string;
+      content: any;
+      tool_calls?: any[];
+    }> = json.messages;
 
     // Represent intermediate steps as system messages for display purposes
     // TODO: Add proper support for tool messages
     const toolCallMessages = responseMessages.filter(
-      (responseMessage: Message) => {
+      (responseMessage) => {
         return (
           (responseMessage.role === "assistant" &&
             !!responseMessage.tool_calls?.length) ||
@@ -257,20 +276,25 @@ export function ChatWindow(props: {
       },
     );
 
-    const intermediateStepMessages = [];
+    const intermediateStepMessages: UIMessage[] = [];
     for (let i = 0; i < toolCallMessages.length; i += 2) {
       const aiMessage = toolCallMessages[i];
       const toolMessage = toolCallMessages[i + 1];
       intermediateStepMessages.push({
-        id: (messagesWithUserReply.length + i / 2).toString(),
+        id: String(messagesWithUserReply.length + i / 2),
         role: "system" as const,
-        content: JSON.stringify({
-          action: aiMessage.tool_calls?.[0],
-          observation: toolMessage.content,
-        }),
+        parts: [
+          {
+            type: "text",
+            text: JSON.stringify({
+              action: aiMessage.tool_calls?.[0],
+              observation: toolMessage.content,
+            }),
+          },
+        ],
       });
     }
-    const newMessages = messagesWithUserReply;
+    const newMessages = [...messagesWithUserReply];
     for (const message of intermediateStepMessages) {
       newMessages.push(message);
       chat.setMessages([...newMessages]);
@@ -279,12 +303,17 @@ export function ChatWindow(props: {
       );
     }
 
+    const lastResponseContent =
+      typeof responseMessages[responseMessages.length - 1].content === "string"
+        ? responseMessages[responseMessages.length - 1].content
+        : "";
+
     chat.setMessages([
       ...newMessages,
       {
-        id: newMessages.length.toString(),
-        content: responseMessages[responseMessages.length - 1].content,
+        id: String(newMessages.length),
         role: "assistant",
+        parts: [{ type: "text", text: lastResponseContent }],
       },
     ]);
   }
@@ -305,10 +334,10 @@ export function ChatWindow(props: {
       }
       footer={
         <ChatInput
-          value={chat.input}
-          onChange={chat.handleInputChange}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
           onSubmit={sendMessage}
-          loading={chat.isLoading || intermediateStepsLoading}
+          loading={isLoading || intermediateStepsLoading}
           placeholder={props.placeholder ?? "What's it like to be a pirate?"}
         >
           {props.showIngestForm && (
@@ -341,7 +370,7 @@ export function ChatWindow(props: {
                 id="show_intermediate_steps"
                 name="show_intermediate_steps"
                 checked={showIntermediateSteps}
-                disabled={chat.isLoading || intermediateStepsLoading}
+                disabled={isLoading || intermediateStepsLoading}
                 onCheckedChange={(e) => setShowIntermediateSteps(!!e)}
               />
               <label htmlFor="show_intermediate_steps" className="text-sm">

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
+import { type UIMessage, type TextUIPart, createTextStreamResponse } from "ai";
 
 import { ChatOpenAI } from "@langchain/openai";
 import { PromptTemplate } from "@langchain/core/prompts";
@@ -7,8 +7,14 @@ import { HttpResponseOutputParser } from "langchain/output_parsers";
 
 export const runtime = "edge";
 
-const formatMessage = (message: VercelChatMessage) => {
-  return `${message.role}: ${message.content}`;
+const getMessageText = (message: UIMessage) =>
+  message.parts
+    .filter((p): p is TextUIPart => p.type === "text")
+    .map((p) => p.text)
+    .join("");
+
+const formatMessage = (message: UIMessage) => {
+  return `${message.role}: ${getMessageText(message)}`;
 };
 
 const TEMPLATE = `You are a pirate named Patchy. All responses must be extremely verbose and in pirate dialect.
@@ -30,7 +36,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const messages = body.messages ?? [];
     const formattedPreviousMessages = messages.slice(0, -1).map(formatMessage);
-    const currentMessageContent = messages[messages.length - 1].content;
+    const currentMessageContent = getMessageText(messages[messages.length - 1]);
     const prompt = PromptTemplate.fromTemplate(TEMPLATE);
 
     /**
@@ -66,7 +72,9 @@ export async function POST(req: NextRequest) {
       input: currentMessageContent,
     });
 
-    return new StreamingTextResponse(stream);
+    return createTextStreamResponse({
+      textStream: stream.pipeThrough(new TextDecoderStream()),
+    });
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: e.status ?? 500 });
   }

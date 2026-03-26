@@ -14,6 +14,8 @@
     "node": ">=18"
   },
   "dependencies": {
+    "@ai-sdk/react": "^3.0.140",
+    "@ai-sdk/rsc": "^2.0.138",
     "@langchain/community": "^1.1.14",
     "@langchain/core": "^0.3.43",
     "@langchain/langgraph": "^0.2.57",
@@ -28,7 +30,7 @@
     "@types/node": "20.12.12",
     "@types/react": "18.3.2",
     "@types/react-dom": "18.3.0",
-    "ai": "^5.0.52",
+    "ai": "^6.0.138",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "langchain": "^0.3.19",

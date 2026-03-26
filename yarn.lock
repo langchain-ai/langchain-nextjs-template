@@ -5,38 +5,70 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@ai-sdk/gateway@npm:2.0.47":
-  version: 2.0.47
-  resolution: "@ai-sdk/gateway@npm:2.0.47"
+"@ai-sdk/gateway@npm:3.0.80":
+  version: 3.0.80
+  resolution: "@ai-sdk/gateway@npm:3.0.80"
   dependencies:
-    "@ai-sdk/provider": 2.0.1
-    "@ai-sdk/provider-utils": 3.0.21
+    "@ai-sdk/provider": 3.0.8
+    "@ai-sdk/provider-utils": 4.0.21
     "@vercel/oidc": 3.1.0
   peerDependencies:
     zod: ^3.25.76 || ^4.1.8
-  checksum: 594443e615f5f63fe24ae807e9c17c544609ec23d4a7d04e9a67c227e4e72aaf1404369a31cf341bf32d4076eba28ba34efbb8be614539241f229fb895ceb22d
+  checksum: cf49ae59198a8329a2311a252fbc3bd5f15f4b8d2bd206f410658b2cab404573d0697afe9bb3f00ced2a071224b860263b5e21370cc3f5332052bdccd672078c
   languageName: node
   linkType: hard
 
-"@ai-sdk/provider-utils@npm:3.0.21":
-  version: 3.0.21
-  resolution: "@ai-sdk/provider-utils@npm:3.0.21"
+"@ai-sdk/provider-utils@npm:4.0.21":
+  version: 4.0.21
+  resolution: "@ai-sdk/provider-utils@npm:4.0.21"
   dependencies:
-    "@ai-sdk/provider": 2.0.1
-    "@standard-schema/spec": ^1.0.0
+    "@ai-sdk/provider": 3.0.8
+    "@standard-schema/spec": ^1.1.0
     eventsource-parser: ^3.0.6
   peerDependencies:
     zod: ^3.25.76 || ^4.1.8
-  checksum: 00be075f80ac23fea4a43eeb5f23e1959877723e3cc111ebd57b59d66e75ad7e96d8802905dddf8b93194bbbddf34d57a1814ae4bacd4a861128d123a852ce56
+  checksum: 9d5338787836b10e3040573e60cd7804a4cf4ddc5ce46d29a599eae69eb43f819611c47df8b449736f274de086fc5ed1f777ae6951cc9a7e9af35f7d0930c319
   languageName: node
   linkType: hard
 
-"@ai-sdk/provider@npm:2.0.1":
-  version: 2.0.1
-  resolution: "@ai-sdk/provider@npm:2.0.1"
+"@ai-sdk/provider@npm:3.0.8":
+  version: 3.0.8
+  resolution: "@ai-sdk/provider@npm:3.0.8"
   dependencies:
     json-schema: ^0.4.0
-  checksum: 4c523ae37b543b642645ce9a6ce4e8afcef011d1e64fac6c7b7e5f43c2cced65dd91211e7d79dffc9dade63da4e68c96a55140d498f332c86afbcce0c9073ddb
+  checksum: cdc55caa9ab7836f03c8100ffe359ca57c6e22263238ac89181eaa6dfe6e1011f0c40652eed7ba597f127e1c09b0ab12a4bf6b19343621e5e74ed097c3c7125c
+  languageName: node
+  linkType: hard
+
+"@ai-sdk/react@npm:^3.0.140":
+  version: 3.0.140
+  resolution: "@ai-sdk/react@npm:3.0.140"
+  dependencies:
+    "@ai-sdk/provider-utils": 4.0.21
+    ai: 6.0.138
+    swr: ^2.2.5
+    throttleit: 2.1.0
+  peerDependencies:
+    react: ^18 || ~19.0.1 || ~19.1.2 || ^19.2.1
+  checksum: 837b7c5cbaca0c3aad715e2eadbc5cd3a73a153b6f45b8d949337c2c828324ea0e93b31b71ba19fbf81d28982e510b6b52b6646d21b6f6fb2ba37d641c3f4e58
+  languageName: node
+  linkType: hard
+
+"@ai-sdk/rsc@npm:^2.0.138":
+  version: 2.0.138
+  resolution: "@ai-sdk/rsc@npm:2.0.138"
+  dependencies:
+    "@ai-sdk/provider": 3.0.8
+    "@ai-sdk/provider-utils": 4.0.21
+    ai: 6.0.138
+    jsondiffpatch: 0.7.3
+  peerDependencies:
+    react: ^18 || ~19.0.1 || ~19.1.2 || ^19.2.1
+    zod: ^3.25.76 || ^4.1.8
+  peerDependenciesMeta:
+    zod:
+      optional: true
+  checksum: d8a557c53af31e299ff644d787dcb70d0e22b211359873d3146d4e45d14cb53d7db1f065373da35496f0a5bd9078b04aa7f160ac493699b6d70fb263823f7077
   languageName: node
   linkType: hard
 
@@ -51,6 +83,13 @@ __metadata:
   version: 4.1.0
   resolution: "@cfworker/json-schema@npm:4.1.0"
   checksum: 8b9b4d5f6c1625224ee31a3625e41f86e8b24b5ea66a2928fa01a5692be1790f756b0ad1a79a367893ec34f41658dedef5249c7c285366b9be6e601e0783fba0
+  languageName: node
+  linkType: hard
+
+"@dmsnell/diff-match-patch@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "@dmsnell/diff-match-patch@npm:1.1.0"
+  checksum: 4472487045f0bed40abbf5708542f596bf9576e1e6bd4ae01d8ddb694f857be51ca56599c95c61d1433f3d57da2e6c6f3e175609864eea601a47a26a68750ca0
   languageName: node
   linkType: hard
 
@@ -1616,7 +1655,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@standard-schema/spec@npm:^1.0.0":
+"@standard-schema/spec@npm:^1.1.0":
   version: 1.1.0
   resolution: "@standard-schema/spec@npm:1.1.0"
   checksum: 6245ebef5e698bb04752a22e996a7cc40406a404d9f68a9d4e1a7a10f2422da287247508e7b495a2f32bb38f3d57b4daf2c9ab4bf22d9bca13e20a3dc5ec575e
@@ -1941,17 +1980,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ai@npm:^5.0.52":
-  version: 5.0.141
-  resolution: "ai@npm:5.0.141"
+"ai@npm:6.0.138, ai@npm:^6.0.138":
+  version: 6.0.138
+  resolution: "ai@npm:6.0.138"
   dependencies:
-    "@ai-sdk/gateway": 2.0.47
-    "@ai-sdk/provider": 2.0.1
-    "@ai-sdk/provider-utils": 3.0.21
+    "@ai-sdk/gateway": 3.0.80
+    "@ai-sdk/provider": 3.0.8
+    "@ai-sdk/provider-utils": 4.0.21
     "@opentelemetry/api": 1.9.0
   peerDependencies:
     zod: ^3.25.76 || ^4.1.8
-  checksum: 31f726a65a57c18302e68a93da2f7b0986d114acbb3c084594b7a46cb71ce9fef8b5f7985d6f5654b947535e581ed16cba29537af0b118a5d69f98bdb6809bfc
+  checksum: 5f734b8bbd0d3c6716ee8362df610d9bd83623c940818f154d76f3fb181d17b31935940244eb32f203a65ca7e2a5d4f9f9673bc1d86ae887d5344c159b106ebd
   languageName: node
   linkType: hard
 
@@ -2660,6 +2699,13 @@ __metadata:
   version: 1.0.0
   resolution: "delayed-stream@npm:1.0.0"
   checksum: 46fe6e83e2cb1d85ba50bd52803c68be9bd953282fa7096f51fc29edd5d67ff84ff753c51966061e5ba7cb5e47ef6d36a91924eddb7f3f3483b1c560f77a0020
+  languageName: node
+  linkType: hard
+
+"dequal@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "dequal@npm:2.0.3"
+  checksum: 8679b850e1a3d0ebbc46ee780d5df7b478c23f335887464023a631d1b9af051ad4a6595a44220f9ff8ff95a8ddccf019b5ad778a976fd7bbf77383d36f412f90
   languageName: node
   linkType: hard
 
@@ -4236,6 +4282,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jsondiffpatch@npm:^0.7.2":
+  version: 0.7.3
+  resolution: "jsondiffpatch@npm:0.7.3"
+  dependencies:
+    "@dmsnell/diff-match-patch": ^1.1.0
+  bin:
+    jsondiffpatch: bin/jsondiffpatch.js
+  checksum: ec00f40f957bf3827995d53804fb29f040e91565b46752d5212fd17462e17b8a08865df85ed5fc2f01b3b6e194d23a95d278b948078406152e77eb79157500a9
+  languageName: node
+  linkType: hard
+
 "jsonpointer@npm:^5.0.1":
   version: 5.0.1
   resolution: "jsonpointer@npm:5.0.1"
@@ -4268,6 +4325,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "langchain-nextjs-template@workspace:."
   dependencies:
+    "@ai-sdk/react": ^3.0.140
+    "@ai-sdk/rsc": ^2.0.138
     "@langchain/community": ^1.1.14
     "@langchain/core": ^0.3.43
     "@langchain/langgraph": ^0.2.57
@@ -4283,7 +4342,7 @@ __metadata:
     "@types/node": 20.12.12
     "@types/react": 18.3.2
     "@types/react-dom": 18.3.0
-    ai: ^5.0.52
+    ai: ^6.0.138
     autoprefixer: 10.4.14
     class-variance-authority: ^0.7.1
     clsx: ^2.1.1
@@ -6167,6 +6226,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"swr@npm:^2.2.5":
+  version: 2.4.1
+  resolution: "swr@npm:2.4.1"
+  dependencies:
+    dequal: ^2.0.3
+    use-sync-external-store: ^1.6.0
+  peerDependencies:
+    react: ^16.11.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: f35d9d6d803d9b793f2e873b7f43943a76eb2278176013ed3de38206a48312803b1663495c477c7facb0245927092b33861cb5fe6b993d3169b00db5a790d18e
+  languageName: node
+  linkType: hard
+
 "tailwind-merge@npm:^2.6.0":
   version: 2.6.0
   resolution: "tailwind-merge@npm:2.6.0"
@@ -6258,6 +6329,13 @@ __metadata:
   dependencies:
     any-promise: ^1.0.0
   checksum: 84e1b804bfec49f3531215f17b4a6e50fd4397b5f7c1bccc427b9c656e1ecfb13ea79d899930184f78bc2f57285c54d9a50a590c8868f4f0cef5c1d9f898b05e
+  languageName: node
+  linkType: hard
+
+"throttleit@npm:2.1.0":
+  version: 2.1.0
+  resolution: "throttleit@npm:2.1.0"
+  checksum: a2003947aafc721c4a17e6f07db72dc88a64fa9bba0f9c659f7997d30f9590b3af22dadd6a41851e0e8497d539c33b2935c2c7919cf4255922509af6913c619b
   languageName: node
   linkType: hard
 
@@ -6546,6 +6624,15 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
   checksum: e494c267e6693b51e95f181432ea757144d732c3258be9d44319bf65135df015885e6b210a75e4e128de4432aaa857d5098bb7c4bbd656211007cc93ba214f56
+  languageName: node
+  linkType: hard
+
+"use-sync-external-store@npm:^1.6.0":
+  version: 1.6.0
+  resolution: "use-sync-external-store@npm:1.6.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 61a62e910713adfaf91bdb72ff2cd30e5ba83687accaf3b6e75a903b45bf635f5722e3694af30d83a03e92cb533c0a5c699298d2fef639a03ffc86b469f4eee2
   languageName: node
   linkType: hard
 
