@@ -1,8 +1,14 @@
 import { cn } from "@/utils/cn";
-import type { Message } from "ai/react";
+import type { UIMessage, TextUIPart } from "ai";
+
+const getMessageText = (message: UIMessage) =>
+  message.parts
+    .filter((p): p is TextUIPart => p.type === "text")
+    .map((p) => p.text)
+    .join("");
 
 export function ChatMessageBubble(props: {
-  message: Message;
+  message: UIMessage;
   aiEmoji?: string;
   sources: any[];
 }) {
@@ -23,7 +29,7 @@ export function ChatMessageBubble(props: {
       )}
 
       <div className="whitespace-pre-wrap flex flex-col">
-        <span>{props.message.content}</span>
+        <span>{getMessageText(props.message)}</span>
 
         {props.sources && props.sources.length ? (
           <>

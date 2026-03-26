@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { readStreamableValue } from "ai/rsc";
+import { readStreamableValue } from "@ai-sdk/rsc";
 import { runAgent } from "./action";
 import { StreamEvent } from "@langchain/core/tracers/log_stream";
 import { Input } from "@/components/ui/input";

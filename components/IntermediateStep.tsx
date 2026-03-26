@@ -1,10 +1,16 @@
 import { useState } from "react";
-import type { Message } from "ai/react";
+import type { UIMessage, TextUIPart } from "ai";
 import { cn } from "@/utils/cn";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
-export function IntermediateStep(props: { message: Message }) {
-  const parsedInput = JSON.parse(props.message.content);
+const getMessageText = (message: UIMessage) =>
+  message.parts
+    .filter((p): p is TextUIPart => p.type === "text")
+    .map((p) => p.text)
+    .join("");
+
+export function IntermediateStep(props: { message: UIMessage }) {
+  const parsedInput = JSON.parse(getMessageText(props.message));
   const action = parsedInput.action;
   const observation = parsedInput.observation;
   const [expanded, setExpanded] = useState(false);

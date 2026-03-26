@@ -1,6 +1,6 @@
 "use client";
 
-import { readStreamableValue } from "ai/rsc";
+import { readStreamableValue } from "@ai-sdk/rsc";
 import React, { useEffect, useRef, useState } from "react";
 import { executeTool } from "./action";
 import { Input } from "@/components/ui/input";

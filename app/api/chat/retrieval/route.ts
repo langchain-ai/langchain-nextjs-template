@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
+import { type UIMessage, type TextUIPart, createTextStreamResponse } from "ai";
 
 import { createClient } from "@supabase/supabase-js";
 
@@ -20,14 +20,20 @@ const combineDocumentsFn = (docs: Document[]) => {
   return serializedDocs.join("\n\n");
 };
 
-const formatVercelMessages = (chatHistory: VercelChatMessage[]) => {
+const getMessageText = (message: UIMessage) =>
+  message.parts
+    .filter((p): p is TextUIPart => p.type === "text")
+    .map((p) => p.text)
+    .join("");
+
+const formatVercelMessages = (chatHistory: UIMessage[]) => {
   const formattedDialogueTurns = chatHistory.map((message) => {
     if (message.role === "user") {
-      return `Human: ${message.content}`;
+      return `Human: ${getMessageText(message)}`;
     } else if (message.role === "assistant") {
-      return `Assistant: ${message.content}`;
+      return `Assistant: ${getMessageText(message)}`;
     } else {
-      return `${message.role}: ${message.content}`;
+      return `${message.role}: ${getMessageText(message)}`;
     }
   });
   return formattedDialogueTurns.join("\n");
@@ -72,7 +78,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const messages = body.messages ?? [];
     const previousMessages = messages.slice(0, -1);
-    const currentMessageContent = messages[messages.length - 1].content;
+    const currentMessageContent = getMessageText(messages[messages.length - 1]);
 
     const model = new ChatOpenAI({
       model: "gpt-4o-mini",
@@ -160,7 +166,8 @@ export async function POST(req: NextRequest) {
       ),
     ).toString("base64");
 
-    return new StreamingTextResponse(stream, {
+    return createTextStreamResponse({
+      textStream: stream.pipeThrough(new TextDecoderStream()),
       headers: {
         "x-message-index": (previousMessages.length + 1).toString(),
         "x-sources": serializedSources,
