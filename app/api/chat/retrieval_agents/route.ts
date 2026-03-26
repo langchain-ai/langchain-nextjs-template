@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Message as VercelChatMessage, StreamingTextResponse } from "ai";
+import { type UIMessage, type TextUIPart, createTextStreamResponse } from "ai";
 
 import { createClient } from "@supabase/supabase-js";
 
@@ -17,13 +17,19 @@ import { createReactAgent } from "@langchain/langgraph/prebuilt";
 
 export const runtime = "edge";
 
-const convertVercelMessageToLangChainMessage = (message: VercelChatMessage) => {
+const getMessageText = (message: UIMessage) =>
+  message.parts
+    .filter((p): p is TextUIPart => p.type === "text")
+    .map((p) => p.text)
+    .join("");
+
+const convertVercelMessageToLangChainMessage = (message: UIMessage) => {
   if (message.role === "user") {
-    return new HumanMessage(message.content);
+    return new HumanMessage(getMessageText(message));
   } else if (message.role === "assistant") {
-    return new AIMessage(message.content);
+    return new AIMessage(getMessageText(message));
   } else {
-    return new ChatMessage(message.content, message.role);
+    return new ChatMessage(getMessageText(message), message.role);
   }
 };
 
@@ -61,7 +67,7 @@ export async function POST(req: NextRequest) {
      */
     const messages = (body.messages ?? [])
       .filter(
-        (message: VercelChatMessage) =>
+        (message: UIMessage) =>
           message.role === "user" || message.role === "assistant",
       )
       .map(convertVercelMessageToLangChainMessage);
@@ -143,7 +149,7 @@ export async function POST(req: NextRequest) {
         },
       });
 
-      return new StreamingTextResponse(transformStream);
+      return createTextStreamResponse({ textStream: transformStream });
     } else {
       /**
        * We could also pick intermediate steps out from `streamEvents` chunks, but
