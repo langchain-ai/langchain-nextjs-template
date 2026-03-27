@@ -1,22 +1,22 @@
 "use client";
 
+import { useState } from "react";
 import { createUploadClient } from "pushduck/client";
 import type { AppUploadRouter } from "@/app/api/upload/route";
-import { useState } from "react";
 import { Button } from "./ui/button";
 
-const { useUpload } = createUploadClient<AppUploadRouter>({
+const upload = createUploadClient<AppUploadRouter>({
   endpoint: "/api/upload",
 });
 
 export function FileUpload() {
   const [uploadedUrls, setUploadedUrls] = useState<string[]>([]);
 
-  const { upload, files, isUploading } = useUpload("documentUpload", {
+  const { uploadFiles, files, isUploading } = upload.documentUpload({
     onSuccess(results) {
       setUploadedUrls((prev) => [
         ...prev,
-        ...results.map((r) => r.url),
+        ...results.map((r) => r.url).filter((url): url is string => !!url),
       ]);
     },
   });
@@ -24,7 +24,7 @@ export function FileUpload() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selected = e.target.files;
     if (selected && selected.length > 0) {
-      upload(Array.from(selected));
+      uploadFiles(Array.from(selected));
     }
     e.target.value = "";
   };
@@ -66,14 +66,14 @@ export function FileUpload() {
         <ul className="flex flex-col gap-2">
           {files.map((file) => (
             <li
-              key={file.name}
+              key={file.id}
               className="flex items-center justify-between rounded bg-gray-50 dark:bg-gray-800 px-3 py-2 text-sm"
             >
               <span className="truncate max-w-[60%] text-gray-700 dark:text-gray-200">
                 {file.name}
               </span>
               <span className="text-xs text-gray-400 dark:text-gray-500 capitalize">
-                {file.status}
+                {file.status === "uploading" ? `${file.progress}%` : file.status}
               </span>
             </li>
           ))}
