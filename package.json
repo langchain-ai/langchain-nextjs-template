@@ -46,6 +46,7 @@
     "tailwindcss-animate": "^1.0.7",
     "use-stick-to-bottom": "^1.0.44",
     "vaul": "^1.1.2",
+    "pushduck": "^0.4.0",
     "zod": "^3.25.32",
     "zod-to-json-schema": "^3.23.2"
   },
