@@ -54,7 +54,7 @@
     "autoprefixer": "10.4.14",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
-    "postcss": "^8.5.15",
+    "postcss": "^8.5.18",
     "prettier": "^3.4.2",
     "tailwindcss": "3.3.3",
     "typescript": "5.1.6"
@@ -71,7 +71,7 @@
     "langsmith": "^0.6.0",
     "brace-expansion": "^5.0.8",
     "picomatch": "^4.0.4",
-    "postcss": "^8.5.15",
+    "postcss": "^8.5.18",
     "ws": "^8.21.0",
     "uuid": "^11.1.1",
     "cross-spawn": "^7.0.6",
