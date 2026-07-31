@@ -11,7 +11,7 @@
     "format": "prettier --write \"app\""
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   },
   "dependencies": {
     "@ai-sdk/react": "^3.0.140",
@@ -72,6 +72,7 @@
     "brace-expansion": "^5.0.8",
     "picomatch": "^4.0.4",
     "postcss": "^8.5.18",
+    "sharp": "^0.35.0",
     "ws": "^8.21.0",
     "uuid": "^11.1.1",
     "cross-spawn": "^7.0.6",
