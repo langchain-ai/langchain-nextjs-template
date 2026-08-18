@@ -17,7 +17,7 @@
     "@ai-sdk/react": "^3.0.140",
     "@ai-sdk/rsc": "^2.0.138",
     "@langchain/community": "^1.1.14",
-    "@langchain/core": "^0.3.43",
+    "@langchain/core": "^1.2.8",
     "@langchain/langgraph": "^0.2.57",
     "@langchain/langgraph-sdk": "^0.0.60",
     "@langchain/openai": "^0.4.9",
