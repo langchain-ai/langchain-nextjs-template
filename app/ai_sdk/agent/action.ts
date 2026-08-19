@@ -3,8 +3,11 @@
 import { ChatOpenAI } from "@langchain/openai";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { TavilySearch } from "@langchain/tavily";
-import { AgentExecutor, createToolCallingAgent } from "langchain/agents";
-import { pull } from "langchain/hub";
+import {
+  AgentExecutor,
+  createToolCallingAgent,
+} from "@langchain/classic/agents";
+import { pull } from "@langchain/classic/hub";
 import { createStreamableValue } from "@ai-sdk/rsc";
 
 export async function runAgent(input: string) {

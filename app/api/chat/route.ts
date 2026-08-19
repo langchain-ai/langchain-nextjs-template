@@ -3,7 +3,7 @@ import { type UIMessage, type TextUIPart, createTextStreamResponse } from "ai";
 
 import { ChatOpenAI } from "@langchain/openai";
 import { PromptTemplate } from "@langchain/core/prompts";
-import { HttpResponseOutputParser } from "langchain/output_parsers";
+import { HttpResponseOutputParser } from "@langchain/classic/output_parsers";
 
 export const runtime = "edge";
 
