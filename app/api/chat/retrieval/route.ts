@@ -167,7 +167,7 @@ export async function POST(req: NextRequest) {
     ).toString("base64");
 
     return createTextStreamResponse({
-      textStream: stream.pipeThrough(new TextDecoderStream()),
+      stream: stream.pipeThrough(new TextDecoderStream()),
       headers: {
         "x-message-index": (previousMessages.length + 1).toString(),
         "x-sources": serializedSources,
