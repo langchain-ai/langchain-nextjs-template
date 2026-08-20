@@ -124,7 +124,7 @@ export async function POST(req: NextRequest) {
         },
       });
 
-      return createTextStreamResponse({ textStream: transformStream });
+      return createTextStreamResponse({ stream: transformStream });
     } else {
       /**
        * We could also pick intermediate steps out from `streamEvents` chunks, but

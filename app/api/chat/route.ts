@@ -73,7 +73,7 @@ export async function POST(req: NextRequest) {
     });
 
     return createTextStreamResponse({
-      textStream: stream.pipeThrough(new TextDecoderStream()),
+      stream: stream.pipeThrough(new TextDecoderStream()),
     });
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: e.status ?? 500 });
