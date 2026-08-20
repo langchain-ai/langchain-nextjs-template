@@ -129,16 +129,16 @@ function StickyToBottomContent(props: {
   className?: string;
   contentClassName?: string;
 }) {
-  const context = useStickToBottomContext();
+  const { scrollRef, contentRef } = useStickToBottomContext();
 
   // scrollRef will also switch between overflow: unset to overflow: auto
   return (
     <div
-      ref={context.scrollRef}
+      ref={scrollRef}
       style={{ width: "100%", height: "100%" }}
       className={cn("grid grid-rows-[1fr,auto]", props.className)}
     >
-      <div ref={context.contentRef} className={props.contentClassName}>
+      <div ref={contentRef} className={props.contentClassName}>
         {props.content}
       </div>
 
