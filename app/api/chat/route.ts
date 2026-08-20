@@ -3,7 +3,7 @@ import { type UIMessage, type TextUIPart, createTextStreamResponse } from "ai";
 
 import { ChatOpenAI } from "@langchain/openai";
 import { PromptTemplate } from "@langchain/core/prompts";
-import { HttpResponseOutputParser } from "langchain/output_parsers";
+import { HttpResponseOutputParser } from "@langchain/classic/output_parsers";
 
 export const runtime = "edge";
 
@@ -73,7 +73,7 @@ export async function POST(req: NextRequest) {
     });
 
     return createTextStreamResponse({
-      textStream: stream.pipeThrough(new TextDecoderStream()),
+      stream: stream.pipeThrough(new TextDecoderStream()),
     });
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: e.status ?? 500 });

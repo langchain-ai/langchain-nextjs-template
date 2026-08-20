@@ -12,7 +12,7 @@ import {
   SystemMessage,
 } from "@langchain/core/messages";
 import { ChatOpenAI, OpenAIEmbeddings } from "@langchain/openai";
-import { createRetrieverTool } from "langchain/tools/retriever";
+import { createRetrieverTool } from "@langchain/classic/tools/retriever";
 import { createReactAgent } from "@langchain/langgraph/prebuilt";
 
 export const runtime = "edge";
@@ -149,7 +149,7 @@ export async function POST(req: NextRequest) {
         },
       });
 
-      return createTextStreamResponse({ textStream: transformStream });
+      return createTextStreamResponse({ stream: transformStream });
     } else {
       /**
        * We could also pick intermediate steps out from `streamEvents` chunks, but

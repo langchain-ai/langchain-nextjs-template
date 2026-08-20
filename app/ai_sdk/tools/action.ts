@@ -51,18 +51,16 @@ export async function executeTool(
     } else {
       chain = prompt
         .pipe(
-          llm.bind({
-            tools: [
-              {
-                type: "function" as const,
-                function: {
-                  name: "get_weather",
-                  description: Weather.description,
-                  parameters: zodToJsonSchema(Weather),
-                },
+          llm.bindTools([
+            {
+              type: "function" as const,
+              function: {
+                name: "get_weather",
+                description: Weather.description,
+                parameters: zodToJsonSchema(Weather),
               },
-            ],
-          }),
+            },
+          ]),
         )
         .pipe(
           new JsonOutputKeyToolsParser<z.infer<typeof Weather>>({
