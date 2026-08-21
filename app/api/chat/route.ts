@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { type UIMessage, type TextUIPart, createTextStreamResponse } from "ai";
 
-import { ChatOpenAI } from "@langchain/openai";
 import { PromptTemplate } from "@langchain/core/prompts";
 import { HttpResponseOutputParser } from "@langchain/classic/output_parsers";
+
+import { getChatModel } from "@/lib/llm";
 
 export const runtime = "edge";
 
@@ -48,10 +49,7 @@ export async function POST(req: NextRequest) {
      * See a full list of supported models at:
      * https://js.langchain.com/docs/modules/model_io/models/
      */
-    const model = new ChatOpenAI({
-      temperature: 0.8,
-      model: "gpt-4o-mini",
-    });
+    const model = getChatModel({ temperature: 0.8 });
 
     /**
      * Chat models stream message chunks rather than bytes, so this

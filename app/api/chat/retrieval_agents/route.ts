@@ -11,9 +11,10 @@ import {
   HumanMessage,
   SystemMessage,
 } from "@langchain/core/messages";
-import { ChatOpenAI, OpenAIEmbeddings } from "@langchain/openai";
 import { createRetrieverTool } from "@langchain/classic/tools/retriever";
 import { createReactAgent } from "@langchain/langgraph/prebuilt";
+
+import { getChatModel, getEmbeddings } from "@/lib/llm";
 
 export const runtime = "edge";
 
@@ -73,16 +74,13 @@ export async function POST(req: NextRequest) {
       .map(convertVercelMessageToLangChainMessage);
     const returnIntermediateSteps = body.show_intermediate_steps;
 
-    const chatModel = new ChatOpenAI({
-      model: "gpt-4o-mini",
-      temperature: 0.2,
-    });
+    const chatModel = getChatModel({ temperature: 0.2 });
 
     const client = createClient(
       process.env.SUPABASE_URL!,
       process.env.SUPABASE_PRIVATE_KEY!,
     );
-    const vectorstore = new SupabaseVectorStore(new OpenAIEmbeddings(), {
+    const vectorstore = new SupabaseVectorStore(getEmbeddings(), {
       client,
       tableName: "documents",
       queryName: "match_documents",
