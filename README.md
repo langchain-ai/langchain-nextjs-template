@@ -27,7 +27,7 @@ You can check out a hosted version of this repo here: https://langchain-nextjs-t
 First, clone this repo and download it locally.
 
 Next, you'll need to set up environment variables in your repo's `.env.local` file. Copy the `.env.example` file to `.env.local`.
-To start with the basic examples, you'll just need to add your OpenAI API key.
+To start with the basic examples, you'll just need to add your OpenAI API key — or an `ORCAROUTER_API_KEY` to route everything through the [OrcaRouter](#-orcarouter) gateway instead.
 
 Because this app is made to run in serverless Edge functions, make sure you've set the `LANGCHAIN_CALLBACKS_BACKGROUND` environment variable to `false` to ensure tracing finishes if you are using [LangSmith tracing](https://docs.smith.langchain.com/).
 
@@ -58,6 +58,19 @@ The chain in this example uses a [popular library called Zod](https://zod.dev) t
 It then passes that schema as a function into OpenAI and passes a `function_call` parameter to force OpenAI to return arguments in the specified format.
 
 For more details, [check out this documentation page](https://js.langchain.com/docs/how_to/structured_output).
+
+## 🐋 OrcaRouter
+
+Every example can be pointed at [OrcaRouter](https://www.orcarouter.ai), an OpenAI-compatible AI gateway, by setting `ORCAROUTER_API_KEY` in `.env.local`. When set, all chat models and embeddings in this template route through the OrcaRouter gateway (`https://api.orcarouter.ai/v1`) instead of the OpenAI API directly, with zero code changes to the examples. It also runs gateway-level, zero-trust security for AI agents on the same endpoint — screening every prompt/response and governing every tool call on a default-deny basis, with no application code changes.
+
+```bash
+cp .env.example .env.local
+# Set your key, then:
+export ORCAROUTER_API_KEY="sk-orca-..."
+yarn dev
+```
+
+Chat defaults to the adaptive `orcarouter/auto` model; embeddings default to `openai/text-embedding-3-small`. Both are configurable via `ORCAROUTER_MODEL`, `ORCAROUTER_EMBEDDING_MODEL`, and `ORCAROUTER_BASE_URL`. Without `ORCAROUTER_API_KEY`, the examples keep using OpenAI exactly as before.
 
 ## 🦜 Agents
 

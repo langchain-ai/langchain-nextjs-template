@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { type UIMessage, type TextUIPart, createTextStreamResponse } from "ai";
 
 import { createReactAgent } from "@langchain/langgraph/prebuilt";
-import { ChatOpenAI } from "@langchain/openai";
 import { SerpAPI } from "@langchain/community/tools/serpapi";
 import { Calculator } from "@langchain/community/tools/calculator";
 import {
@@ -12,6 +11,8 @@ import {
   HumanMessage,
   SystemMessage,
 } from "@langchain/core/messages";
+
+import { getChatModel } from "@/lib/llm";
 
 export const runtime = "edge";
 
@@ -71,10 +72,7 @@ export async function POST(req: NextRequest) {
     // Requires process.env.SERPAPI_API_KEY to be set: https://serpapi.com/
     // You can remove this or use a different tool instead.
     const tools = [new Calculator(), new SerpAPI()];
-    const chat = new ChatOpenAI({
-      model: "gpt-4o-mini",
-      temperature: 0,
-    });
+    const chat = getChatModel({ temperature: 0 });
 
     /**
      * Use a prebuilt LangGraph agent.

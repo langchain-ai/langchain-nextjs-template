@@ -2,8 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { z } from "zod";
 
-import { ChatOpenAI } from "@langchain/openai";
 import { PromptTemplate } from "@langchain/core/prompts";
+
+import { getChatModel } from "@/lib/llm";
 
 export const runtime = "edge";
 
@@ -29,12 +30,11 @@ export async function POST(req: NextRequest) {
 
     const prompt = PromptTemplate.fromTemplate(TEMPLATE);
     /**
-     * Function calling is currently only supported with ChatOpenAI models
+     * Function calling is currently only supported with ChatOpenAI models.
+     * `getChatModel` returns a ChatOpenAI-compatible model configured for
+     * OrcaRouter when `ORCAROUTER_API_KEY` is set.
      */
-    const model = new ChatOpenAI({
-      temperature: 0.8,
-      model: "gpt-4o-mini",
-    });
+    const model = getChatModel({ temperature: 0.8 });
 
     /**
      * We use Zod (https://zod.dev) to define our schema for convenience,
