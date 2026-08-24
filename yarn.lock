@@ -881,11 +881,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/classic@npm:^1.0.43":
-  version: 1.0.43
-  resolution: "@langchain/classic@npm:1.0.43"
+"@langchain/classic@npm:^1.0.45":
+  version: 1.0.45
+  resolution: "@langchain/classic@npm:1.0.45"
   dependencies:
-    "@langchain/openai": 1.5.8
+    "@langchain/openai": 1.5.10
     "@langchain/textsplitters": 1.0.1
     handlebars: ^4.7.9
     js-yaml: ^5.2.2
@@ -895,7 +895,7 @@ __metadata:
     yaml: ^2.9.0
     zod: ^3.25.76 || ^4
   peerDependencies:
-    "@langchain/core": ^1.2.8
+    "@langchain/core": ^1.2.9
     cheerio: "*"
     peggy: ^5.1.0
     typeorm: "*"
@@ -909,7 +909,7 @@ __metadata:
       optional: true
     typeorm:
       optional: true
-  checksum: bd5b2251c7e255434a2290e270572aa9cfba43114204c95151d59f056f5bb10c39463a333feb8f3104bc5040da405cd3a3d25d09274ffc5c76e75ab9c5f165f7
+  checksum: febf16b1d8408b696c78746fd37bdaa57956407ea3e714725fa3976b9e7f83b2a7e8df04e6aafd33af1aae36e9ad23751da0af697068b9e0bd71b5d441167ce4
   languageName: node
   linkType: hard
 
@@ -1361,7 +1361,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/openai@npm:1.5.8, @langchain/openai@npm:^1.5.8":
+"@langchain/openai@npm:1.5.10":
+  version: 1.5.10
+  resolution: "@langchain/openai@npm:1.5.10"
+  dependencies:
+    js-tiktoken: ^1.0.12
+    openai: ^7.5.0
+    zod: ^3.25.76 || ^4
+  peerDependencies:
+    "@langchain/core": ^1.2.9
+  checksum: 289400ae5e6c8b922f34a9c2b5539f425bd22841f212ea31ac40a4cb0a279082745b06a8113fc48c74bbb1f61a00c192d720045efe29800121ba9dc61ec55526
+  languageName: node
+  linkType: hard
+
+"@langchain/openai@npm:^1.5.8":
   version: 1.5.8
   resolution: "@langchain/openai@npm:1.5.8"
   dependencies:
@@ -5308,7 +5321,7 @@ __metadata:
   dependencies:
     "@ai-sdk/react": ^4.0.71
     "@ai-sdk/rsc": ^3.0.68
-    "@langchain/classic": ^1.0.43
+    "@langchain/classic": ^1.0.45
     "@langchain/community": ^1.1.14
     "@langchain/core": ^1.2.8
     "@langchain/langgraph": ^1.4.10
@@ -6039,6 +6052,30 @@ __metadata:
     zod:
       optional: true
   checksum: 5b7a7045bbe66b59520f630b775968ca1d3176243dfb4d29da50a3b307ea6d06ca71d0f4a71399d3202ff65fd24c4267f3d7a2f9307d8ebad84e774ef95ef540
+  languageName: node
+  linkType: hard
+
+"openai@npm:^7.5.0":
+  version: 7.5.0
+  resolution: "openai@npm:7.5.0"
+  peerDependencies:
+    "@aws-sdk/credential-provider-node": ">=3.972.0 <4"
+    "@smithy/hash-node": ">=4.3.0 <5"
+    "@smithy/signature-v4": ">=5.4.0 <6"
+    ws: ^8.18.0
+    zod: ^3.25 || ^4.0
+  peerDependenciesMeta:
+    "@aws-sdk/credential-provider-node":
+      optional: true
+    "@smithy/hash-node":
+      optional: true
+    "@smithy/signature-v4":
+      optional: true
+    ws:
+      optional: true
+    zod:
+      optional: true
+  checksum: 7eedcf23d0b15dd2d4533574753200ebc93df323787a73e1e6ae0692792d2711811097f69bbc9acc2824c5b7481e5b652a0e71d0427f0ee05ea92964b41079fa
   languageName: node
   linkType: hard
 
