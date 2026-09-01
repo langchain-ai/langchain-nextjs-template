@@ -5263,14 +5263,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsondiffpatch@npm:^0.7.2":
-  version: 0.7.3
-  resolution: "jsondiffpatch@npm:0.7.3"
+"jsondiffpatch@npm:^0.7.6":
+  version: 0.7.6
+  resolution: "jsondiffpatch@npm:0.7.6"
   dependencies:
     "@dmsnell/diff-match-patch": ^1.1.0
   bin:
     jsondiffpatch: bin/jsondiffpatch.js
-  checksum: ec00f40f957bf3827995d53804fb29f040e91565b46752d5212fd17462e17b8a08865df85ed5fc2f01b3b6e194d23a95d278b948078406152e77eb79157500a9
+  checksum: b03738f3b7700e0ec8da2a8d8cfdaa52d7646dc6c712e81f069c0e8e551ec6a048f4d79885bd94fbeb77e459dbd3b54cafb37d9658ab329bd70dc5a20127abab
   languageName: node
   linkType: hard
 
