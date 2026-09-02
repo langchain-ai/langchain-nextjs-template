@@ -5324,7 +5324,7 @@ __metadata:
     react: ^19.2.8
     react-dom: ^19.2.8
     react-toastify: ^11.1.0
-    sonner: ^1.7.2
+    sonner: ^2.0.8
     tailwind-merge: ^2.6.0
     tailwindcss: 3.3.3
     tailwindcss-animate: ^1.0.7
@@ -7004,13 +7004,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sonner@npm:^1.7.2":
-  version: 1.7.2
-  resolution: "sonner@npm:1.7.2"
+"sonner@npm:^2.0.8":
+  version: 2.0.8
+  resolution: "sonner@npm:2.0.8"
   peerDependencies:
+    "@types/react": ^18.0.0 || ^19.0.0
     react: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
     react-dom: ^18.0.0 || ^19.0.0 || ^19.0.0-rc
-  checksum: b320bbd35f06df036c45e37f60ed21443312f266b5eefd3c814fba96aa7f134e1c6098cdb9ccfa57dd21eced7907c605a3a4475de02f87b25797bdf350ea7e53
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 494270b1c223728c4a6d4d19883854b0dc4122deb4f269dcce8268e496d184cb48862e3e9a0ead5c13de26dda01eda4da648f413022935d0949535386c1db748
   languageName: node
   linkType: hard
 
