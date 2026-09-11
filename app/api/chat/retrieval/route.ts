@@ -8,10 +8,7 @@ import { PromptTemplate } from "@langchain/core/prompts";
 import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
 import { Document } from "@langchain/core/documents";
 import { RunnableSequence } from "@langchain/core/runnables";
-import {
-  BytesOutputParser,
-  StringOutputParser,
-} from "@langchain/core/output_parsers";
+import { StringOutputParser } from "@langchain/core/output_parsers";
 
 export const runtime = "edge";
 
@@ -146,7 +143,7 @@ export async function POST(req: NextRequest) {
         chat_history: (input) => input.chat_history,
       },
       answerChain,
-      new BytesOutputParser(),
+      new StringOutputParser(),
     ]);
 
     const stream = await conversationalRetrievalQAChain.stream({
@@ -167,7 +164,7 @@ export async function POST(req: NextRequest) {
     ).toString("base64");
 
     return createTextStreamResponse({
-      stream: stream.pipeThrough(new TextDecoderStream()),
+      stream,
       headers: {
         "x-message-index": (previousMessages.length + 1).toString(),
         "x-sources": serializedSources,
