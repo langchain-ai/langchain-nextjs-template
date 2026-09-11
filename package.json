@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@ai-sdk/react": "^4.0.71",
-    "@ai-sdk/rsc": "^3.0.68",
+    "@ai-sdk/rsc": "^3.0.92",
     "@langchain/classic": "^1.0.45",
     "@langchain/community": "^1.1.14",
     "@langchain/core": "^1.2.8",
