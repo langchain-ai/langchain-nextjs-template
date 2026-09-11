@@ -3,7 +3,7 @@ import { type UIMessage, type TextUIPart, createTextStreamResponse } from "ai";
 
 import { ChatOpenAI } from "@langchain/openai";
 import { PromptTemplate } from "@langchain/core/prompts";
-import { HttpResponseOutputParser } from "@langchain/classic/output_parsers";
+import { StringOutputParser } from "@langchain/core/output_parsers";
 
 export const runtime = "edge";
 
@@ -53,11 +53,7 @@ export async function POST(req: NextRequest) {
       model: "gpt-4o-mini",
     });
 
-    /**
-     * Chat models stream message chunks rather than bytes, so this
-     * output parser handles serialization and byte-encoding.
-     */
-    const outputParser = new HttpResponseOutputParser();
+    const outputParser = new StringOutputParser();
 
     /**
      * Can also initialize as:
@@ -73,7 +69,7 @@ export async function POST(req: NextRequest) {
     });
 
     return createTextStreamResponse({
-      stream: stream.pipeThrough(new TextDecoderStream()),
+      stream,
     });
   } catch (e: any) {
     return NextResponse.json({ error: e.message }, { status: e.status ?? 500 });

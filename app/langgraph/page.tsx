@@ -9,7 +9,7 @@ import { useStream } from "@langchain/langgraph-sdk/react";
 import { useQueryState } from "nuqs";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Message } from "@langchain/langgraph-sdk";
+import type { Message } from "@langchain/langgraph-sdk";
 
 const onError = (error: unknown) => {
   toast.error("Failed to handle input", {
