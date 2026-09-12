@@ -3,7 +3,7 @@ import { type UIMessage, type TextUIPart, createTextStreamResponse } from "ai";
 
 import { createClient } from "@supabase/supabase-js";
 
-import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
+import { SupabaseVectorStore } from "@/utils/supabase-vector-store";
 import {
   AIMessage,
   BaseMessage,
@@ -84,8 +84,6 @@ export async function POST(req: NextRequest) {
     );
     const vectorstore = new SupabaseVectorStore(new OpenAIEmbeddings(), {
       client,
-      tableName: "documents",
-      queryName: "match_documents",
     });
 
     const retriever = vectorstore.asRetriever();

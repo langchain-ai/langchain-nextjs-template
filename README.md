@@ -61,8 +61,9 @@ For more details, [check out this documentation page](https://js.langchain.com/d
 
 ## 🦜 Agents
 
-To try out the agent example, you'll need to give the agent access to the internet by populating the `SERPAPI_API_KEY` in `.env.local`.
-Head over to [the SERP API website](https://serpapi.com/) and get an API key if you don't already have one.
+To try out the agent example, set `TAVILY_API_KEY` in `.env.local` for web search.
+Get an API key from [Tavily](https://tavily.com/); the AI SDK agent example uses the same key.
+The calculator accepts two numbers and an arithmetic operation rather than evaluating arbitrary expressions.
 
 You can then click the `Agent` example and try asking it more complex questions:
 
@@ -72,7 +73,8 @@ This example uses a [prebuilt LangGraph agent](https://langchain-ai.github.io/la
 
 ## 🐶 Retrieval
 
-The retrieval examples both use Supabase as a vector store. However, you can swap in
+The retrieval examples both use Supabase as a vector store through a small [local adapter](/utils/supabase-vector-store.ts) built on `@supabase/supabase-js` and `@langchain/core`. It uses the existing `documents` table and `match_documents` function; no database migration is needed.
+You can swap in
 [another supported vector store](https://js.langchain.com/docs/integrations/vectorstores) if preferred by changing
 the code under `app/api/retrieval/ingest/route.ts`, `app/api/chat/retrieval/route.ts`, and `app/api/chat/retrieval_agents/route.ts`.
 
@@ -93,6 +95,16 @@ The specific variant of the conversational retrieval chain used here is composed
 via header in addition to the streaming response.
 
 For more info on retrieval agents, [see this page](https://langchain-ai.github.io/langgraphjs/tutorials/rag/langgraph_agentic_rag/).
+
+## Integration tests
+
+Run the calculator and mock-backed Supabase regression tests with Node.js 22.6+:
+
+```bash
+node --experimental-strip-types --test utils/integrations.test.mjs
+```
+
+These tests do not require API keys or a live database.
 
 ## 📦 Bundle size
 
