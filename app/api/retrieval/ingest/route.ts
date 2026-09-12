@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { RecursiveCharacterTextSplitter } from "@langchain/textsplitters";
 
 import { createClient } from "@supabase/supabase-js";
-import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
+import { SupabaseVectorStore } from "@/utils/supabase-vector-store";
 import { OpenAIEmbeddings } from "@langchain/openai";
 
 export const runtime = "edge";
@@ -46,15 +46,10 @@ export async function POST(req: NextRequest) {
 
     const splitDocuments = await splitter.createDocuments([text]);
 
-    const vectorstore = await SupabaseVectorStore.fromDocuments(
-      splitDocuments,
-      new OpenAIEmbeddings(),
-      {
-        client,
-        tableName: "documents",
-        queryName: "match_documents",
-      },
-    );
+    const vectorstore = new SupabaseVectorStore(new OpenAIEmbeddings(), {
+      client,
+    });
+    await vectorstore.addDocuments(splitDocuments);
 
     return NextResponse.json({ ok: true }, { status: 200 });
   } catch (e: any) {

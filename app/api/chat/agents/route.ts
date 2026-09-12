@@ -3,8 +3,8 @@ import { type UIMessage, type TextUIPart, createTextStreamResponse } from "ai";
 
 import { createReactAgent } from "@langchain/langgraph/prebuilt";
 import { ChatOpenAI } from "@langchain/openai";
-import { SerpAPI } from "@langchain/community/tools/serpapi";
-import { Calculator } from "@langchain/community/tools/calculator";
+import { TavilySearch } from "@langchain/tavily";
+import { calculator } from "@/utils/calculator";
 import {
   AIMessage,
   BaseMessage,
@@ -68,9 +68,9 @@ export async function POST(req: NextRequest) {
       )
       .map(convertVercelMessageToLangChainMessage);
 
-    // Requires process.env.SERPAPI_API_KEY to be set: https://serpapi.com/
+    // Requires process.env.TAVILY_API_KEY, also used by the AI SDK agent example.
     // You can remove this or use a different tool instead.
-    const tools = [new Calculator(), new SerpAPI()];
+    const tools = [calculator, new TavilySearch({ maxResults: 5 })];
     const chat = new ChatOpenAI({
       model: "gpt-4o-mini",
       temperature: 0,

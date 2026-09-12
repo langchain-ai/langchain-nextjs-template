@@ -5,7 +5,7 @@ import { createClient } from "@supabase/supabase-js";
 
 import { ChatOpenAI, OpenAIEmbeddings } from "@langchain/openai";
 import { PromptTemplate } from "@langchain/core/prompts";
-import { SupabaseVectorStore } from "@langchain/community/vectorstores/supabase";
+import { SupabaseVectorStore } from "@/utils/supabase-vector-store";
 import { Document } from "@langchain/core/documents";
 import { RunnableSequence } from "@langchain/core/runnables";
 import { StringOutputParser } from "@langchain/core/output_parsers";
@@ -88,8 +88,6 @@ export async function POST(req: NextRequest) {
     );
     const vectorstore = new SupabaseVectorStore(new OpenAIEmbeddings(), {
       client,
-      tableName: "documents",
-      queryName: "match_documents",
     });
 
     /**
