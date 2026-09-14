@@ -861,21 +861,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/classic@npm:^1.0.45":
-  version: 1.0.45
-  resolution: "@langchain/classic@npm:1.0.45"
+"@langchain/classic@npm:^1.0.47":
+  version: 1.0.47
+  resolution: "@langchain/classic@npm:1.0.47"
   dependencies:
-    "@langchain/openai": 1.5.10
+    "@langchain/openai": 1.5.12
     "@langchain/textsplitters": 1.0.1
     handlebars: ^4.7.9
-    js-yaml: ^5.2.2
+    js-yaml: ^5.4.1
     jsonpointer: ^5.0.1
     langsmith: ">=0.4.0 <1.0.0"
     openapi-types: ^12.1.3
     yaml: ^2.9.0
     zod: ^3.25.76 || ^4
   peerDependencies:
-    "@langchain/core": ^1.2.9
+    "@langchain/core": ^1.2.10
     cheerio: "*"
     peggy: ^5.1.0
     typeorm: "*"
@@ -889,7 +889,7 @@ __metadata:
       optional: true
     typeorm:
       optional: true
-  checksum: febf16b1d8408b696c78746fd37bdaa57956407ea3e714725fa3976b9e7f83b2a7e8df04e6aafd33af1aae36e9ad23751da0af697068b9e0bd71b5d441167ce4
+  checksum: d5fe34bd2498e018f042f39787b0157656b6fc47bce6ce9898232192e1f496866302c13771abb888abfb0e5e2425489576b28e19c252e83e894ff4e29074dff5
   languageName: node
   linkType: hard
 
@@ -959,16 +959,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/openai@npm:1.5.10":
-  version: 1.5.10
-  resolution: "@langchain/openai@npm:1.5.10"
+"@langchain/openai@npm:1.5.12":
+  version: 1.5.12
+  resolution: "@langchain/openai@npm:1.5.12"
   dependencies:
     js-tiktoken: ^1.0.12
-    openai: ^7.5.0
+    openai: ^7.10.0
     zod: ^3.25.76 || ^4
   peerDependencies:
-    "@langchain/core": ^1.2.9
-  checksum: 289400ae5e6c8b922f34a9c2b5539f425bd22841f212ea31ac40a4cb0a279082745b06a8113fc48c74bbb1f61a00c192d720045efe29800121ba9dc61ec55526
+    "@langchain/core": ^1.2.10
+  checksum: edcbab25f8cfae05fadd0eab1d0d80c632405faebaa4370a0c0543fd950907f1185b1268bf8e899db5785c453449f3384185bbde7c4f5482991ed8869599b864
   languageName: node
   linkType: hard
 
@@ -4991,7 +4991,7 @@ __metadata:
   dependencies:
     "@ai-sdk/react": ^4.0.71
     "@ai-sdk/rsc": ^3.0.92
-    "@langchain/classic": ^1.0.45
+    "@langchain/classic": ^1.0.47
     "@langchain/core": ^1.2.8
     "@langchain/langgraph": ^1.4.10
     "@langchain/langgraph-sdk": ^1.9.29
@@ -5693,14 +5693,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"openai@npm:^7.5.0":
-  version: 7.5.0
-  resolution: "openai@npm:7.5.0"
+"openai@npm:^7.10.0":
+  version: 7.15.0
+  resolution: "openai@npm:7.15.0"
   peerDependencies:
     "@aws-sdk/credential-provider-node": ">=3.972.0 <4"
     "@smithy/hash-node": ">=4.3.0 <5"
     "@smithy/signature-v4": ">=5.4.0 <6"
-    ws: ^8.18.0
+    undici: ">=5 <9"
+    ws: ^8.21.0
     zod: ^3.25 || ^4.0
   peerDependenciesMeta:
     "@aws-sdk/credential-provider-node":
@@ -5709,11 +5710,13 @@ __metadata:
       optional: true
     "@smithy/signature-v4":
       optional: true
+    undici:
+      optional: true
     ws:
       optional: true
     zod:
       optional: true
-  checksum: 7eedcf23d0b15dd2d4533574753200ebc93df323787a73e1e6ae0692792d2711811097f69bbc9acc2824c5b7481e5b652a0e71d0427f0ee05ea92964b41079fa
+  checksum: afcc7696c64f955e9d61302bfbd33515558d1e039b8ea63f4947ea3a88083e95058bd6eb8267ade2b2ab1eacf48b57672481ce1176995e3a08a2ade7191d8381
   languageName: node
   linkType: hard
 
