@@ -1958,12 +1958,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:19.2.18":
-  version: 19.2.18
-  resolution: "@types/react@npm:19.2.18"
+"@types/react@npm:19.3.0":
+  version: 19.3.0
+  resolution: "@types/react@npm:19.3.0"
   dependencies:
     csstype: ^3.2.2
-  checksum: 01e42509fd2dbe05652bbe50f69883c79f6c5b24e5f306307e1f95eaf7eddf1cdd2646a1e056c6088d2c4403d5e2ab72226e31001c6564630529901514872fb1
+  checksum: 1cc51d4b76e5855da231e8b5afbde76db000eb3fffa5a8087a93eef1c168e86f90d10b7dae08dabf7a6ac327a254604406e6ede45c952d39d24dd0da6f856790
   languageName: node
   linkType: hard
 
@@ -5042,7 +5042,7 @@ __metadata:
     "@radix-ui/react-slot": ^1.1.1
     "@supabase/supabase-js": ^2.97.0
     "@types/node": 20.12.12
-    "@types/react": 19.2.18
+    "@types/react": 19.3.0
     "@types/react-dom": 19.2.4
     ai: ^7.0.66
     autoprefixer: 10.5.6
@@ -5057,7 +5057,7 @@ __metadata:
     nuqs: ^2.3.2
     postcss: ^8.5.28
     prettier: ^3.4.2
-    react: ^19.2.8
+    react: ^19.3.0
     react-dom: ^19.2.8
     react-toastify: ^11.1.0
     sonner: ^2.0.8
@@ -6204,10 +6204,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^19.2.8":
-  version: 19.2.8
-  resolution: "react@npm:19.2.8"
-  checksum: cdedb4786eb3eb79c8fbaa6df299de61ecd9e1cd4c7cd52213b5af7a98c67d532fd6b14b9d546ae5851f3962437aec22ad17ee6e8e0450de11c595300c5e5bd7
+"react@npm:^19.3.0":
+  version: 19.3.0
+  resolution: "react@npm:19.3.0"
+  checksum: b33f946acb704533911e9341f5acac7671d630d0fdfd4af625596b0ec5f2df03933bd1c302c781994416ed013f24674cab8ea99edc1b6714433af2c20376574f
   languageName: node
   linkType: hard
 
