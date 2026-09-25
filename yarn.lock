@@ -804,11 +804,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/classic@npm:^1.0.47":
-  version: 1.0.47
-  resolution: "@langchain/classic@npm:1.0.47"
+"@langchain/classic@npm:^1.0.48":
+  version: 1.0.48
+  resolution: "@langchain/classic@npm:1.0.48"
   dependencies:
-    "@langchain/openai": 1.5.12
+    "@langchain/openai": 1.5.13
     "@langchain/textsplitters": 1.0.1
     handlebars: ^4.7.9
     js-yaml: ^5.4.1
@@ -818,7 +818,7 @@ __metadata:
     yaml: ^2.9.0
     zod: ^3.25.76 || ^4
   peerDependencies:
-    "@langchain/core": ^1.2.10
+    "@langchain/core": ^1.2.11
     cheerio: "*"
     peggy: ^5.1.0
     typeorm: "*"
@@ -832,7 +832,7 @@ __metadata:
       optional: true
     typeorm:
       optional: true
-  checksum: d5fe34bd2498e018f042f39787b0157656b6fc47bce6ce9898232192e1f496866302c13771abb888abfb0e5e2425489576b28e19c252e83e894ff4e29074dff5
+  checksum: c8b5ab209092e66302f624b4367add3738c932747abefa20df626df8540e044b58cb8e368c9b831fca434975f20ca5f58693cf14e71da58dfd61122ef11e9864
   languageName: node
   linkType: hard
 
@@ -902,16 +902,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/openai@npm:1.5.12":
-  version: 1.5.12
-  resolution: "@langchain/openai@npm:1.5.12"
+"@langchain/openai@npm:1.5.13":
+  version: 1.5.13
+  resolution: "@langchain/openai@npm:1.5.13"
   dependencies:
     js-tiktoken: ^1.0.12
     openai: ^7.10.0
     zod: ^3.25.76 || ^4
   peerDependencies:
-    "@langchain/core": ^1.2.10
-  checksum: edcbab25f8cfae05fadd0eab1d0d80c632405faebaa4370a0c0543fd950907f1185b1268bf8e899db5785c453449f3384185bbde7c4f5482991ed8869599b864
+    "@langchain/core": ^1.2.11
+  checksum: 818e654a0fd903bda961d958c51acbd5e6cc5faeea0959dc329e95b725d13c3cee716f301909cd12dd8bf6c995e176be61e6206c99d43391c1fb5ad36cd0b841
   languageName: node
   linkType: hard
 
@@ -4598,7 +4598,7 @@ __metadata:
   dependencies:
     "@ai-sdk/react": ^4.0.71
     "@ai-sdk/rsc": ^3.0.92
-    "@langchain/classic": ^1.0.47
+    "@langchain/classic": ^1.0.48
     "@langchain/core": ^1.2.8
     "@langchain/langgraph": ^1.4.10
     "@langchain/langgraph-sdk": ^1.9.29
