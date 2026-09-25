@@ -860,7 +860,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/langgraph-sdk@npm:^1.9.29, @langchain/langgraph-sdk@npm:~1.9.29":
+"@langchain/langgraph-sdk@npm:^1.11.0":
+  version: 1.11.0
+  resolution: "@langchain/langgraph-sdk@npm:1.11.0"
+  dependencies:
+    "@langchain/protocol": ^0.0.19
+    "@types/json-schema": ^7.0.15
+    p-queue: ^9.0.1
+    p-retry: ^7.1.1
+  peerDependencies:
+    "@langchain/core": ^1.1.48
+    react: ^18 || ^19
+    react-dom: ^18 || ^19
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 15009adaa421792441f7b7084080b47af2ef16eaae9a3f977befaf8ab859c8e44684bf91c16275fd1d6e2605460167a45cacdd1744fd9fae64e538f8941da03b
+  languageName: node
+  linkType: hard
+
+"@langchain/langgraph-sdk@npm:~1.9.29":
   version: 1.9.29
   resolution: "@langchain/langgraph-sdk@npm:1.9.29"
   dependencies:
@@ -932,6 +953,13 @@ __metadata:
   version: 0.0.18
   resolution: "@langchain/protocol@npm:0.0.18"
   checksum: 76f650a682724cd8c98a19d88d510a8c1b22ea0d6b8dafa823d19eee56bb45b2ea8df363878296348c8e0a7d248bad71c0c4b7f0c0b626c7ff95fdce47ddb846
+  languageName: node
+  linkType: hard
+
+"@langchain/protocol@npm:^0.0.19":
+  version: 0.0.19
+  resolution: "@langchain/protocol@npm:0.0.19"
+  checksum: e21286deb24ca213b0b8cad6de5315d329c3265276e67e261267d80cb79d8624b3faf042d79363a39949c84ea5bcd42b6eda2a8f3078de51f912ca61833e70d2
   languageName: node
   linkType: hard
 
@@ -4601,7 +4629,7 @@ __metadata:
     "@langchain/classic": ^1.0.48
     "@langchain/core": ^1.2.8
     "@langchain/langgraph": ^1.4.10
-    "@langchain/langgraph-sdk": ^1.9.29
+    "@langchain/langgraph-sdk": ^1.11.0
     "@langchain/openai": ^1.5.8
     "@langchain/tavily": ^1.2.0
     "@next/bundle-analyzer": ^16.3.5
