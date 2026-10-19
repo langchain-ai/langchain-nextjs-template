@@ -861,9 +861,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/core@npm:^1.2.8":
-  version: 1.2.8
-  resolution: "@langchain/core@npm:1.2.8"
+"@langchain/core@npm:^1.2.14":
+  version: 1.2.14
+  resolution: "@langchain/core@npm:1.2.14"
   dependencies:
     "@cfworker/json-schema": ^4.0.2
     "@standard-schema/spec": ^1.1.0
@@ -872,7 +872,7 @@ __metadata:
     mustache: ^4.2.0
     p-queue: ^6.6.2
     zod: ^3.25.76 || ^4
-  checksum: d1b2ca2e4c61f0a74bad33661a2d3fb51938abbe4ff6eb7b585269ba974673a51a5fb5454c3fda94ded2560fbd0921323d98ec6f70e94ec9f34bdc57cc5756de
+  checksum: 80034aa2b8663586aae9c10c7d448b279d85b161952347769c5984e0a8bada68c05721c4bff910dff15e95f4ab09f78b3470bd970ef96418cca70536a8a7537e
   languageName: node
   linkType: hard
 
@@ -4678,7 +4678,7 @@ __metadata:
     "@ai-sdk/react": ^4.0.109
     "@ai-sdk/rsc": ^3.0.92
     "@langchain/classic": ^1.0.48
-    "@langchain/core": ^1.2.8
+    "@langchain/core": ^1.2.14
     "@langchain/langgraph": ^1.4.10
     "@langchain/langgraph-sdk": ^1.11.0
     "@langchain/openai": ^1.5.8
