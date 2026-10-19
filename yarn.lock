@@ -4702,7 +4702,7 @@ __metadata:
     lucide-react: ^0.473.0
     next: ^16.3.8
     next-themes: ^0.4.6
-    nuqs: ^2.3.2
+    nuqs: ^2.10.2
     postcss: ^8.5.28
     prettier: ^3.4.2
     react: ^19.3.0
@@ -4873,13 +4873,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mitt@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "mitt@npm:3.0.1"
-  checksum: b55a489ac9c2949ab166b7f060601d3b6d893a852515ae9eca4e11df01c013876df777ea109317622b5c1c60e8aae252558e33c8c94e14124db38f64a39614b1
-  languageName: node
-  linkType: hard
-
 "mrmime@npm:^2.0.0":
   version: 2.0.1
   resolution: "mrmime@npm:2.0.1"
@@ -5017,19 +5010,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nuqs@npm:^2.3.2":
-  version: 2.3.2
-  resolution: "nuqs@npm:2.3.2"
+"nuqs@npm:^2.10.2":
+  version: 2.10.2
+  resolution: "nuqs@npm:2.10.2"
   dependencies:
-    mitt: ^3.0.1
+    "@standard-schema/spec": 1.1.0
   peerDependencies:
     "@remix-run/react": ">=2"
+    "@tanstack/react-router": ^1
     next: ">=14.2.0"
     react: ">=18.2.0 || ^19.0.0-0"
-    react-router: ^6 || ^7
-    react-router-dom: ^6 || ^7
+    react-router: ^5 || ^6 || ^7 || ^8
+    react-router-dom: ^5 || ^6 || ^7
   peerDependenciesMeta:
     "@remix-run/react":
+      optional: true
+    "@tanstack/react-router":
       optional: true
     next:
       optional: true
@@ -5037,7 +5033,7 @@ __metadata:
       optional: true
     react-router-dom:
       optional: true
-  checksum: 4dc7846be622677022cd993fda27deddd84c66b1b5d52173e33b9e815d8becadef783d9ab437b09f7c8bf4597917ad3d386ac9d82735d654a87a62d60c445277
+  checksum: 558c9ce522bbb5b1a4a9a3573ae888f2d6d65707eb7bf039e073f2ba99b2e01b10185b00e43125caa0927acc6eb63d958e50c734aa3b7e66ea340e422f1016a6
   languageName: node
   linkType: hard
 
