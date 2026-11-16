@@ -19,7 +19,7 @@
     "@langchain/classic": "^1.0.48",
     "@langchain/core": "^1.2.14",
     "@langchain/langgraph": "^1.4.10",
-    "@langchain/langgraph-sdk": "^1.12.9",
+    "@langchain/langgraph-sdk": "^1.16.0",
     "@langchain/openai": "^1.5.8",
     "@langchain/tavily": "^1.2.0",
     "@radix-ui/react-checkbox": "^1.4.1",
