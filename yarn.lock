@@ -1086,12 +1086,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/bundle-analyzer@npm:^16.3.6":
-  version: 16.3.6
-  resolution: "@next/bundle-analyzer@npm:16.3.6"
+"@next/bundle-analyzer@npm:^16.4.6":
+  version: 16.4.6
+  resolution: "@next/bundle-analyzer@npm:16.4.6"
   dependencies:
     webpack-bundle-analyzer: 4.10.1
-  checksum: 45a9fa760ea416387b639eafe6e310c306b5382990ae7f9c4d7cea6b74bf3756803099dcbb7d235f03de136481f5732b8a9d9a4c748d221e5a4c342cd2ecc7cd
+  checksum: db3a51f56dd106fef79d0986704f5de4db309842fd69a65798128471e51d11d67b9f1541e818a00fb429ac89627b6e68d8294741822e81b50e79a4239fce16b7
   languageName: node
   linkType: hard
 
@@ -4984,7 +4984,7 @@ __metadata:
     "@langchain/langgraph-sdk": ^1.16.0
     "@langchain/openai": ^1.5.8
     "@langchain/tavily": ^1.2.0
-    "@next/bundle-analyzer": ^16.3.6
+    "@next/bundle-analyzer": ^16.4.6
     "@radix-ui/react-checkbox": ^1.4.1
     "@radix-ui/react-dialog": ^1.1.23
     "@radix-ui/react-popover": ^1.1.23
