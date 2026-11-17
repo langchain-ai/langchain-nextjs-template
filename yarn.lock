@@ -1012,7 +1012,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/openai@npm:1.8.4":
+"@langchain/openai@npm:1.8.4, @langchain/openai@npm:^1.8.4":
   version: 1.8.4
   resolution: "@langchain/openai@npm:1.8.4"
   dependencies:
@@ -1022,19 +1022,6 @@ __metadata:
   peerDependencies:
     "@langchain/core": ^1.4.0
   checksum: 54de66229d1a27023bdf4e23f1c179578e79eb7a8d6daee6ba6066e1a4273738fbefd6ba508888e3c9a2efce3c3d78185c19ca48339335200f33fde7e85fe864
-  languageName: node
-  linkType: hard
-
-"@langchain/openai@npm:^1.5.8":
-  version: 1.5.8
-  resolution: "@langchain/openai@npm:1.5.8"
-  dependencies:
-    js-tiktoken: ^1.0.12
-    openai: ^6.41.0
-    zod: ^3.25.76 || ^4
-  peerDependencies:
-    "@langchain/core": ^1.2.8
-  checksum: 50882d15bc375af633e73f91d090bbc31d13ca042dbe1c2589700f76b1debfb80f969136f27cf5d15956f3aa867398c7653f8637534b810a126bb4b3ab4a3ae1
   languageName: node
   linkType: hard
 
@@ -4982,7 +4969,7 @@ __metadata:
     "@langchain/core": ^1.2.14
     "@langchain/langgraph": ^1.4.10
     "@langchain/langgraph-sdk": ^1.16.0
-    "@langchain/openai": ^1.5.8
+    "@langchain/openai": ^1.8.4
     "@langchain/tavily": ^1.2.0
     "@next/bundle-analyzer": ^16.4.6
     "@radix-ui/react-checkbox": ^1.4.1
@@ -5584,30 +5571,6 @@ __metadata:
     define-properties: ^1.2.1
     es-object-atoms: ^1.0.0
   checksum: f9b9a2a125ccf8ded29414d7c056ae0d187b833ee74919821fc60d7e216626db220d9cb3cf33f965c84aaaa96133626ca13b80f3c158b673976dc8cfcfcd26bb
-  languageName: node
-  linkType: hard
-
-"openai@npm:^6.41.0":
-  version: 6.49.0
-  resolution: "openai@npm:6.49.0"
-  peerDependencies:
-    "@aws-sdk/credential-provider-node": ">=3.972.0 <4"
-    "@smithy/hash-node": ">=4.3.0 <5"
-    "@smithy/signature-v4": ">=5.4.0 <6"
-    ws: ^8.18.0
-    zod: ^3.25 || ^4.0
-  peerDependenciesMeta:
-    "@aws-sdk/credential-provider-node":
-      optional: true
-    "@smithy/hash-node":
-      optional: true
-    "@smithy/signature-v4":
-      optional: true
-    ws:
-      optional: true
-    zod:
-      optional: true
-  checksum: 5b7a7045bbe66b59520f630b775968ca1d3176243dfb4d29da50a3b307ea6d06ca71d0f4a71399d3202ff65fd24c4267f3d7a2f9307d8ebad84e774ef95ef540
   languageName: node
   linkType: hard
 
