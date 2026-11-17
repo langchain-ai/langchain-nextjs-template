@@ -2,7 +2,7 @@ import "./globals.css";
 import { Public_Sans } from "next/font/google";
 import { ActiveLink } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
-import { GithubIcon } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { Toaster } from "@/components/ui/sonner";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 
@@ -94,7 +94,7 @@ export default function RootLayout({
                     href="https://github.com/langchain-ai/langchain-nextjs-template"
                     target="_blank"
                   >
-                    <GithubIcon className="size-3" />
+                    <ExternalLink className="size-3" aria-hidden="true" />
                     <span>Open in GitHub</span>
                   </a>
                 </Button>
