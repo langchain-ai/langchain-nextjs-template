@@ -1039,14 +1039,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@langchain/tavily@npm:^1.2.0":
-  version: 1.2.0
-  resolution: "@langchain/tavily@npm:1.2.0"
+"@langchain/tavily@npm:^1.2.1":
+  version: 1.2.1
+  resolution: "@langchain/tavily@npm:1.2.1"
   dependencies:
-    zod: ^3.25.76 || ^4
+    zod: ^4.6.6
   peerDependencies:
     "@langchain/core": ^1.0.0
-  checksum: 70dd4ec82dfc75bd6d529c2c5c7cdf961c863b70705be1e2895b946ff7afbf084204eea2cdb5734179d72c219e1b1528cafbe763a18ea21987946ffca525d6da
+  checksum: 9c149d1664838af9f6cfbdaa99e10daa13163fed6957fb57412da0120c8cb9d2936c7ab05a7933ab3e571ffacf7c617627a16ed1e29089b052a9bb03c8aa8ca4
   languageName: node
   linkType: hard
 
@@ -4970,7 +4970,7 @@ __metadata:
     "@langchain/langgraph": ^1.4.10
     "@langchain/langgraph-sdk": ^1.16.0
     "@langchain/openai": ^1.8.4
-    "@langchain/tavily": ^1.2.0
+    "@langchain/tavily": ^1.2.1
     "@next/bundle-analyzer": ^16.4.6
     "@radix-ui/react-checkbox": ^1.4.1
     "@radix-ui/react-dialog": ^1.1.23
