@@ -21,7 +21,7 @@
     "@langchain/langgraph": "^1.4.10",
     "@langchain/langgraph-sdk": "^1.16.0",
     "@langchain/openai": "^1.8.4",
-    "@langchain/tavily": "^1.2.0",
+    "@langchain/tavily": "^1.2.1",
     "@radix-ui/react-checkbox": "^1.4.1",
     "@radix-ui/react-dialog": "^1.1.23",
     "@radix-ui/react-popover": "^1.1.23",
