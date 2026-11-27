@@ -5,16 +5,16 @@ __metadata:
   version: 6
   cacheKey: 8
 
-"@ai-sdk/gateway@npm:4.0.52":
-  version: 4.0.52
-  resolution: "@ai-sdk/gateway@npm:4.0.52"
+"@ai-sdk/gateway@npm:4.0.150":
+  version: 4.0.150
+  resolution: "@ai-sdk/gateway@npm:4.0.150"
   dependencies:
-    "@ai-sdk/provider": 4.0.7
-    "@ai-sdk/provider-utils": 5.0.27
+    "@ai-sdk/provider": 4.0.39
+    "@ai-sdk/provider-utils": 5.0.82
     "@vercel/oidc": 3.2.0
   peerDependencies:
     zod: ^3.25.76 || ^4.1.8
-  checksum: 6aab31ff8d1a64babd3489e3da293166af49a4429aca3d1b0c1b33951f235e9b3df8e941c1d738276dbaf6e0d1233a9e4222313b9b1004ad7f052c0e2ba2529c
+  checksum: 6204c556c69d98f7a19085935013de9a86b18b4fedd2b86adf7f2c166780c88181ff2e8ba65dbc8fb8e391a501e032511c112a5971d31c345638d1694a9dcbcd
   languageName: node
   linkType: hard
 
@@ -58,21 +58,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ai-sdk/provider-utils@npm:5.0.27":
-  version: 5.0.27
-  resolution: "@ai-sdk/provider-utils@npm:5.0.27"
-  dependencies:
-    "@ai-sdk/provider": 4.0.7
-    "@standard-schema/spec": ^1.1.0
-    "@workflow/serde": 4.1.0
-    eventsource-parser: ^3.0.8
-    undici: ^7.28.0
-  peerDependencies:
-    zod: ^3.25.76 || ^4.1.8
-  checksum: 0f5b0f61ddea8ab6cecadc35a04de7ede8eafc4c9a192dbef99611d2b9de8fdb9d1b289ff87a2cf87fdcd10f565bf62d8395ed452dfc24681644927549e39d09
-  languageName: node
-  linkType: hard
-
 "@ai-sdk/provider-utils@npm:5.0.36":
   version: 5.0.36
   resolution: "@ai-sdk/provider-utils@npm:5.0.36"
@@ -103,6 +88,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ai-sdk/provider-utils@npm:5.0.82":
+  version: 5.0.82
+  resolution: "@ai-sdk/provider-utils@npm:5.0.82"
+  dependencies:
+    "@ai-sdk/provider": 4.0.39
+    "@standard-schema/spec": ^1.1.0
+    "@workflow/serde": 4.1.0
+    eventsource-parser: ^3.0.8
+  peerDependencies:
+    zod: ^3.25.76 || ^4.1.8
+  checksum: 7c1eeed58d2db88588240d877a7ae3236d3a2f8da922fa5f7efdd8ae7911fd47db1a6f8eb1e957ff1b865f927cf772c337f0f3e0829c298114f3c192d87b7664
+  languageName: node
+  linkType: hard
+
 "@ai-sdk/provider@npm:4.0.10":
   version: 4.0.10
   resolution: "@ai-sdk/provider@npm:4.0.10"
@@ -121,12 +120,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ai-sdk/provider@npm:4.0.7":
-  version: 4.0.7
-  resolution: "@ai-sdk/provider@npm:4.0.7"
+"@ai-sdk/provider@npm:4.0.39":
+  version: 4.0.39
+  resolution: "@ai-sdk/provider@npm:4.0.39"
   dependencies:
     json-schema: ^0.4.0
-  checksum: 95ef6f8edade2695a46d2630e5136c9349b93f4bb9d7438d621bdd8e0dbfa3ab241c3f2d4e2c69e7da9c623382e3bfb86c6faa0c1ba56fbd9c393bd35b507bbd
+  checksum: 034b2b11f85e8b861d549ed463694f8ec7f7342a57f12d463d0c2beea4c2f8dc7eb630f6b36ef2740c8f200943b51232849f2edde1e9d1c68cb1006040bc930a
   languageName: node
   linkType: hard
 
@@ -2517,16 +2516,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ai@npm:^7.0.66":
-  version: 7.0.66
-  resolution: "ai@npm:7.0.66"
+"ai@npm:^7.0.177":
+  version: 7.0.177
+  resolution: "ai@npm:7.0.177"
   dependencies:
-    "@ai-sdk/gateway": 4.0.52
-    "@ai-sdk/provider": 4.0.7
-    "@ai-sdk/provider-utils": 5.0.27
+    "@ai-sdk/gateway": 4.0.150
+    "@ai-sdk/provider": 4.0.39
+    "@ai-sdk/provider-utils": 5.0.82
   peerDependencies:
     zod: ^3.25.76 || ^4.1.8
-  checksum: 8a82027f793d675e3c121e250f054dd55dbfb39fa15c6cc2f8237fa2445407836e86cec278ce9ec204baaac660d5eae5605749aecd1df959450c13e74f5f068f
+  checksum: 498b073978563e493bd19979de1e86aedb97c5db2c7720d004f9514e98bbfcbbb5366300d300bd9962a0bf8c8fb3d7988c294478a76763251aa8bdf6e26b8422
   languageName: node
   linkType: hard
 
@@ -4992,7 +4991,7 @@ __metadata:
     "@types/node": 20.12.12
     "@types/react": 19.3.0
     "@types/react-dom": 19.3.0
-    ai: ^7.0.66
+    ai: ^7.0.177
     autoprefixer: 10.5.6
     class-variance-authority: ^0.7.1
     clsx: ^2.1.1
@@ -6900,7 +6899,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici@npm:^7.28.0, undici@npm:^7.29.0":
+"undici@npm:^7.29.0":
   version: 7.30.1
   resolution: "undici@npm:7.30.1"
   checksum: 690eac72898071c9a2d100c7653dc4fa90b70666877a7a3a0c264a96e3ebe6c2110ce3e89bcd4ecdd635db6871355e64992d088adcc473ee59bd2b92119ce28b
